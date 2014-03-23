@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*.dt2
 
 # Build results
 
