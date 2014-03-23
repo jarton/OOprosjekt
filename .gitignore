@@ -6,6 +6,9 @@
 *.user
 *.sln.docstates
 *.dt2
+*.vcxproj.filters
+*.vcxproj
+*.sln
 
 # Build results
 
