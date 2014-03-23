@@ -9,6 +9,7 @@
 *.vcxproj.filters
 *.vcxproj
 *.sln
+*.v11
 
 # Build results
 
