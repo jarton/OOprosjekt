@@ -6,11 +6,13 @@
 class Sone {
 private:
 	char* beskrivelse;
+	int soneNummer;      
 	List* eiendommene;
 
 public:
-
-}
+	void display();
+	int hentSonenr();
+};
 
 
 #endif

@@ -1,15 +1,17 @@
 #if !defined(__class_Soner_H)
 #define __class_Soner_H
 
-#include "conster.h";
+#include "conster.h"
+#include "class Sone.h"
 
-class Soner{
+class Soner  {
 private:
 	int sisteOppdrag;
 	Sone* sonene[MAXSONER+1];
 
 public:
 	void fortsettelseMeny(char valg);
+	void finnSone(int sonenr);
 }
 
 

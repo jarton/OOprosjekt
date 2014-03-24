@@ -1,5 +1,15 @@
 #include <iostream>
+#include "conster.h"
+#include "class Soner.h";
+#include "class Kunder.h";
 using namespace std;
+
+
+// Variabler
+
+
+
+// Funksjoner
 
 //  Leser inn en tekst med lengde ulik 0:
 void lesTxt(char t[], char s[], const int LEN) {    
@@ -42,4 +52,12 @@ void skrivMeny(){
 		<< "\n\tK E - Kunde Endre <kundenr>"
 		<< "\n\tU - Ukentlig utskrift / status / sending";
 
+}
+
+// Ber om nummeret til en sone og displayer
+void soneDisplay()  {
+	Soner soner;
+	int sonenr;
+	sonenr=lesTall("Skriv inn sonenummer: ",1,MAXSONER);
+	soner.finnSone(sonenr);
 }
