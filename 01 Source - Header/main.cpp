@@ -1,7 +1,7 @@
 #include <iostream>
-#include "globale funksjoner og variabler.h";
-#include "class Soner.h";
-#include "class Kunder.h";
+#include "globale funksjoner og variabler.h"
+#include "class Soner.h"
+#include "class Kunder.h"
 
 using namespace std;
 

@@ -15,6 +15,6 @@ void kundeDisplay();
 void kundeNy();
 void kundeSlett();
 void kundeEndre();
-void ukentlig();
+void utskrift();
 
 #endif

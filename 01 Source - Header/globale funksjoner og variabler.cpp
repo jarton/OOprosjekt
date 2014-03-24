@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstdlib>																// itoa
 #include "conster.h"
-#include "class Soner.h";
-#include "class Kunder.h";
+#include "class Soner.h"
+#include "class Kunder.h"
 #include <cstring>
 using namespace std;
 
