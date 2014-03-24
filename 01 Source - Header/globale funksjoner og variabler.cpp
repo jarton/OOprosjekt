@@ -36,8 +36,8 @@ void LagNavn(char* t, char* s1, char * s2, int n, int LEN) {   //Lager filer
 for (int j = 0; j < i; j++) {
  	nuller[j] ='0';	
 	}
-strcat_s(s1, nuller);
-strcat_S(s1, s2);
+strcat(s1, nuller);
+strcat(s1, s2);
 t = s1;
 }
 
