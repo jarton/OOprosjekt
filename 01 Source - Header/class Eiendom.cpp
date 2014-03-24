@@ -16,6 +16,3 @@ void Eiendom::display()  {
 	cout << "\nKommune: " << kommunenavn;
 	cout << "\nBeskrivelse: " << oppdragsnummer;
 }
-
-	// oppdragsnummer, dato, bruksnummer, ansattnummer, pris, areal;
-	// gateadresse, postadresse, eiernavn, kommunenavn, beskrivelse;
