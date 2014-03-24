@@ -1,5 +1,7 @@
 #if !defined(__class_Eiendom_H)
 #define __class_Eiendom_H
+
+#include "listtool2.h";
 #include "enumer.h";
 
 
