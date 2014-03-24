@@ -3,7 +3,7 @@
 
 #include "listtool2.h"
 
-class Sone {
+class Sone  {
 private:
 	char* beskrivelse;
 	int soneNummer;      

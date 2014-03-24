@@ -12,7 +12,7 @@ private:
 public:
 	void fortsettelseMeny(char valg);
 	void finnSone(int sonenr);
-}
+};
 
 
 #endif
