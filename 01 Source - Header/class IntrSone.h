@@ -1,6 +1,7 @@
 #if !defined(__class_IntrSone_H)
 #define __class_IntrSone_H
-#include "enum.h";
+
+#include "enumer.h";
 
 class IntrSone {
 private:
