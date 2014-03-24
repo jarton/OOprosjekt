@@ -12,6 +12,7 @@ private:
 	Eiendomstype eiendomstypen;
 
 public:
+	void display();
 };
 
 #endif
