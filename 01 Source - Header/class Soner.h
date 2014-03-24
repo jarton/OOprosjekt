@@ -8,7 +8,7 @@ private:
 	Sone* sonene[MAXSONER+1];
 
 public:
-
+	void fortsettelseMeny(char valg);
 }
 
 

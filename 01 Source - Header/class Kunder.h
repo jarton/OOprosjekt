@@ -9,7 +9,7 @@ private:
 
 public:
 	Kunder();
-
+	void fortsettelseMeny(char valg);
 
 };
 
