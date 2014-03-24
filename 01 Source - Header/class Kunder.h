@@ -10,7 +10,7 @@ private:
 	List* kundeliste;
 
 public:
-	Kunder();
+	//Kunder();
 	void fortsettelseMeny(char valg);
 
 };

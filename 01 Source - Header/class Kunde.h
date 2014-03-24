@@ -11,7 +11,7 @@ private:
 	List* IntrSoneliste;
 
 public:
-	Kunde();
+	//Kunde();
 };
 
 

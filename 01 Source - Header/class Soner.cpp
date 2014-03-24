@@ -12,3 +12,7 @@ void Soner::finnSone(int sonenr)  {
 	}
 }
 
+void Soner::fortsettelseMeny(char valg) {
+	cout << "Test " << valg;
+}
+
