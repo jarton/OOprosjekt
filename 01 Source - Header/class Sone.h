@@ -10,8 +10,8 @@ private:
 	List* eiendommene;
 
 public:
-	void display();
-	int hentSonenr();
+	void display();               // Displayer all info om en sone
+	int hentSonenr();             // Returnerer sonens nummer
 };
 
 

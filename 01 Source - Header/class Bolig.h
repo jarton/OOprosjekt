@@ -10,7 +10,7 @@ private:
 	Statusonske statusonsket;
 
 public:
-	void display();
+	void display();  // Displayer informasjon om en bolig
 };
 
 

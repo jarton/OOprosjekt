@@ -12,7 +12,7 @@ private:
 	Eiendomstype eiendomstypen;
 
 public:
-	virtual void display();
+	virtual void display();    // Displayer informasjon om en eiendom
 };
 
 #endif

@@ -3,10 +3,12 @@
 #include "class Soner.h"
 using namespace std;
 
+//Finner sonenummer gitt i parameter og displayer
 void Soner::finnSone(int sonenr)  {
 	int i;
-	for (i=1; i<=MAXSONER; i++)  {
-		if (sonene[i]->hentSonenr() == sonenr)
-			sonene[i]->display();
+	for (i=1; i<=MAXSONER; i++)  {                     // loop gjennom alle soner
+		if (sonene[i]->hentSonenr() == sonenr)        // Hvis sonens nr = parameter
+			sonene[i]->display();                                 // Displayer sonen
 	}
 }
+

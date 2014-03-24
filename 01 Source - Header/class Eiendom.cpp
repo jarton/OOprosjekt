@@ -3,6 +3,8 @@
 
 using namespace std;
 
+
+// Displayer all informasjon om en eiendom
 void Eiendom::display()  {
   cout << "\nOppdragsnummer: " << oppdragsnummer;
 	cout << "\nDato: " << dato;
