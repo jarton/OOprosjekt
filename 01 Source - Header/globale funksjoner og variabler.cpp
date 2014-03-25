@@ -80,5 +80,5 @@ void soneDisplay()  {
 	Soner soner;
 	int sonenr;
 	sonenr=lesTall("Skriv inn sonenummer: ",1,MAXSONER);
-	soner.finnSone(sonenr);
+	soner.displaySone(sonenr);
 }

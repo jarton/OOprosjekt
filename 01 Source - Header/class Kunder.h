@@ -10,8 +10,8 @@ private:
 	List* kundeliste;
 
 public:
-	//Kunder();
-	void fortsettelseMeny(char valg);
+	Kunder();
+	void fortsettelseMeny();
 
 };
 

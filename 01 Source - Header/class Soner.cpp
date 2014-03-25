@@ -1,4 +1,5 @@
 #include <iostream>
+#include "globale funksjoner og variabler.h"
 #include "conster.h"
 #include "class Soner.h"
 using namespace std;
@@ -12,7 +13,17 @@ void Soner::displaySone(int sonenr)  {
 	}
 }
 
-void Soner::fortsettelseMeny(char valg) {
-	cout << "Test " << valg;
+void Soner::fortsettelseMeny() {
+	char valg2;
+	int sonenr;
+	valg2 = les();
+	while (valg2 != 'Q')  {
+		switch(valg2) {
+		case 'D': 
+		  cin >> sonenr;
+			displaySone(sonenr);
+		  break;	
+		}
+	}
 }
 
