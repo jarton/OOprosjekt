@@ -24,20 +24,23 @@ void Soner::displayEiendom(int nr)  {
 
 void Soner::fortsettelseMeny(char valg) {
 	char valg2;
-	int sonenr;
 	int nr;
 	valg2 = les();
 	while (valg2 != 'Q')  {
 		switch(valg2) {
 		case 'D': 
 			if (valg == 'S')  {
-			  cin >> sonenr;
-			  displaySone(sonenr);
+			  cin >> nr;
+			  displaySone(nr);
 			}
 			else if (valg =='E')  {
 				cin >> nr;
 				displayEiendom(nr);
 			}
+			break;
+		case 'N': break;
+		case 'S': break;
+		case 'E': break;
 
 			break;
 

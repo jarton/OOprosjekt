@@ -4,7 +4,7 @@
 #include "listtool2.h"
 #include "enumer.h"
 
-class Kunde  {
+class Kunde : public Num_element  {
 private:
 	int kundenummer, tlf;
 	char* navn, gateadresse, postadresse, mail;
@@ -12,6 +12,8 @@ private:
 
 public:
 	//Kunde();
+	void sjekkNrNvn(char* kundeinfo);
+	void displayKunde();
 };
 
 
