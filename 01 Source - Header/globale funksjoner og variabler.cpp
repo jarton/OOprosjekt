@@ -75,20 +75,6 @@ void skrivMeny(){
 
 }
 
-void SEMeny(char valg) {
-	Sone*sone;
-	char valg2;
-	int sonenr;
-	valg2 = les();
-	while (valg2 != 'Q')  {
-		switch(valg2) {
-		case 'D': 
-		  cin >> sonenr;
-			sone->displaySone(sonenr);
-		  break;	
-		}
-	}
-}
 
 
 void KMeny()  {

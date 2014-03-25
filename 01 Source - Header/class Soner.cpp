@@ -27,3 +27,4 @@ void Soner::fortsettelseMeny(char valg) {
 		}
 	}
 }
+
