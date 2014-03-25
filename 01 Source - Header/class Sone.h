@@ -9,9 +9,11 @@ private:
 	int soneNummer;      
 	List* eiendommene;
 
+
 public:
 	void display();               // Displayer all info om en sone
 	int hentSonenr();             // Returnerer sonens nummer
+	int hentInfo(int nr);
 };
 
 

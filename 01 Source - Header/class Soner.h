@@ -13,6 +13,7 @@ public:
 	Soner();
 	void fortsettelseMeny(char valg);   // Viser meny
 	void displaySone(int sonenr);          // Finner en sone
+	void displayEiendom(int nr);
 };
 
 

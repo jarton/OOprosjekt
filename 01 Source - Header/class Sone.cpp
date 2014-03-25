@@ -23,3 +23,19 @@ void Sone::display()  {
 int Sone::hentSonenr()  {
 	return soneNummer;
 }
+
+
+int Sone::hentInfo(int nr)  {
+	Eiendom* eiendom;                                            // Eiendom-peker
+	int antEiendommer;                             // Variabel: antall eiendommer
+	int i;                                                   // Variabel til loop
+	antEiendommer=eiendommene->no_of_elements();      // Finner antall eiendommer
+	for (i=1; i<=antEiendommer; i++)  {           // Loop gjennom alle eiendommer
+		eiendom = (Eiendom*)eiendommene->remove_no(i); // Fjerner eiendom fra liste
+		if (eiendom->finnOppdragsnr(nr) == true) 
+			eiendom->display();
+		if (eiendom->finnPostnummer(nr) == true)
+			eiendom->display();
+		eiendommene->add(eiendom);               // Legger eiendom tilbake i listen
+	}
+}

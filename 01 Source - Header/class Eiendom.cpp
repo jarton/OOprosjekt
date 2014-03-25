@@ -1,5 +1,6 @@
 #include <iostream>
 #include "class Eiendom.h"
+#include <cstdlib>																// itoa
 
 using namespace std;
 
@@ -17,4 +18,20 @@ void Eiendom::display()  {
 	cout << "\nEier: " << eiernavn;
 	cout << "\nKommune: " << kommunenavn;
 	cout << "\nBeskrivelse: " << oppdragsnummer;
+}
+
+bool Eiendom::finnPostnummer(int postnr)  {
+	int pnr;
+	pnr = atoi(postadresse);
+	if(postnr==pnr)
+		return true;
+	else
+		return false;
+}
+
+bool Eiendom::finnOppdragsnr(int oppdnr)  {
+	if(oppdnr==oppdragsnummer)
+		return true;
+	else
+		return false;
 }

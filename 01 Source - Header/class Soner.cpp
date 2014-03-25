@@ -13,16 +13,36 @@ void Soner::displaySone(int sonenr)  {
 	}
 }
 
+void Soner::displayEiendom(int nr)  {
+	int i;
+	for (i=1; i <=MAXSONER; i++)  {
+		if (sonene[i]->hentInfo(nr))
+			cout << "hei";
+	}
+
+}
+
 void Soner::fortsettelseMeny(char valg) {
 	char valg2;
 	int sonenr;
+	int nr;
 	valg2 = les();
 	while (valg2 != 'Q')  {
 		switch(valg2) {
 		case 'D': 
-		  cin >> sonenr;
-			if (valg == 'D')
+			if (valg == 'S')  {
+			  cin >> sonenr;
 			  displaySone(sonenr);
+			}
+			else if (valg =='E')  {
+				cin >> nr;
+				displayEiendom(nr);
+			}
+
+			break;
+
+			
+
 		  break;	
 		}
 	}
