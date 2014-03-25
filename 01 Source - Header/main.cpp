@@ -20,7 +20,7 @@ int main()  {
 
 	//Kundeliste = new List(Sorted);
 	//Soneliste = new List(Sorted);
-	
+
 
   //lesFraFil();                             //  Oppgave 2F
 
@@ -28,8 +28,8 @@ int main()  {
   valg = les();
   while (valg != 'Q')  {
     switch(valg)  {
-      case 'E': soner->fortsettelseMeny();  break;  // Eiendom
-			case 'S': soner->fortsettelseMeny();  break;  // Sone (display)
+      case 'E': soner->fortsettelseMeny(valg);  break;  // Eiendom
+			case 'S': soner->fortsettelseMeny(valg);  break;  // Sone (display)
       case 'K': kunder->fortsettelseMeny(); break;  // Kunde
       //case 'U': ;         break;  //  Senere
       default : skrivMeny();	 break; // 

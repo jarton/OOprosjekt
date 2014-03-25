@@ -23,4 +23,3 @@ void Sone::display()  {
 int Sone::hentSonenr()  {
 	return soneNummer;
 }
-

@@ -11,7 +11,7 @@ private:
 
 public:
 	Soner();
-	void fortsettelseMeny();   // Viser meny
+	void fortsettelseMeny(char valg);   // Viser meny
 	void displaySone(int sonenr);          // Finner en sone
 };
 

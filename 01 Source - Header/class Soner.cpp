@@ -13,7 +13,7 @@ void Soner::displaySone(int sonenr)  {
 	}
 }
 
-void Soner::fortsettelseMeny() {
+void Soner::fortsettelseMeny(char valg) {
 	char valg2;
 	int sonenr;
 	valg2 = les();
@@ -21,9 +21,9 @@ void Soner::fortsettelseMeny() {
 		switch(valg2) {
 		case 'D': 
 		  cin >> sonenr;
-			displaySone(sonenr);
+			if (valg == 'D')
+			  displaySone(sonenr);
 		  break;	
 		}
 	}
 }
-
