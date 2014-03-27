@@ -76,15 +76,14 @@ void skrivMeny(){
 }
 
 
-
-void KMeny()  {
-
-}
-
 // Ber om nummeret til en sone og displayer
 void soneDisplay()  {
 	Soner soner;
 	int sonenr;
 	sonenr=lesTall("Skriv inn sonenummer: ",1,MAXSONER);
 	soner.displaySone(sonenr);
+}
+
+void lesFraFil()  {
+
 }
