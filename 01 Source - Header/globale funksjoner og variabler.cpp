@@ -85,5 +85,8 @@ void soneDisplay()  {
 }
 
 void lesFraFil()  {
+	/// IN PROGRESS: lesFraFil SONEXXX.DTA
+	int soneNummer, oppdragsnummer, dato, bruksnummer, ansattnummer, pris, areal;
+	char beskrivelse[STRLEN], gateadresse[STRLEN], eiernavn[NVNLEN], kommunenavn[NVNLEN], beskrivelse[STRLEN], postadresse[STRLEN];
 
 }
