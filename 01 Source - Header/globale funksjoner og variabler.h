@@ -1,6 +1,9 @@
 #if !defined(__GL_FV_H)
 #define __GL_FV_H
 
+#include "class Soner.h"
+#include "class Kunder.h"
+
 
 Soner soner;
 Kunder kunder;

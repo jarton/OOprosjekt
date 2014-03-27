@@ -6,12 +6,8 @@
 using namespace std;
 
 void Kunder::fortsettelseMeny()  {
-	cout << "Test " ;
-}
-
-void Kunder::fortsettelseMeny()  {
 	char valg;
-	char* kundeinfo;
+	char kundeinfo[STRLEN];
 
 	valg = les();
 	while (valg != 'Q')  {

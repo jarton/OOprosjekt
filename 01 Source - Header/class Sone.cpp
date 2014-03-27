@@ -25,7 +25,7 @@ int Sone::hentSonenr()  {
 }
 
 
-int Sone::hentInfo(int nr)  {
+void Sone::hentInfo(int nr)  {
 	Eiendom* eiendom;                                            // Eiendom-peker
 	int antEiendommer;                             // Variabel: antall eiendommer
 	int i;                                                   // Variabel til loop
