@@ -5,8 +5,7 @@
 #include "class Kunder.h"
 
 
-Soner soner;
-Kunder kunder;
+
 
 int  lesTall(char* t, int min, int max);          // Leser inn et tall 
 void  lesTxt(char t[], char s[], const int LEN);   // Leser inn en tekst

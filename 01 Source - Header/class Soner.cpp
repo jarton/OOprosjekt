@@ -5,6 +5,7 @@
 using namespace std;
 
 //Finner sonenummer gitt i parameter og displayer
+
 void Soner::displaySone(int sonenr)  {
 	int i;
 	for (i=1; i<=MAXSONER; i++)  {                     // loop gjennom alle soner
@@ -15,11 +16,8 @@ void Soner::displaySone(int sonenr)  {
 
 void Soner::displayEiendom(int nr)  {
 	int i;
-	for (i=1; i <=MAXSONER; i++)  {
-		if (sonene[i]->hentInfo(nr))
-			cout << "hei";
-	}
-
+	for (i=1; i <=MAXSONER; i++)  
+	  sonene[i]->finnSone(nr);
 }
 
 void Soner::fortsettelseMeny(char valg) {
@@ -32,6 +30,7 @@ void Soner::fortsettelseMeny(char valg) {
 			if (valg == 'S')  {
 			  cin >> nr;
 			  displaySone(nr);
+			
 			}
 			else if (valg =='E')  {
 				cin >> nr;

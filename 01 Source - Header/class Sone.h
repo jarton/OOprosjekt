@@ -13,7 +13,7 @@ private:
 public:
 	void display();               // Displayer all info om en sone
 	int hentSonenr();             // Returnerer sonens nummer
-	void hentInfo(int nr);
+	void finnSone(int nr);
 };
 
 

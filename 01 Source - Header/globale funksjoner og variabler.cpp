@@ -4,6 +4,7 @@
 #include "class Soner.h"
 #include "class Kunder.h"
 #include <cstring>
+#include <fstream>
 using namespace std;
 
 
@@ -84,9 +85,31 @@ void soneDisplay()  {
 	soner.displaySone(sonenr);
 }
 
+
+
 void lesFraFil()  {
-	/// IN PROGRESS: lesFraFil SONEXXX.DTA
-	int soneNummer, oppdragsnummer, dato, bruksnummer, ansattnummer, pris, areal;
-	char beskrivelse[STRLEN], gateadresse[STRLEN], eiernavn[NVNLEN], kommunenavn[NVNLEN], beskrivelse[STRLEN], postadresse[STRLEN];
+	char filnavn[STRLEN];
+	char filstart[5];
+	char filend[4];
+	int n;
+	char chn[7];
+
+	// Les fra fil kunde:
+	int sonenummer, maxPris, minAreal, minAntSoverom;
+	int kundenummer, tlf;
+	char* navn, gateadresse, postadresse, mail;
+	Boligfeed boligfeeden;
+	
+	//  KUNDE0001000.DTA
+	
+	strcpy(filstart,"KUNDE");
+	strcpy(filend,".DTA");
+	n=1000;
+
+	ifstream inn (filnavn);
+	//if(inn)
+		// les fra fil
+
+	
 
 }

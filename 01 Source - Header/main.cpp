@@ -11,14 +11,8 @@ int main()  {
 
 	char valg;                               //  Brukerens valg/kommando.
 
-	//List* Kundeliste;
-	//List* Soneliste;
-	soner;
-
-	//Kundeliste = new List(Sorted);
-	//Soneliste = new List(Sorted);
-
-
+	Soner soner;
+  Kunder kunder;
   //lesFraFil();                             //  Oppgave 2F
 
   skrivMeny();
