@@ -9,7 +9,7 @@ private:
 	Boligfeed boligfeeden;
 
 public:
-	
+	IntrSone(int postnr);
 };
 
 #endif

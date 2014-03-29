@@ -13,6 +13,8 @@ public:
 	Kunder();
 	void fortsettelseMeny();
 	void finnKunde(char* kundeinfo);
+	void displayKunde(int kundenr);
+	void nyKunde();
 
 };
 

@@ -11,9 +11,10 @@ private:
 	List* IntrSoneliste;
 
 public:
-	//Kunde();
+	Kunde(int knr);		//Constructor
 	void sjekkNrNvn(char* kundeinfo);
 	void displayKunde();
+	IntrSone* nyeIntrSoner();
 };
 
 

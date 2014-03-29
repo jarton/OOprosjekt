@@ -16,7 +16,9 @@ void Kunder::fortsettelseMeny()  {
 			cin.getline(kundeinfo,STRLEN); 
 			finnKunde(kundeinfo);
 			break;
-		case 'N': break;
+		case 'N':
+			nyKunde();
+			break;
 		case 'S': break;
 		case 'E': break;
 	  }
@@ -33,4 +35,11 @@ void Kunder::finnKunde(char* kundeinfo)  {
 	kunde->sjekkNrNvn(kundeinfo);
 	kundeliste->add(kunde);
 	}
+}
+
+Kunder :: nyKunde(){ //Lager ny kunde
+	char* kunden;
+
+	kunden = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
+	kundene->add(kunden); //Legger den inn i listen over kunder.
 }
