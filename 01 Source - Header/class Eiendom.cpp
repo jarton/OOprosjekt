@@ -1,9 +1,31 @@
 #include <iostream>
 #include "class Eiendom.h"
 #include <cstdlib>																// itoa
+#include <fstream>
+#include "conster.h"
 
 using namespace std;
 
+Eiendom::Eiendom(ifstream & inn)	{
+	inn >> oppdragsnummer >> dato
+		>> bruksnummer >> ansattnummer
+		>> pris >> areal;
+
+	char buffer[STRLEN];								//buffer for innlesing
+	inn.ignore();
+	inn.getline(buffer, STRLEN);						
+	gateadresse = new char[strlen(buffer + 1)];
+	inn.getline(buffer, STRLEN);
+	postadresse = new char[strlen(buffer + 1)];
+	inn.getline(buffer, STRLEN);
+	eiernavn = new char[strlen(buffer + 1)];
+	inn.getline(buffer, STRLEN);
+	kommunenavn = new char[strlen(buffer + 1)];
+	inn.getline(buffer, STRLEN);
+	beskrivelse = new char[strlen(buffer + 1)];
+	inn.getline(buffer, STRLEN);
+	// eiendomstype siste getline.  enum innlesing må gjøres
+}
 
 // Displayer all informasjon om en eiendom
 void Eiendom::display()  {

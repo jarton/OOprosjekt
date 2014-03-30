@@ -1,7 +1,14 @@
 #include <iostream>
 #include "class Eiendom.h"
 #include "class Bolig.h"
+#include <fstream>
+
 using namespace std;
+
+Bolig::Bolig(ifstream & inn) : Eiendom(inn) {
+	//må gjøres
+
+}
 
 void Bolig::display()  {
 	cout << "\nBolig";

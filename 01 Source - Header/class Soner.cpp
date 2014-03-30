@@ -24,7 +24,7 @@ Soner::Soner()	{
 		LagNavn(sonefil, "SONE", ".DTA", i, 3);   //som lager filnavn for alle 100
 		ifstream inn(sonefil);							//og prøver å lese dem inn
 		if (inn)												//hvis den finnes
-			sonene[i] = new Sone(inn, i, sonefil);		//lag ny sone og les den inn
+			sonene[i] = new Sone(inn, i);		//lag ny sone og les den inn
 	}													//med les inn costructor
 }
 

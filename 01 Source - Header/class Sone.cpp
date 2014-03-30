@@ -1,5 +1,6 @@
 #include "class Sone.h"
 #include "class Eiendom.h"
+#include "class Bolig.h"
 #include "conster.h"
 #include <iostream>
 #include <cstring>
@@ -8,15 +9,23 @@
 using namespace std;
 
 // Constructor som leser fra fil
-Sone::Sone(ifstream & inn, int nr, char * nvn)	{							//int er sonenr
+Sone::Sone(ifstream & inn, int nr)	{			//int er sonenr
 	char buffer[STRLEN];								//buffer for innlesing
+	inn.ignore();
 	inn.getline(buffer, STRLEN);						 //leser inn beskrivelse
 	beskrivelse = new char[strlen(buffer + 1)];         //peker på array som er 
 															//akkuratt lang nok
 	soneNummer = nr;									//sonenr ble sendt med
-	Eiendom* eiendom;
-	//ikke ferdig !!!!!
-	
+	Eiendom* type;
+	char eientype[STRLEN];
+	inn >> eientype;
+	while (!inn.eof)	{
+		if (eientype[1] == 'e')
+			type = new Eiendom(inn);
+		else
+			type = new Bolig(inn);
+		inn >> eientype;
+	}
 }
 
 

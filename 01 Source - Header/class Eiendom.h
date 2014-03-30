@@ -9,11 +9,15 @@
 class Eiendom : public Num_element  {
 private:
 	int oppdragsnummer, dato, bruksnummer, ansattnummer, pris, areal;
-	char* gateadresse, eiernavn, kommunenavn, beskrivelse;
-	char* postadresse;  // Må stå alene!!!
+	char* gateadresse;
+	char* postadresse;
+	char* eiernavn;
+	char* kommunenavn;
+	char* beskrivelse;
 	Eiendomstype eiendomstypen;
 
 public:
+	Eiendom(ifstream & inn);
 	virtual void display();          // Displayer informasjon om en eiendom
 	bool finnPostnummer(int postnr);
 	bool finnOppdragsnr(int oppdnr);

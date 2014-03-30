@@ -11,7 +11,7 @@ private:
 
 
 public:
-	Sone(ifstream & inn, int nr, char * nvn);
+	Sone(ifstream & inn, int nr);
 	void display();               // Displayer all info om en sone
 	int hentSonenr();             // Returnerer sonens nummer
 	void finnSone(int nr);
