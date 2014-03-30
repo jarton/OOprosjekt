@@ -1,7 +1,24 @@
 #include "class Sone.h"
 #include "class Eiendom.h"
+#include "conster.h"
 #include <iostream>
+#include <cstring>
+#include <fstream>
+
 using namespace std;
+
+// Constructor som leser fra fil
+Sone::Sone(ifstream & inn, int nr, char * nvn)	{							//int er sonenr
+	char buffer[STRLEN];								//buffer for innlesing
+	inn.getline(buffer, STRLEN);						 //leser inn beskrivelse
+	beskrivelse = new char[strlen(buffer + 1)];         //peker på array som er 
+															//akkuratt lang nok
+	soneNummer = nr;									//sonenr ble sendt med
+	Eiendom* eiendom;
+	//ikke ferdig !!!!!
+	
+}
+
 
 // Displayer all informasjon om en sone
 void Sone::display()  {
@@ -39,3 +56,4 @@ void Sone::finnSone(int nr)  {
 		eiendommene->add(eiendom);               // Legger eiendom tilbake i listen
 	}
 }
+

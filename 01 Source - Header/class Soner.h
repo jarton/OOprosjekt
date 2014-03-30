@@ -10,8 +10,8 @@ private:
 	Sone* sonene[MAXSONER+1];
 
 public:
-	Soner();
-	void fortsettelseMeny(char valg);   // Viser meny
+	Soner();								//constructor
+	void fortsettelseMeny(char valg);		// Viser meny
 	void displaySone(int sonenr);          // Finner en sone
 	void displayEiendom(int nr);
 };

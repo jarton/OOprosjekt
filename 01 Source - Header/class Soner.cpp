@@ -2,7 +2,31 @@
 #include "globale funksjoner og variabler.h"
 #include "conster.h"
 #include "class Soner.h"
+#include <fstream>
+#include <stdlib.h>
 using namespace std;
+
+
+
+//constructor
+Soner::Soner()	{
+	ifstream inn("02 DTA/SISTE.DTA");				//leser inn siste brukte oppdrag
+	inn.ignore(1000000, '\n');
+	inn.ignore(1000000, '\n');							//ignorerer kundedata på fil
+	inn >> sisteOppdrag;										//leser sisteoppdrag
+	inn.close();
+
+	for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
+		sonene[j] = NULL;												//stilles
+
+	char * sonefil = NULL;									//peker for navn på fil
+	for (int i = 1; i <= 100; i++) {					//løkke for alle 100 soner
+		LagNavn(sonefil, "SONE", ".DTA", i, 3);   //som lager filnavn for alle 100
+		ifstream inn(sonefil);							//og prøver å lese dem inn
+		if (inn)												//hvis den finnes
+			sonene[i] = new Sone(inn, i, sonefil);		//lag ny sone og les den inn
+	}													//med les inn costructor
+}
 
 //Finner sonenummer gitt i parameter og displayer
 
