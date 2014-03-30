@@ -3,13 +3,16 @@
 
 #include "enumer.h"
 
-class IntrSone  {
+class IntrSone : public Num_element {
 private:
 	int sonenummer, maxPris, minAreal, minAntSoverom;
 	Boligfeed boligfeeden;
+	Eiendomstype eiendomstypen;
+	Statusonske statusonsket;
+
 
 public:
-	IntrSone(int postnr);
+	IntrSone();
 };
 
 #endif

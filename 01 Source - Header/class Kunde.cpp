@@ -33,8 +33,10 @@ IntrSone* Kunde :: nyeIntrSoner(){
 
 void Kunde :: Kunde(int knr) : Num_element(knr) {
 	char ch[STRLEN];
+	char kommando;
 	int tall;
-	intrSone* Intrsonen; // Peker til intrsone-objekt
+	IntrSone* intrsonen; // Peker til intrsone-objekt
+	Intrsone* intrsonekopi; // Peker til kopiobjekt.
 
 	tlf = lesTall("\nTelefon ", 10000000, 99999999); //Leser tlf-nummer
 
@@ -50,6 +52,21 @@ void Kunde :: Kunde(int knr) : Num_element(knr) {
 	les("\nE-post", ch, STRLEN); // leser mail
 	mail = ch;
 
-	IntrSoneliste = new List(Sorted); //lager IntrSone-liste
+	IntrSoneliste = new List(Sorted); //lager IntrSone-liste.
+	
+	intrsonen = new IntrSone; //Nytt IntrSone objekt..
+	IntrSoneliste->add(intrsonen); //Legger det til i listen.
+	
+	cout << "\nLegge til en ny sone? (J/N)";
+	kommando = les();
+
+	while (kommando == 'J') { //Hvis "ja".
+		intrsonekopi = new IntrSone(intrsonen); //Forsøk på default copy constructor..
+		intrsonekopi->number = les("\nPostnummer", 1000, 9999); //Leser postnummer.
+		IntrSoneliste->add(intrsonekopi); //Legger til kopien.
+		cout << "\n\nLegge til en ny sone? (J/N)";
+		kommando = les();
+	}
+	
 
 }
