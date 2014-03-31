@@ -6,10 +6,9 @@
 
 using namespace std;
 
-Eiendom::Eiendom(ifstream & inn)	{
-	inn >> oppdragsnummer >> dato
-		>> bruksnummer >> ansattnummer
-		>> pris >> areal;
+Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
+	inn >> dato >> bruksnummer
+	 	>> ansattnummer	>> pris >> areal;
 
 	char buffer[STRLEN];								//buffer for innlesing
 	inn.ignore();

@@ -10,7 +10,7 @@ private:
 	Statusonske statusonsket;
 
 public:
-	Bolig(ifstream & inn);
+	Bolig(ifstream & inn, int onr);
 	void display();  // Displayer informasjon om en bolig
 };
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Bolig::Bolig(ifstream & inn) : Eiendom(inn) {
+Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn) : Num_element(onr) {
 	//må gjøres
 
 }

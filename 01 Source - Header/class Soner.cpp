@@ -17,15 +17,26 @@ Soner::Soner()	{
 	inn.close();
 
 	for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
-		sonene[j] = NULL;												//stilles
+		sonene[j] = NULL;																					//stilles
 
-	char * sonefil = NULL;									//peker for navn på fil
-	for (int i = 1; i <= 100; i++) {					//løkke for alle 100 soner
+	char * sonefil = NULL;														//peker for navn på fil
+	for (int i = 1; i <= 100; i++) {								//løkke for alle 100 soner
 		LagNavn(sonefil, "SONE", ".DTA", i, 3);   //som lager filnavn for alle 100
-		ifstream inn(sonefil);							//og prøver å lese dem inn
-		if (inn)												//hvis den finnes
-			sonene[i] = new Sone(inn, i);		//lag ny sone og les den inn
-	}													//med les inn costructor
+		ifstream inn(sonefil);													//og prøver å lese dem inn
+		if (inn)																								//hvis den finnes
+			sonene[i] = new Sone(inn, i);								//lag ny sone og les den inn
+	}																										//med les inn costructor
+}
+
+//Skriver alle sonene til fil
+void Soner::skrivTilFil()	{									//skriver alle sonene til filer
+	char * sonefil  = NULL;										//peker for navn på fil
+	for (int i = 1; i <= MAXSONER; i++;)	{											//peker for navn på fil
+		if (sonene[i] != NULL)	{																	//hvis en sone eksister
+			ofstream ut(LagNavn(sonefil, "SONE", ".DT2", i, 3));   				//lag navn på fil
+			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
+		}
+	}
 }
 
 //Finner sonenummer gitt i parameter og displayer

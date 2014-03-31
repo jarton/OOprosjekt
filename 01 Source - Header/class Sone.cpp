@@ -10,6 +10,7 @@ using namespace std;
 
 // Constructor som leser fra fil
 Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
+	eiendommene = new List(Sorted);
 	char buffer[STRLEN];																//buffer for innlesing
 	inn.ignore();
 	inn.getline(buffer, STRLEN);											 //leser inn beskrivelse
@@ -17,19 +18,35 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 																													//akkuratt lang nok
 	soneNummer = nr;																			//sonenr ble sendt med
 	Eiendom* type;										//einendom som blir lest inn og opprettet
+	int onr;
 	char eientype[STRLEN];															//type: bolig einendom 
 	inn >> eientype;																	//leser typen fra fil
 	while (!inn.eof)	{																//løkke for heile filen
 		if (eientype[1] == 'e')	{										//sjekke om det står eiendom
-			type = new Eiendom(inn);									//hvis ja ny einendom leses
-			einendommene->add(type)};                				//legges til i liste
+			inn >> onr;
+			type = new Eiendom(inn, onr);									//hvis ja ny einendom leses
+			eiendommene->add(type)};                				//legges til i liste
 		else	{																	//hvis ikkje er det bolig som
-			type = new Bolig(inn); 								//skal leses inn og opprettes
-			einendommene->add(type)};													//og legges i lista
+			inn >> onr;
+			type = new Bolig(inn, onr); 								//skal leses inn og opprettes
+			eiendommene->add(type)};													//og legges i lista
 		inn >> eientype;												//prover a lese inn ny type
 	}
 }
 
+//skriver sonen til fil
+void Sone::skrivTilFil(ofstream & ut)	{
+	int antallEiendommer;
+	Einendom* eiendom;
+	ut << beskrivelse << '\n';
+	
+	antallEiendommer = eiendommene->no_of_elements()
+	for (int i = 1; i <= antallEiendommer; i++;)	{
+		eiendom = eiendommene->remove_no(i); 
+		eiendom->skrivTilFil(ut);
+		eiendommene->add(eiendom);
+	}
+}
 
 // Displayer all informasjon om en sone
 void Sone::display()  {

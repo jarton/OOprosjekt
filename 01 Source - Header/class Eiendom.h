@@ -17,7 +17,7 @@ private:
 	Eiendomstype eiendomstypen;
 
 public:
-	Eiendom(ifstream & inn);
+	Eiendom(ifstream & inn, int onr);
 	virtual void display();          // Displayer informasjon om en eiendom
 	bool finnPostnummer(int postnr);
 	bool finnOppdragsnr(int oppdnr);
