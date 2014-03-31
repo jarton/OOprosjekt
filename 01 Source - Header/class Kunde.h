@@ -7,7 +7,10 @@
 class Kunde : public Num_element  {
 private:
 	int kundenummer, tlf;
-	char* navn, gateadresse, postadresse, mail;
+	char* navn;
+	char* gateadresse;
+	char* postadresse;
+	char* mail;
 	List* IntrSoneliste;
 
 public:

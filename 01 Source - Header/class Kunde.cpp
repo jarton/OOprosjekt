@@ -1,6 +1,9 @@
 #include <iostream>
 #include "class Kunde.h"
 #include <cstdlib>
+#include "conster.h"
+#include "globale funksjoner og variabler.h"
+#include "class IntrSone.h"
 
 using namespace std;
 
@@ -31,26 +34,30 @@ IntrSone* Kunde :: nyeIntrSoner(){
 }
 
 
-void Kunde :: Kunde(int knr) : Num_element(knr) {
+Kunde :: Kunde(int knr) : Num_element(knr) {
 	char ch[STRLEN];
 	char kommando;
 	int tall;
 	IntrSone* intrsonen; // Peker til intrsone-objekt
-	Intrsone* intrsonekopi; // Peker til kopiobjekt.
+	IntrSone* intrsonekopi; // Peker til kopiobjekt.
 
 	tlf = lesTall("\nTelefon ", 10000000, 99999999); //Leser tlf-nummer
 
-	les("\nNavn", ch, STRLEN); //leser navn
-	navn = ch;
+	lesTxt("\nNavn", ch, STRLEN); //leser navn
+	navn = new char[strlen(ch)+1];
+	strcpy(navn, ch);
 
-	les("\nGateadresse", ch, STRLEN); //leser gateadresse
-	gateadresse = ch;
+	lesTxt("\nGateadresse", ch, STRLEN); //leser gateadresse
+	gateadresse = new char[strlen(ch)+1];
+	strcpy(gateadresse, ch);
 
-	les("\nPostnummer", ch, STRLEN); //leser postnummer
-	postadresse = ch;
+	lesTxt("\nPostnummer", ch, STRLEN); //leser postnummer
+	postadresse = new char[strlen(ch)+1];
+	strcpy(postadresse, ch);
 
-	les("\nE-post", ch, STRLEN); // leser mail
-	mail = ch;
+	lesTxt("\nE-post", ch, STRLEN); // leser mail
+	mail = new char[strlen(ch)+1];
+	strcpy(mail, ch);
 
 	IntrSoneliste = new List(Sorted); //lager IntrSone-liste.
 	
@@ -61,8 +68,9 @@ void Kunde :: Kunde(int knr) : Num_element(knr) {
 	kommando = les();
 
 	while (kommando == 'J') { //Hvis "ja".
-		intrsonekopi = new IntrSone(intrsonen); //Forsøk på default copy constructor..
-		intrsonekopi->number = les("\nPostnummer", 1000, 9999); //Leser postnummer.
+		intrsonekopi = new IntrSone(*intrsonen); //Forsøk på default copy constructor..
+		int sonenr = lesTall("\nSonenummer", 1, 100); //Leser sonenummer.
+		intrsonekopi->endreSonenr(sonenr);
 		IntrSoneliste->add(intrsonekopi); //Legger til kopien.
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();
