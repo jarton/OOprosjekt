@@ -6,7 +6,7 @@
 
 using namespace std;
 
-IntrSone :: IntrSone(int sonenr) : Num_element(sonenr){ //Constructor.
+IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	char kommando; //Hjelpevariabel
 	
 	maxPris = lesTall("\nMaxpris", 1, 1000000000); //Leser max pris.
@@ -64,4 +64,15 @@ IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
 
 void IntrSone :: endreSonenr(int nyttnr){
 	sonenummer = nyttnr;
+}
+
+// Displayer informasjon om en interesse sone
+void IntrSone::display()  {
+	cout << "\nSonenummer: " <<  sonenummer;
+  cout << "\nMaksimums pris: " <<  maxPris;
+  cout << "\nMinimums areal: " <<  minAreal;
+  cout << "\nMinimum antall soverom: " <<  minAntSoverom;
+  cout << "\nBoligfeed: " <<  boligfeeden;
+  cout << "\nEiendomstype: " <<  eiendomstypen;
+  cout << "\n:0nkes: " <<  statusonsket;
 }

@@ -7,17 +7,34 @@
 
 using namespace std;
 
+
+// Displayer kundeinfo og interesse sone info
 void Kunde::sjekkNrNvn(char* kundeinfo)  {
-	int knr;
-	knr = atoi(kundeinfo);
-	if (knr==kundenummer)
-		displayKunde();
-	else if (strcmp(kundeinfo,navn)==0)
-		displayKunde();
+  IntrSone* intrSone;                                    // Interessesone peker
+	int knr;                                          // variabel til kundenummer
+	knr = atoi(kundeinfo);                //henter kundenummer(inr) fra kundeinfo
+	int antintsonr = IntrSoneliste->no_of_elements();  // finner antall intrsoner
+	if (knr==kundenummer)  {               // hvis innskrevet knr = kundenummeret
+    displayKunde();                                      // displayer kundeinfo
+		for (int i = 1; i <= antintsonr; i++)  {    // loop gjennom alle intersoner
+      intrSone = (IntrSone*) IntrSoneliste->remove_no(i);// fjerner  fra listen
+	    intrSone->display();                          // Displayer interessesonen
+  	  IntrSoneliste->add(intrSone);                // Legges tilbake til listen
+		  }
+   }
 
-	// TODO SENERE: må også vise informasjon om kundes interessesone
+  else if (strcmp(kundeinfo,navn)==0)  {       //Hvis kundenavnet = skrevet inn
+		displayKunde();                                      // displayer kundeinfo
+		for (int i = 1; i <= antintsonr; i++)  {    // loop gjennom alle intersoner
+      intrSone = (IntrSone*) IntrSoneliste->remove_no(i);// fjerner  fra listen
+	    intrSone->display();                          // Displayer interessesonen
+  	  IntrSoneliste->add(intrSone);                // Legges tilbake til listen
+		  }
+   }
 }
+  
 
+// Displyer info om en kunde
 void Kunde::displayKunde()  {
 	cout << "\n Navn: " << navn;
 	cout << "\n Kundenummer: " << kundenummer;
