@@ -88,28 +88,5 @@ void soneDisplay()  {
 
 
 void lesFraFil()  {
-	char filnavn[STRLEN];
-	char filstart[5];
-	char filend[4];
-	int n;
-	char chn[7];
-
-	// Les fra fil kunde:
-	int sonenummer, maxPris, minAreal, minAntSoverom;
-	int kundenummer, tlf;
-	char* navn, gateadresse, postadresse, mail;
-	Boligfeed boligfeeden;
-	
-	//  KUNDE0001000.DTA
-	
-	strcpy(filstart,"KUNDE");
-	strcpy(filend,".DTA");
-	n=1000;
-
-	ifstream inn (filnavn);
-	//if(inn)
-		// les fra fil
-
-	
 
 }
