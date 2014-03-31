@@ -12,9 +12,11 @@ private:
 
 
 public:
-	IntrSone(int sonenr) : Num_element(sonenr);
-	IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr);
+	IntrSone();
+	IntrSone(int sonenr);
+	IntrSone(IntrSone* intrsonen, int sonenr);
 	void endreSonenr(int nyttnr);
+	void display();               // Displater info om IntrSone
 };
 
 #endif

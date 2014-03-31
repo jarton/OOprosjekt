@@ -62,6 +62,9 @@ IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
 
 }
 
+IntrSone::IntrSone() {}
+
+
 void IntrSone :: endreSonenr(int nyttnr){
 	sonenummer = nyttnr;
 }

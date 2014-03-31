@@ -40,13 +40,15 @@ void Kunder::finnKunde(char* kundeinfo)  {
 
 void Kunder :: nyKunde()  { //Lager ny kunde
 	char* kunden;
+	Kunde* kunde;
 	
-	kunden = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
-	kundene->add(kunden); //Legger den inn i listen over kunder.
+	kunde = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
+	kundeliste->add(kunde); //Legger den inn i listen over kunder.
 }
 
 Kunder :: Kunder()  {
-	kundene = new List(Sorted); //Lager liste. 
+	Kunde* kunde;
+	kundeliste = new List(Sorted); //Lager liste. 
 	ifstream inn();
 	inn >> forsteKunde;
 	inn >> sisteKunde; inn.ignore();
