@@ -28,7 +28,7 @@ void Kunder::fortsettelseMeny()  {
 
 void Kunder::finnKunde(char* kundeinfo)  {
 	Kunde* kunde;
-	List* kundeliste;
+	//List* kundeliste;
 	int i;
 
 	for(i=1; i<=sisteKunde; i++)  { 

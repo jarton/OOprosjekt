@@ -4,7 +4,10 @@
 #include "listtool2.h"
 #include "enumer.h"
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 
+using namespace std;
 
 class Eiendom : public Num_element  {
 private:
