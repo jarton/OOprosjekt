@@ -49,7 +49,7 @@ void Kunder :: nyKunde()  { //Lager ny kunde
 Kunder :: Kunder()  {
 	Kunde* kunde;
 	kundeliste = new List(Sorted); //Lager liste. 
-	ifstream inn();
+	ifstream inn("02 DTA/SISTE.DTA");
 	inn >> forsteKunde;
 	inn >> sisteKunde; inn.ignore();
 
