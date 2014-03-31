@@ -25,7 +25,8 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 		if (eientype[1] == 'e')	{										//sjekke om det står eiendom
 			inn >> onr;
 			type = new Eiendom(inn, onr);									//hvis ja ny einendom leses
-			eiendommene->add(type)};                				//legges til i liste
+			eiendommene->add(type);                				//legges til i liste
+		}
 		else	{																	//hvis ikkje er det bolig som
 			inn >> onr;
 			type = new Bolig(inn, onr); 								//skal leses inn og opprettes
@@ -37,13 +38,13 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 //skriver sonen til fil
 void Sone::skrivTilFil(ofstream & ut)	{
 	int antallEiendommer;
-	Einendom* eiendom;
+	Eiendom* eiendom;
 	ut << beskrivelse << '\n';
 	
-	antallEiendommer = eiendommene->no_of_elements()
+	antallEiendommer = eiendommene->no_of_elements();
 	for (int i = 1; i <= antallEiendommer; i++;)	{
-		eiendom = eiendommene->remove_no(i); 
-		eiendom->skrivTilFil(ut);
+		eiendom = (Eiendom*) eiendommene->remove_no(i); 
+		//eiendom->skrivTilFil(ut);  // TODO -- SENERE: lage skrivtilfil i Class eiendom!!
 		eiendommene->add(eiendom);
 	}
 }

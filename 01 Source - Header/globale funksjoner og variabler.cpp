@@ -87,6 +87,5 @@ void soneDisplay()  {
 
 
 
-void lesFraFil()  {
-
-}
+void lesFraFil(ifstream & inn) {}
+void skrivTilFIl(ofstream & ut) {}

@@ -43,12 +43,6 @@ void Kunde::displayKunde()  {
 	cout << "\n Adresse: " << gateadresse<<", "<<postadresse;
 }	
 
-IntrSone* Kunde :: nyeIntrSoner(){
-	int pstnr = lesTall("Hvilket postnummer er kunden interessert i?", 1000, 9999);
-	//Denne funksjonen slettes sikkert senere..
-	
-
-}
 
 
 Kunde :: Kunde(int knr) : Num_element(knr) {

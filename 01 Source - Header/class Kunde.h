@@ -17,7 +17,7 @@ public:
 	Kunde(int knr);		//Constructor
 	void sjekkNrNvn(char* kundeinfo);
 	void displayKunde();
-	IntrSone* nyeIntrSoner(); //Skal kanskje slettes senere.
+	
 };
 
 

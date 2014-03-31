@@ -3,6 +3,7 @@
 
 #include "class Soner.h"
 #include "class Kunder.h"
+#include <fstream>
 
 
 

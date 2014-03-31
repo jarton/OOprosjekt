@@ -2,6 +2,7 @@
 #define __class_Sone_H
 
 #include "listtool2.h"
+#include <fstream>
 
 class Sone  {
 private:
@@ -12,8 +13,10 @@ private:
 
 public:
 	Sone();
+	Sone(ifstream & inn, int nr);
+
 	void lesFraFil(ifstream & inn);
-	void skrivTilFIl(ofstream & ut);
+	void skrivTilFil(ofstream & ut);	
 	void display();               // Displayer all info om en sone
 	int hentSonenr();             // Returnerer sonens nummer
 	void finnSone(int nr);
