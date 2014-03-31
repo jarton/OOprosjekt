@@ -9,22 +9,24 @@
 using namespace std;
 
 // Constructor som leser fra fil
-Sone::Sone(ifstream & inn, int nr)	{			//int er sonenr
-	char buffer[STRLEN];								//buffer for innlesing
+Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
+	char buffer[STRLEN];																//buffer for innlesing
 	inn.ignore();
-	inn.getline(buffer, STRLEN);						 //leser inn beskrivelse
+	inn.getline(buffer, STRLEN);											 //leser inn beskrivelse
 	beskrivelse = new char[strlen(buffer + 1)];         //peker på array som er 
-															//akkuratt lang nok
-	soneNummer = nr;									//sonenr ble sendt med
-	Eiendom* type;
-	char eientype[STRLEN];
-	inn >> eientype;
-	while (!inn.eof)	{
-		if (eientype[1] == 'e')
-			type = new Eiendom(inn);
-		else
-			type = new Bolig(inn);
-		inn >> eientype;
+																													//akkuratt lang nok
+	soneNummer = nr;																			//sonenr ble sendt med
+	Eiendom* type;										//einendom som blir lest inn og opprettet
+	char eientype[STRLEN];															//type: bolig einendom 
+	inn >> eientype;																	//leser typen fra fil
+	while (!inn.eof)	{																//løkke for heile filen
+		if (eientype[1] == 'e')	{										//sjekke om det står eiendom
+			type = new Eiendom(inn);									//hvis ja ny einendom leses
+			einendommene->add(type)};                				//legges til i liste
+		else	{																	//hvis ikkje er det bolig som
+			type = new Bolig(inn); 								//skal leses inn og opprettes
+			einendommene->add(type)};													//og legges i lista
+		inn >> eientype;												//prover a lese inn ny type
 	}
 }
 
