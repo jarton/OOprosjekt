@@ -14,15 +14,15 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	char buffer[STRLEN];																//buffer for innlesing
 	inn.ignore();
 	inn.getline(buffer, STRLEN);											 //leser inn beskrivelse
-	beskrivelse = new char[strlen(buffer + 1)];         //peker på array som er 
+	beskrivelse = new char[strlen(buffer + 1)];         //peker pï¿½ array som er 
 																													//akkuratt lang nok
 	soneNummer = nr;																			//sonenr ble sendt med
 	Eiendom* type;										//einendom som blir lest inn og opprettet
 	int onr;
 	char eientype[STRLEN];															//type: bolig einendom 
 	inn >> eientype;																	//leser typen fra fil
-	while (!inn.eof())	{																//løkke for heile filen
-		if (eientype[1] == 'e')	{										//sjekke om det står eiendom
+	while (!inn.eof())	{																//lï¿½kke for heile filen
+		if (eientype[1] == 'e')	{										//sjekke om det stï¿½r eiendom
 			inn >> onr;
 			type = new Eiendom(inn, onr);									//hvis ja ny einendom leses
 			eiendommene->add(type);                				//legges til i liste
@@ -41,12 +41,19 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 void Sone::skrivTilFil(ofstream & ut)	{
 	int antallEiendommer;
 	Eiendom* eiendom;
-	ut << beskrivelse << '\n';
+	ut << beskrivelse << "\n\n";
 	
 	antallEiendommer = eiendommene->no_of_elements();
 	for (int i = 1; i <= antallEiendommer; i++)	{
-		eiendom = (Eiendom*) eiendommene->remove_no(i); 
-//		eiendom->skrivTypeFil(ut);  // TODO -- SENERE: lage skrivtilfil i Class eiendom!!
+		eiendom = (Eiendom*) eiendommene->remove_no(i);
+		if (eiendom->type())	{
+			ut << "Eiendom\n";
+			eiendom->skrivTilFil(ut);
+		}
+		else	{ 
+			ut << "Bolig\n";
+			eiendom->skrivBoligFil(ut);
+		}
 		eiendommene->add(eiendom);
 	}
 }
