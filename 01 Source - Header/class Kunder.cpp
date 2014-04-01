@@ -24,7 +24,7 @@ void Kunder::fortsettelseMeny()  {
 
 void Kunder::finnKunde(char* kundeinfo)  {
 	Kunde* kunde;
-	//List* kundeliste;
+	List* kundeliste;
 	int i;
 
 	for(i=1; i<=sisteKunde; i++)  { 
@@ -61,7 +61,7 @@ void Kunder::slettKunde(int knr)  {
 	antkunder=kundeliste->no_of_elements();
 	for (int i = 1; i <= antkunder; i++)  {
 	  kunde = (Kunde*) kundeliste->remove_no(i);
-	  if (kunde->sjekkNr(knr)==true)
+	  if (kunde->sjekkKNr(knr)==true)
 			kundeliste->destroy(i);
 		else
 	    kundeliste->add(kunde);
@@ -87,4 +87,5 @@ void Kunder::slettKunde(int knr)  {
 				else 
 					cout << "Filen '"<<kundefil<<"' ble fjernet!";
 			}
+}
 }
