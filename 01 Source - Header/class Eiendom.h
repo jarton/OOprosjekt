@@ -21,6 +21,8 @@ private:
 
 public:
 	Eiendom(ifstream & inn, int onr);
+	void skrivTilFil(ofstream & ut);
+:a
 	virtual void display();          // Displayer informasjon om en eiendom
 	bool finnPostnummer(int postnr);
 	bool finnOppdragsnr(int oppdnr);

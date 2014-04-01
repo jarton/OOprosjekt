@@ -26,24 +26,24 @@ void lesTxt(char t[], char s[], const int LEN) {
 void LagNavn(char* t, char* s1, char * s2, int n, int LEN) {   //Lager filer
 	int tall = strlen(s1) + strlen (s2) + LEN;	            //Antall tegn i navn
 	int i = 0;                                                  //int for løkke
-	char* nummer = new char[n+1];
+	char* nummer = new char[n+1];							//array for nummeret på filen -0
 	_itoa(n, nummer, 10);                         //Gjør nummeret om til tekst
 	int potens = pow( 10, (LEN-1));                     //Tall for regning av desimaler
 	while ((potens > n) && potens != 1) {       //Løkke som finner antall nuller
 		potens /= 10;                             //Deler på 10 til antall er funnet
 		i++;	
 }
-char* nuller = new char[i];
-	int j = 0;
-	while (j < i) {
+char* nuller = new char[i];									//array som inneholder alle nuller 
+	int j = 0;																//int for while løkka
+	while (j < i) { 													//løkke som skriver antall nuller
 		nuller[j] = '0';
 		j++;
 	}
-	nuller[j] = '\0';
-strcpy(t, s1);
-strcat(t, nuller);
-strcat(t, nummer);
-strcat(t, s2);
+	nuller[j] = '\0';														//legger til \0 på slutten
+strcpy(t, s1);															//legger første del av navnet inn
+strcat(t, nuller);															//legger sp på nullene
+strcat(t, nummer);																//så nummer
+strcat(t, s2);																	//og tilslutt filendingen
 }
 
 //  Leser og returnerer ETT upcaset tegn.

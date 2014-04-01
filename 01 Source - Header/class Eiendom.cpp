@@ -3,6 +3,7 @@
 #include <cstdlib>																// itoa
 #include <fstream>
 #include "conster.h"
+#include <cstring>
 
 using namespace std;
 
@@ -24,6 +25,11 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 	beskrivelse = new char[strlen(buffer + 1)];
 	inn.getline(buffer, STRLEN);
 	// eiendomstype siste getline.  enum innlesing må gjøres
+}
+
+void skrivTilFil(ofstream & ut)	{
+	//må gjøres
+
 }
 
 // Displayer all informasjon om en eiendom
