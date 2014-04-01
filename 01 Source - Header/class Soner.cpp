@@ -35,9 +35,8 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 	for (int i = 1; i <= MAXSONER; i++)	{														//peker for navn på fil
 		if (sonene[i] != NULL)	{																	//hvis en sone eksister
 			LagNavn(sonefil, "SONE", ".DT2", i, 3);
-			ofstream ut(sonefil);   				//lag navn på fil
+			ofstream ut(sonefil);   																//lag navn på fil
 			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
-
 		}
 	}
 }
