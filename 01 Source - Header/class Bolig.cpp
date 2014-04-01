@@ -11,7 +11,7 @@ Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
 }
 
 void Bolig::skrivTilFil(ofstream & ut)	{
-	Eiendom::skrivTilFil(ut);
+	//Eiendom::skrivTilFil(ut);
 
 
 }

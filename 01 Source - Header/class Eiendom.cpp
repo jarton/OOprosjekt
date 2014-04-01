@@ -27,7 +27,7 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 	// eiendomstype siste getline.  enum innlesing må gjøres
 }
 
-void skrivTilFil(ofstream & ut)	{
+void Eiendom::skrivTilFil(ofstream & ut)	{
 	//ut << Displaye	
 }
 
