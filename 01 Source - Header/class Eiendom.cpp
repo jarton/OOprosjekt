@@ -31,6 +31,10 @@ void skrivTilFil(ofstream & ut)	{
 	//ut << Displaye	
 }
 
+bool Eiendom::type()	{
+	return 1;
+}
+
 // Displayer all informasjon om en eiendom
 void Eiendom::display()  {
   cout << "\nOppdragsnummer: " << oppdragsnummer;

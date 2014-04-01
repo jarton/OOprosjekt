@@ -36,7 +36,7 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 		if (sonene[i] != NULL)	{																	//hvis en sone eksister
 			LagNavn(sonefil, "SONE", ".DT2", i, 3);
 			ofstream ut(sonefil);   																//lag navn på fil
-//			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
+			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
 		}
 	}
 }

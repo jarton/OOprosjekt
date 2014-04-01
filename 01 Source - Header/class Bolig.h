@@ -11,6 +11,8 @@ private:
 
 public:
 	Bolig(ifstream & inn, int onr);
+	bool type();
+	void skrivTilFil(ofstream & ut);
 	void display();  // Displayer informasjon om en bolig
 };
 

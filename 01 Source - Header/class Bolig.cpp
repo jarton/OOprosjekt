@@ -10,6 +10,16 @@ Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
 
 }
 
+void Bolig::skrivTilFil(ofstream & ut)	{
+	Eiendom::skrivTilFil(ut);
+
+
+}
+
+bool Bolig::type()	{
+	return 0;
+}
+
 void Bolig::display()  {
 	cout << "\nBolig";
   cout << "\nByggeaar: "<< byggeaar;

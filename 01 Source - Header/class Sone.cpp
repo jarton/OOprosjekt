@@ -52,7 +52,7 @@ void Sone::skrivTilFil(ofstream & ut)	{
 		}
 		else	{ 
 			ut << "Bolig\n";
-			eiendom->skrivBoligFil(ut);
+			eiendom->skrivTilFil(ut);
 		}
 		eiendommene->add(eiendom);
 	}

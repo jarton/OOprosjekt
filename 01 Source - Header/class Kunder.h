@@ -12,13 +12,11 @@ private:
 
 public:
 	Kunder();
-  void slettKunde(int knr);
 	void fortsettelseMeny();
 	void finnKunde(char* kundeinfo);
 	void displayKunde(int kundenr);
 	void nyKunde();
 	void slettKunde(int knr);
-
 };
 
 
