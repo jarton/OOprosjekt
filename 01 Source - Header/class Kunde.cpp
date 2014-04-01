@@ -52,6 +52,9 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 	IntrSone* intrsonen; // Peker til intrsone-objekt
 	IntrSone* intrsonekopi; // Peker til kopiobjekt.
 
+	kundenummer = knr;
+	cout << "\n\nTILDELT KUNDENUMMER: " << knr;
+
 	tlf = lesTall("\nTelefon ", 10000000, 99999999); //Leser tlf-nummer
 
 	lesTxt("\nNavn", ch, STRLEN); //leser navn

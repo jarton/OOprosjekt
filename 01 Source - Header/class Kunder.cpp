@@ -11,19 +11,14 @@ void Kunder::fortsettelseMeny()  {
 	char kundeinfo[STRLEN];
 
 	valg = les();
-	while (valg != 'Q')  {
-		switch(valg) {
-		case 'D': 
-			cin.getline(kundeinfo,STRLEN); 
-			finnKunde(kundeinfo);
-			break;
-		case 'N':
-			nyKunde();
-			break;
+	switch(valg) {
+		case 'D': cin.getline(kundeinfo,STRLEN); 
+		finnKunde(kundeinfo);	break;
+		case 'N': nyKunde(); break;
 		case 'S': break;
 		case 'E': break;
-	  }
-  }
+		default: break;
+	 }
 }
 
 void Kunder::finnKunde(char* kundeinfo)  {

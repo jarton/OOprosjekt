@@ -14,22 +14,24 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom.
 
 	cout << "\nBoligfeed ([U]kentlig / [S]narest): "; //Spør om ønsket boligfeed.
-	kommando = 'B';
 
-	while(kommando != 'U' && kommando != 'S') { // '.' for a breake (hemmelig)
+	kommando = 'B'; // Bare for å ikke ha noe søppel.
+
+	while(kommando != 'U' && kommando != 'S') { // SENERE: Fix dette. Alternativ metode.
 		kommando = les();
 		switch(kommando) {
 		case 'U': boligfeeden = ukentlig; break;
 		case 'S': boligfeeden = snarest; break;
-		default: cout << "\nUlovlig kommando. Prov igjen.";
+		default: cout << "\nUlovlig kommando. Prov igjen."; break;
 
 		}
 	}
 	
 	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte: ";
-	kommando = les();
 
-	while(kommando != '.'){ //'.' for a breake (hemmelig)
+	while(kommando != 'T' && kommando != 'E' && kommando != 'R' && 
+		kommando != 'L' && kommando != 'H'){ //Senere: fix dette. Stygg metode.
+		kommando = les();
 		switch(kommando){
 		case 'T': eiendomstypen = tomt; break;
 		case 'E': eiendomstypen = enebolig; break;
@@ -41,12 +43,13 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	}
 
 	cout << "\n\nOnsket status ([S]alg / [L]eie): ";
-	kommando = les();
+	kommando = 'B'; //For å ikke ha søppel..
 
-	while (kommando != '.'){ //'.' for a breake (hemmelig)
+	while (kommando != 'S' && kommando != 'L'){ //SENERE: Fix dette. Stygg metode.
+		kommando = les();
 		switch(kommando){
-		case 'S': statusonsket = salg;
-		case 'L': statusonsket = leie;
+		case 'S': statusonsket = salg; break;
+		case 'L': statusonsket = leie; break;
 		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
 		}
 	}

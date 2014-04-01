@@ -25,6 +25,7 @@ int main()  {
       //case 'U': ;         break;  //  Senere
       default : skrivMeny();	 break; // 
     }
+		skrivMeny();
     valg = les();
   }
 
