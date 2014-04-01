@@ -2,6 +2,7 @@
 #include <fstream>
 #include "class Kunder.h"
 #include "class Kunde.h"
+#include <stdio.h>       // Remove
 #include "conster.h"
 #include "globale funksjoner og variabler.h"
 using namespace std;
@@ -54,7 +55,7 @@ Kunder :: Kunder()  { //CONSTRUCTOR
 
 void Kunder::slettKunde(int knr)  {
 	Kunde* kunde;
-	int knum;
+	int knum=0;
 	char* kundefil = new char[strlen("KUNDE0001000.DTA") + 1];
 	int antkunder;
 	int filnvnlen;
@@ -67,10 +68,12 @@ void Kunder::slettKunde(int knr)  {
 			kundeliste->add(kunde);
 	}
 
-	for (int i = forsteKunde; i <= sisteKunde; i++)	{
-		LagNavn(kundefil, "KUNDE", ".DTA", i, 7);      // ?? 7 eller 3??
+	for (int i = forsteKunde+1; i <= sisteKunde; i++)	{
+		LagNavn(kundefil, "KUNDE", ".DTA", i, 7);
 		ifstream inn(kundefil);
-		inn >> knum;
+		if (!kundefil)
+      cout << "Filen '" << kundefil << "' finnes ikke!";
+		inn >> knum; cout << "Kundenummer: " << knum; cout << "Kundefil: "<<kundefil;  // <<<------ problem, vil ikke lese inn kundenummer fra fil ( inn >> knr)
 		if (knum == knr)  {
 			remove(kundefil);
 			if (remove(kundefil) != 0)
