@@ -68,7 +68,12 @@ void Sone::display()  {
 	antEiendommer=eiendommene->no_of_elements();      // Finner antall eiendommer
 	for (i=1; i<=antEiendommer; i++)  {           // Loop gjennom alle eiendommer
 		eiendom = (Eiendom*)eiendommene->remove_no(i); // Fjerner eiendom fra liste
-		eiendom->display();                                    // Displayer eiendom
+		if (eiendom->type())	{					//finner om det er ein eiendom
+			cout << "\n--EIENDOM--\n";
+			eiendom->display();                              // Displayer eiendom
+		}
+		else										//hvis det er en bolig
+			eiendom->displayBolig();			//virtual display + eiendomdisplay
 		eiendommene->add(eiendom);               // Legger eiendom tilbake i listen
 	}
 }
@@ -85,12 +90,17 @@ void Sone::finnSone(int nr)  {
 	int antEiendommer;                             // Variabel: antall eiendommer
 	int i;                                                   // Variabel til loop
 	antEiendommer=eiendommene->no_of_elements();      // Finner antall eiendommer
+
 	for (i=1; i<=antEiendommer; i++)  {           // Loop gjennom alle eiendommer
 		eiendom = (Eiendom*)eiendommene->remove_no(i); // Fjerner eiendom fra liste
-		if (eiendom->finnOppdragsnr(nr) == true) 
-			eiendom->display();
-		if (eiendom->finnPostnummer(nr) == true)
-			eiendom->display();
+		if ((eiendom->finnOppdragsnr(nr))
+			|| (eiendom->finnPostnummer(nr)))	{
+			if (eiendom->type())	{
+				eiendom->display();
+			}
+			else
+				eiendom->displayBolig();
+		}
 		eiendommene->add(eiendom);               // Legger eiendom tilbake i listen
 	}
 }

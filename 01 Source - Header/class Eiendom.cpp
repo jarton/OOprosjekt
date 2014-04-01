@@ -50,7 +50,17 @@ void Eiendom::skrivTilFil(ofstream & ut)	{
 		<< '\n' << eiernavn
 		<< '\n' << kommunenavn
 		<< '\n' << beskrivelse
-		<< '\n' << eiendomstypen << '\n';
+		<< '\n';
+	if (eiendomstypen == tomt)
+		ut << "tomt";
+	else if (eiendomstypen == enebolig)
+		ut << "enebolig";
+	else if (eiendomstypen == rekkehus)
+		ut << "rekkehus";
+	else if (eiendomstypen == leilighet)
+		ut << "rekkehust";
+	else
+		ut << "hytte";
 }
 
 bool Eiendom::type()	{
@@ -59,7 +69,7 @@ bool Eiendom::type()	{
 
 // Displayer all informasjon om en eiendom
 void Eiendom::display()  {
-  cout << "\nOppdragsnummer: " << oppdragsnummer;
+  cout << "\n\nOppdragsnummer: " << oppdragsnummer;
 	cout << "\nDato: " << dato;
 	cout << "\nBruksnummer: " << bruksnummer;
 	cout << "\nSaksbehandlerens ansattnummer: " << ansattnummer;
@@ -69,7 +79,7 @@ void Eiendom::display()  {
 	cout << "\nPostadresse: " << postadresse;
 	cout << "\nEier: " << eiernavn;
 	cout << "\nKommune: " << kommunenavn;
-	cout << "\nBeskrivelse: " << oppdragsnummer;
+	cout << "\nBeskrivelse: " << beskrivelse << "\n\n";
 }
 
 bool Eiendom::finnPostnummer(int postnr)  {

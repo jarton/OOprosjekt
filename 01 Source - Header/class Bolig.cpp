@@ -20,21 +20,25 @@ Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
 
 void Bolig::skrivBoligTilFil(ofstream & ut)	{
 	skrivTilFil(ut);
-	ut << byggeaar << '\n'
+	ut << '\n' << byggeaar << '\n'
 		<< bruttoareal << '\n'
 		<< boareal << '\n'
-		<< antSoverom << '\n'
-		<< statusonsket;
+		<< antSoverom << '\n';
+	if (statusonsket == leie)
+		ut << "leie";
+	else
+		ut << "salg";
 }
 
 bool Bolig::type()	{
 	return 0;
 }
 
-void Bolig::display()  {
-	cout << "\nBolig";
-  cout << "\nByggeaar: "<< byggeaar;
-	cout << "Bruttoadreal: " << bruttoareal;
-	cout << "Boareal: " << boareal;
-	cout << "Antall Soverom: " << antSoverom;
+void Bolig::displayBolig()  {
+	cout << "\n--BOLIG--\n";
+	display();
+	cout << "\nByggeaar: "<< byggeaar;
+	cout << "\nBruttoadreal: " << bruttoareal;
+	cout << "\nBoareal: " << boareal;
+	cout << "\nAntall Soverom: " << antSoverom;
 }

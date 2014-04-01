@@ -42,19 +42,16 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 }
 
 //Finner sonenummer gitt i parameter og displayer
-
 void Soner::displaySone(int sonenr)  {
-	int i;
-	for (i=1; i<=MAXSONER; i++)  {                     // loop gjennom alle soner
-		if (sonene[i]->hentSonenr() == sonenr)        // Hvis sonens nr = parameter
-			sonene[i]->display();                                 // Displayer sonen
-	}
+		if (sonene[sonenr]->hentSonenr() == sonenr)        // Hvis sonens nr = parameter
+			sonene[sonenr]->display();                                 // Displayer sonen
 }
 
 void Soner::displayEiendom(int nr)  {
 	int i;
 	for (i=1; i <=MAXSONER; i++)  
-	  sonene[i]->finnSone(nr);
+	  if (sonene[i] != NULL)
+		  sonene[i]->finnSone(nr);
 }
 
 void Soner::fortsettelseMeny(char valg) {
@@ -67,7 +64,6 @@ void Soner::fortsettelseMeny(char valg) {
 			if (valg == 'S')  {
 			  cin >> nr;
 			  displaySone(nr);
-			
 			}
 			else if (valg =='E')  {
 				cin >> nr;
@@ -77,12 +73,6 @@ void Soner::fortsettelseMeny(char valg) {
 		case 'N': break;
 		case 'S': break;
 		case 'E': break;
-
-			break;
-
-			
-
-		  break;	
 		}
 	}
 }
