@@ -18,10 +18,13 @@ Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
 	}	
 }
 
-void Bolig::skrivTilFil(ofstream & ut)	{
-	//Eiendom::skrivTilFil(ut);
-
-
+void Bolig::skrivBoligTilFil(ofstream & ut)	{
+	skrivTilFil(ut);
+	ut << byggeaar << '\n'
+		<< bruttoareal << '\n'
+		<< boareal << '\n'
+		<< antSoverom << '\n'
+		<< statusonsket;
 }
 
 bool Bolig::type()	{

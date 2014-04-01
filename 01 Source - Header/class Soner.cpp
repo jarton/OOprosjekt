@@ -17,8 +17,8 @@ Soner::Soner()	{
 	inn >> sisteOppdrag;										//leser sisteoppdrag
 	inn.close();
 
-	//for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
-	//	sonene[j] = NULL;																					//stilles
+	for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
+		sonene[j] = NULL;																					//stilles
 
 	char* sonefil = new char[strlen("SONE000.DTA")+1];														//peker for navn på fil
 	for (int i = 1; i <= 100; i++) {																//løkke for alle 100 soner

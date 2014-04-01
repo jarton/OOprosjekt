@@ -41,18 +41,18 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 void Sone::skrivTilFil(ofstream & ut)	{
 	int antallEiendommer;
 	Eiendom* eiendom;
-	ut << beskrivelse << "\n\n";
+	ut << beskrivelse;
 	
 	antallEiendommer = eiendommene->no_of_elements();
 	for (int i = 1; i <= antallEiendommer; i++)	{
 		eiendom = (Eiendom*) eiendommene->remove_no(i);
 		if (eiendom->type())	{
-			ut << "Eiendom\n";
+			ut << "\n\n" << "Eiendom\n";
 			eiendom->skrivTilFil(ut);
 		}
 		else	{ 
-			ut << "Bolig\n";
-			eiendom->skrivTilFil(ut);
+			ut << "\n\n" << "Bolig\n";
+			eiendom->skrivBoligTilFil(ut);
 		}
 		eiendommene->add(eiendom);
 	}

@@ -40,7 +40,17 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 }
 
 void Eiendom::skrivTilFil(ofstream & ut)	{
-	//ut << Displaye	
+	ut << oppdragsnummer << '\n'
+		<< dato << '\n'
+		<< bruksnummer << '\n'
+		<< ansattnummer << '\n'
+		<< pris << '\n' << areal
+		<< '\n' << gateadresse
+		<< '\n' << postadresse
+		<< '\n' << eiernavn
+		<< '\n' << kommunenavn
+		<< '\n' << beskrivelse
+		<< '\n' << eiendomstypen << '\n';
 }
 
 bool Eiendom::type()	{
