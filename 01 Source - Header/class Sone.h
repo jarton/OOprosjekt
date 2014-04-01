@@ -17,7 +17,7 @@ private:
 public:
 	Sone();
 	Sone(ifstream & inn, int nr);
-	void skrivTilFil(ofstream & ut);	
+	void skrivTypeFil(ofstream & ut);	
 	void display();               // Displayer all info om en sone
 	int hentSonenr();             // Returnerer sonens nummer
 	void finnSone(int nr);

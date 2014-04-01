@@ -28,8 +28,7 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 }
 
 void skrivTilFil(ofstream & ut)	{
-	//må gjøres
-
+	ut << Displaye	
 }
 
 // Displayer all informasjon om en eiendom
