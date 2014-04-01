@@ -71,8 +71,9 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 	strcpy(mail, ch);
 
 	IntrSoneliste = new List(Sorted); //lager IntrSone-liste.
+	int sonenr = lesTall("\nSonenummer", 1, 100);
 	
-	intrsonen = new IntrSone; //Nytt IntrSone objekt..
+	intrsonen = new IntrSone(sonenr); //Nytt IntrSone objekt..
 	IntrSoneliste->add(intrsonen); //Legger det til i listen.
 	
 	cout << "\nLegge til en ny sone? (J/N)";
@@ -80,7 +81,7 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 
 	while (kommando == 'J') { //Hvis "ja".
 		intrsonekopi = new IntrSone(*intrsonen); //Forsøk på default copy constructor..
-		int sonenr = lesTall("\nSonenummer", 1, 100); //Leser sonenummer.
+		sonenr = lesTall("\nSonenummer", 1, 100); //Leser sonenummer.
 		intrsonekopi->endreSonenr(sonenr);
 		IntrSoneliste->add(intrsonekopi); //Legger til kopien.
 		cout << "\n\nLegge til en ny sone? (J/N)";

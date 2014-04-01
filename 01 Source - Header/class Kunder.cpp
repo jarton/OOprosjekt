@@ -46,7 +46,7 @@ void Kunder :: nyKunde()  { //Lager ny kunde
 	kundeliste->add(kunde); //Legger den inn i listen over kunder.
 }
 
-Kunder :: Kunder()  {
+Kunder :: Kunder()  { //CONSTRUCTOR
 	Kunde* kunde;
 	kundeliste = new List(Sorted); //Lager liste. 
 	ifstream inn("02 DTA/SISTE.DTA");

@@ -14,17 +14,18 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom.
 
 	cout << "\nBoligfeed ([U]kentlig / [S]narest): "; //Spør om ønsket boligfeed.
-	kommando = les(); //Leser upcaset tegn.
+	kommando = 'B';
 
-	while(kommando != '.') { // '.' for a breake (hemmelig)
+	while(kommando != 'U' && kommando != 'S') { // '.' for a breake (hemmelig)
+		kommando = les();
 		switch(kommando) {
-		case 'U': boligfeeden = ukentlig;
-		case 'S': boligfeeden = snarest;
+		case 'U': boligfeeden = ukentlig; break;
+		case 'S': boligfeeden = snarest; break;
 		default: cout << "\nUlovlig kommando. Prov igjen.";
+
 		}
 	}
 	
-
 	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte: ";
 	kommando = les();
 
