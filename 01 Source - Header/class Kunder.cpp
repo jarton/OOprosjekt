@@ -2,7 +2,9 @@
 #include <fstream>
 #include "class Kunder.h"
 #include "class Kunde.h"
-#include <stdio.h>       // Remove
+#include <cstdio>       // Remove
+#include <stdio.h>      // Remove
+#include <cstring>
 #include "conster.h"
 #include "globale funksjoner og variabler.h"
 using namespace std;
@@ -17,7 +19,12 @@ void Kunder::fortsettelseMeny()  {
 		case 'D': cin.getline(kundeinfo,STRLEN); 
 		finnKunde(kundeinfo);	break;
 		case 'N': nyKunde(); break;
-		case 'S': cin >> kundenummer; slettKunde(kundenummer); break;
+		case 'S': 
+			cin >> kundenummer; 
+			if (kundenummer < forsteKunde || kundenummer > sisteKunde)
+				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
+			else
+  			slettKunde(kundenummer); break;
 		case 'E': break;
 		default: break;
 	 }
@@ -60,6 +67,7 @@ void Kunder::slettKunde(int knr)  {
 	int antkunder;
 	int filnvnlen;
 	antkunder = kundeliste->no_of_elements();
+
 	for (int i = 1; i <= antkunder; i++)  {
 		kunde = (Kunde*)kundeliste->remove_no(i);
 		if (kunde->sjekkNr(knr) == true)
@@ -71,24 +79,26 @@ void Kunder::slettKunde(int knr)  {
 	for (int i = forsteKunde+1; i <= sisteKunde; i++)	{
 		LagNavn(kundefil, "KUNDE", ".DTA", i, 7);
 		ifstream inn(kundefil);
+
 		if (!kundefil)
-      cout << "Filen '" << kundefil << "' finnes ikke!";
-		inn >> knum; cout << "Kundenummer: " << knum; cout << "Kundefil: "<<kundefil;  // <<<------ problem, vil ikke lese inn kundenummer fra fil ( inn >> knr)
+      cout << "\nFilen '" << kundefil << "' finnes ikke!";
+	  inn >> knum; 	
 		if (knum == knr)  {
-			remove(kundefil);
+			inn.close();
+		  if (remove(kundefil) != 0)
+			  cout << "\n\nFilen '" << kundefil << "' ble IKKE fjernet!";
+		  else
+			  cout << "\n\nFilen '" << kundefil << "' ble fjernet!";
+			filnvnlen = strlen(kundefil);           // <<<<-- feil fra her
+			kundefil[filnvnlen - 1] = 'F';
+			kundefil[filnvnlen - 2] = 'N';
+			kundefil[filnvnlen - 3] = 'I';
+			inn.close();
 			if (remove(kundefil) != 0)
-				cout << "Filen '" << kundefil << "' ble IKKE fjernet!";
+				cout << "\n\nFilen '" << kundefil << "' ble IKKE fjernet!";
 			else
-				cout << "Filen '" << kundefil << "' ble fjernet!";
-			filnvnlen = strlen(kundefil);
-			kundefil[filnvnlen - 2] = 'F';
-			kundefil[filnvnlen - 3] = 'N';
-			kundefil[filnvnlen - 4] = 'I';
-			remove(kundefil);
-			if (remove(kundefil) != 0)
-				cout << "Filen '" << kundefil << "' ble IKKE fjernet!";
-			else
-				cout << "Filen '" << kundefil << "' ble fjernet!";
+				cout << "\n\nFilen '" << kundefil << "' ble fjernet!";
 		}
 	}
+	sisteKunde--;
 }
