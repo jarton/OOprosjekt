@@ -93,3 +93,11 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 	
 
 }
+
+
+bool Kunde::sjekkKNr(int Knr)  {
+	if (Knr == kundenummer)
+		return true;
+	else
+		return false;
+}

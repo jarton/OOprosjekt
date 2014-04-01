@@ -14,9 +14,11 @@ private:
 	List* IntrSoneliste;
 
 public:
+	bool sjekkKNr(int knr);
 	Kunde(int knr);		//Constructor
 	void sjekkNrNvn(char* kundeinfo);
 	void displayKunde();
+	bool sjekkNr(int nr);
 	
 };
 

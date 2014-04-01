@@ -46,7 +46,7 @@ void Sone::skrivTilFil(ofstream & ut)	{
 	antallEiendommer = eiendommene->no_of_elements();
 	for (int i = 1; i <= antallEiendommer; i++)	{
 		eiendom = (Eiendom*) eiendommene->remove_no(i); 
-		eiendom->skrivTypeFil(ut);  // TODO -- SENERE: lage skrivtilfil i Class eiendom!!
+//		eiendom->skrivTypeFil(ut);  // TODO -- SENERE: lage skrivtilfil i Class eiendom!!
 		eiendommene->add(eiendom);
 	}
 }
