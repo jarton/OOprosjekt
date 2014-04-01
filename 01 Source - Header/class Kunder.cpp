@@ -62,10 +62,10 @@ Kunder :: Kunder()  { //CONSTRUCTOR
 
 void Kunder::slettKunde(int knr)  {
 	Kunde* kunde;
-	int knum=0;
-	char* kundefil = new char[strlen("KUNDE0001000.DTA") + 1];
+	int knum;
+	char* kundedta = new char[strlen("KUNDE0001000.DTA") + 1];
+	char* kundeinf = new char[strlen("KUNDE0001000.INF") + 1];
 	int antkunder;
-	int filnvnlen;
 	antkunder = kundeliste->no_of_elements();
 
 	for (int i = 1; i <= antkunder; i++)  {
@@ -77,28 +77,28 @@ void Kunder::slettKunde(int knr)  {
 	}
 
 	for (int i = forsteKunde+1; i <= sisteKunde; i++)	{
-		LagNavn(kundefil, "KUNDE", ".DTA", i, 7);
-		ifstream inn(kundefil);
-
-		if (!kundefil)
-      cout << "\nFilen '" << kundefil << "' finnes ikke!";
-	  inn >> knum; 	
+		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);
+		LagNavn(kundeinf, "KUNDE", ".INF", i, 7);
+		ifstream dta(kundedta);
+		ifstream inf(kundeinf);
+		if (!kundedta)
+      cout << "\nFilen '" << kundedta << "' finnes ikke!";
+		if (!kundeinf)
+      cout << "\nFilen '" << kundeinf << "' finnes ikke!";
+	  dta >> knum; 	
 		if (knum == knr)  {
-			inn.close();
-		  if (remove(kundefil) != 0)
-			  cout << "\n\nFilen '" << kundefil << "' ble IKKE fjernet!";
+			dta.close();
+		  if (remove(kundedta) != 0)
+			  cout << "\n\nFilen '" << kundedta << "' ble IKKE fjernet!";
 		  else
-			  cout << "\n\nFilen '" << kundefil << "' ble fjernet!";
-			filnvnlen = strlen(kundefil);           // <<<<-- feil fra her
-			kundefil[filnvnlen - 1] = 'F';
-			kundefil[filnvnlen - 2] = 'N';
-			kundefil[filnvnlen - 3] = 'I';
-			inn.close();
-			if (remove(kundefil) != 0)
-				cout << "\n\nFilen '" << kundefil << "' ble IKKE fjernet!";
+			  cout << "\n\nFilen '" << kundedta << "' ble fjernet!";
+			inf.close();
+			if (remove(kundeinf) != 0)
+				cout << "\n\nFilen '" << kundeinf << "' ble IKKE fjernet!";
 			else
-				cout << "\n\nFilen '" << kundefil << "' ble fjernet!";
+				cout << "\n\nFilen '" << kundeinf << "' ble fjernet!";
 		}
 	}
 	sisteKunde--;
 }
+// <<<<----------- .INF blir ikke fjernet
