@@ -8,6 +8,7 @@
 using namespace std;
 
 Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
+	oppdragsnummer = onr;
 	inn >> dato >> bruksnummer
 	 	>> ansattnummer	>> pris >> areal;
 
@@ -15,16 +16,27 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 	inn.ignore();
 	inn.getline(buffer, STRLEN);						
 	gateadresse = new char[strlen(buffer + 1)];
+	strcpy(gateadresse, buffer);
 	inn.getline(buffer, STRLEN);
 	postadresse = new char[strlen(buffer + 1)];
+	strcpy(postadresse, buffer);
 	inn.getline(buffer, STRLEN);
 	eiernavn = new char[strlen(buffer + 1)];
+	strcpy(eiernavn, buffer);
 	inn.getline(buffer, STRLEN);
 	kommunenavn = new char[strlen(buffer + 1)];
+	strcpy(kommunenavn, buffer);
 	inn.getline(buffer, STRLEN);
 	beskrivelse = new char[strlen(buffer + 1)];
+	strcpy(beskrivelse, buffer);
 	inn.getline(buffer, STRLEN);
-	// eiendomstype siste getline.  enum innlesing må gjøres
+	switch (buffer[0])	{
+	case 't': eiendomstypen = tomt; break;
+	case 'e': eiendomstypen = enebolig; break;
+	case 'r': eiendomstypen = rekkehus; break;
+	case 'l': eiendomstypen = leilighet; break;
+	case 'h': eiendomstypen = hytte; break;
+	};
 }
 
 void Eiendom::skrivTilFil(ofstream & ut)	{

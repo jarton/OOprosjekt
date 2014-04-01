@@ -17,14 +17,14 @@ Soner::Soner()	{
 	inn >> sisteOppdrag;										//leser sisteoppdrag
 	inn.close();
 
-	for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
-		sonene[j] = NULL;																					//stilles
+	//for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
+	//	sonene[j] = NULL;																					//stilles
 
 	char* sonefil = new char[strlen("SONE000.DTA")+1];														//peker for navn på fil
 	for (int i = 1; i <= 100; i++) {																//løkke for alle 100 soner
 		LagNavn(sonefil, "SONE", ".DTA", i, 3);  						 //som lager filnavn for alle 100
 		ifstream inn(sonefil);													//og prøver å lese dem inn
-		if (inn)																								//hvis den finnes
+		if (inn)																						//hvis den finnes
 			sonene[i] = new Sone(inn, i);								//lag ny sone og les den inn
 	}																										//med les inn costructor
 }

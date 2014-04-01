@@ -15,6 +15,7 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	inn.ignore();
 	inn.getline(buffer, STRLEN);											 //leser inn beskrivelse
 	beskrivelse = new char[strlen(buffer + 1)];         //peker p� array som er 
+	strcpy(beskrivelse, buffer);
 																													//akkuratt lang nok
 	soneNummer = nr;																			//sonenr ble sendt med
 	Eiendom* type;										//einendom som blir lest inn og opprettet
@@ -22,7 +23,7 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	char eientype[STRLEN];															//type: bolig einendom 
 	inn >> eientype;																	//leser typen fra fil
 	while (!inn.eof())	{																//l�kke for heile filen
-		if (eientype[1] == 'e')	{										//sjekke om det st�r eiendom
+		if (eientype[0] == 'e')	{										//sjekke om det st�r eiendom
 			inn >> onr;
 			type = new Eiendom(inn, onr);									//hvis ja ny einendom leses
 			eiendommene->add(type);                				//legges til i liste
@@ -31,9 +32,8 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 			inn >> onr;
 			type = new Bolig(inn, onr); 								//skal leses inn og opprettes
 			eiendommene->add(type);													//og legges i lista
-			inn >> eientype;												//prover a lese inn ny type
 		}
-
+	inn >> eientype;										//prover a lese inn ny type
 	}
 }
 

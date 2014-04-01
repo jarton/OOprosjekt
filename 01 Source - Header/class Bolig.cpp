@@ -2,12 +2,20 @@
 #include "class Eiendom.h"
 #include "class Bolig.h"
 #include <fstream>
+#include "conster.h"
 
 using namespace std;
 
 Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
-	//må gjøres
-
+	inn >> byggeaar >> bruttoareal
+		>> boareal >> antSoverom;
+	inn.ignore();
+	char buffer[STRLEN];
+	inn.getline(buffer, STRLEN);
+	switch (buffer[0])	{
+	case 's': statusonsket = salg; break;
+	case 'l': statusonsket = leie; break;
+	}	
 }
 
 void Bolig::skrivTilFil(ofstream & ut)	{

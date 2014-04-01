@@ -13,6 +13,7 @@ int main()  {
 
 	Soner soner;
   Kunder kunder;
+  soner.skrivTilFil();
   //lesFraFil();                             //  Oppgave 2F
 
   skrivMeny();
