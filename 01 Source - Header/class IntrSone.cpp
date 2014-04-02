@@ -8,7 +8,7 @@ using namespace std;
 
 IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	char kommando; //Hjelpevariabel
-	
+	sonenummer=sonenr;
 	maxPris = lesTall("\nMaxpris", 1, 1000000000); //Leser max pris.
 	minAreal = lesTall("\nMinimum areal", 1, 10000); //Leser minimum areal.
 	minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom.
