@@ -11,12 +11,14 @@ using namespace std;
 
 void Kunder::fortsettelseMeny()  {
 	char valg;
+	char newline;
 	char kundeinfo[STRLEN];
 	int kundenummer;
 
 	valg = les();
 	switch(valg) {
 		case 'D': 
+		cin.get(newline);
 		cin.getline(kundeinfo,STRLEN); 
 		finnKunde(kundeinfo);	
 		break;
