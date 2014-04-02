@@ -14,7 +14,7 @@ void Kunde::sjekkNrNvn(char* kundeinfo)  {
 	int knr;                                          // variabel til kundenummer
 	knr = atoi(kundeinfo);                //henter kundenummer(inr) fra kundeinfo
 	int antintsonr = IntrSoneliste->no_of_elements();  // finner antall intrsoner
-	if (knr==kundenummer)  {               // hvis innskrevet knr = kundenummeret
+	if (knr==kundenummer || strcmp(kundeinfo,navn)==0)  {               // hvis innskrevet knr = kundenummeret
     displayKunde();                                      // displayer kundeinfo
 		for (int i = 1; i <= antintsonr; i++)  {    // loop gjennom alle intersoner
       intrSone = (IntrSone*) IntrSoneliste->remove_no(i);// fjerner  fra listen
@@ -22,15 +22,8 @@ void Kunde::sjekkNrNvn(char* kundeinfo)  {
   	  IntrSoneliste->add(intrSone);                // Legges tilbake til listen
 		  }
    }
-
-  if (strcmp(kundeinfo,navn)==0)  {       //Hvis kundenavnet = skrevet inn
-		displayKunde();                                      // displayer kundeinfo
-		for (int i = 1; i <= antintsonr; i++)  {    // loop gjennom alle intersoner
-      intrSone = (IntrSone*) IntrSoneliste->remove_no(i);// fjerner  fra listen
-	    intrSone->display();                          // Displayer interessesonen
-  	  IntrSoneliste->add(intrSone);                // Legges tilbake til listen
-		  }
-   }
+	else 
+		cout << "\n OBS! Kunne ikke finne denne kunden!";
 }
   
 

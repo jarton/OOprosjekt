@@ -75,11 +75,12 @@ void IntrSone :: endreSonenr(int nyttnr){
 
 // Displayer informasjon om en interesse sone
 void IntrSone::display()  {
+	cout << " \n\n-- Interessesone : ";
 	cout << "\nSonenummer: " <<  sonenummer;
   cout << "\nMaksimums pris: " <<  maxPris;
   cout << "\nMinimums areal: " <<  minAreal;
   cout << "\nMinimum antall soverom: " <<  minAntSoverom;
-  cout << "\nBoligfeed: " <<  boligfeeden;
+  cout << "\nBoligfeed: " << boligfeeden;
   cout << "\nEiendomstype: " <<  eiendomstypen;
-  cout << "\n:0nkes: " <<  statusonsket;
+  cout << "\n0nkes: " <<  statusonsket;
 }
