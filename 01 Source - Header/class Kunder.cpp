@@ -25,7 +25,7 @@ void Kunder::fortsettelseMeny()  {
 		case 'N': nyKunde(); break;
 		case 'S': 
 			cin >> kundenummer; 
-			if (kundenummer < forsteKunde || kundenummer > sisteKunde)
+			if (kundenummer < forsteKunde+1 || kundenummer > sisteKunde)
 				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
 			else
   			slettKunde(kundenummer); break;
@@ -75,8 +75,10 @@ void Kunder::slettKunde(int knr)  {
 
 	for (int i = 1; i <= antkunder; i++)  {
 		kunde = (Kunde*)kundeliste->remove_no(i);
-		if (kunde->sjekkNr(knr) == true)
+		if (kunde->sjekkNr(knr) == true)  {
 			kundeliste->destroy(i);
+			cout << "\nKunden ble fjernet!" ;
+	  }
 		else
 			kundeliste->add(kunde);
 	}
@@ -98,6 +100,7 @@ void Kunder::slettKunde(int knr)  {
 		  else
 			  cout << "\n\nFilen '" << kundedta << "' ble fjernet!";
 			inf.close();
+		//s	remove(kundeinf);
 			if (remove(kundeinf) != 0)
 				cout << "\n\nFilen '" << kundeinf << "' ble IKKE fjernet!";
 			else
