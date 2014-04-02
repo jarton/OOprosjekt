@@ -75,12 +75,15 @@ void IntrSone :: endreSonenr(int nyttnr){
 
 // Displayer informasjon om en interesse sone
 void IntrSone::display()  {
+	char* eiendomstype[] = {"Tomt", "Enebolig", "Rekkehus", "Leilighet", "Hytte"};
+	char* statusonske[] = {"Salg", "Leie", "Salg og leie"};
+  char* boligfeed[]=  {"Ukentlig", "Snarest"};
 	cout << " \n\n-- Interessesone : ";
 	cout << "\nSonenummer: " <<  sonenummer;
   cout << "\nMaksimums pris: " <<  maxPris;
   cout << "\nMinimums areal: " <<  minAreal;
   cout << "\nMinimum antall soverom: " <<  minAntSoverom;
-  cout << "\nBoligfeed: " << boligfeeden;
-  cout << "\nEiendomstype: " <<  eiendomstypen;
-  cout << "\n0nkes: " <<  statusonsket;
+  cout << "\nBoligfeed: " << boligfeed[boligfeeden];
+  cout << "\nEiendomstype: " <<  eiendomstype[eiendomstypen];
+  cout << "\n0nkes: " <<  statusonske[statusonsket];
 }
