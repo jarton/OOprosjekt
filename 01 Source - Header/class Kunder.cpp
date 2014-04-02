@@ -16,7 +16,8 @@ void Kunder::fortsettelseMeny()  {
 
 	valg = les();
 	switch(valg) {
-		case 'D': cin.getline(kundeinfo,STRLEN); 
+		case 'D': 
+		cin.getline(kundeinfo,STRLEN); 
 		finnKunde(kundeinfo);	break;
 		case 'N': nyKunde(); break;
 		case 'S': 
@@ -35,7 +36,7 @@ void Kunder::finnKunde(char* kundeinfo)  {
 	//List* kundeliste;
 	int i;
 
-	for(i=1; i<=sisteKunde; i++)  { 
+	for(i=forsteKunde; i<=sisteKunde; i++)  { 
 	kunde = (Kunde*) kundeliste->remove_no(i);
 	kunde->sjekkNrNvn(kundeinfo);
 	kundeliste->add(kunde);

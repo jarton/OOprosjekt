@@ -23,7 +23,7 @@ void Kunde::sjekkNrNvn(char* kundeinfo)  {
 		  }
    }
 
-  else if (strcmp(kundeinfo,navn)==0)  {       //Hvis kundenavnet = skrevet inn
+  if (strcmp(kundeinfo,navn)==0)  {       //Hvis kundenavnet = skrevet inn
 		displayKunde();                                      // displayer kundeinfo
 		for (int i = 1; i <= antintsonr; i++)  {    // loop gjennom alle intersoner
       intrSone = (IntrSone*) IntrSoneliste->remove_no(i);// fjerner  fra listen
