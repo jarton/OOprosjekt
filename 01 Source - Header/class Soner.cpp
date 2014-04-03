@@ -17,7 +17,7 @@ Soner::Soner()	{
 	inn >> sisteOppdrag;										//leser sisteoppdrag
 	inn.close();
 
-	for (int j = 0; j <= MAXSONER + 1; j++)			//arrayen med sonepekere null-
+	for (int j = 0; j <= MAXSONER; j++)			//arrayen med sonepekere null-
 		sonene[j] = NULL;																					//stilles
 
 	char* sonefil = new char[strlen("SONE000.DTA")+1];														//peker for navn på fil
@@ -30,14 +30,12 @@ Soner::Soner()	{
 }
 
 //Leser inn en ny einendom i eksisterende sone eller lager ny sone
-void Soner::eiendomNy()	{									
-	int soneNR;									//Sonen som einendommen skal ligge i
-	soneNR = lesTall("skriv inn ønsket soneNR: \n", 1, 100);   //leser inn aktuelt nr
+void Soner::eiendomNy(int nr)	{									
 	sisteOppdrag++;
-	if (sonene[soneNR])									//hvis sonen eksisterer
-		sonene[soneNR]->nyEiendom(sisteOppdrag);					//ny eiendom i eksisterende sone
+	if (sonene[nr])									//hvis sonen eksisterer
+		sonene[nr]->nyEiendom(sisteOppdrag);					//ny eiendom i eksisterende sone
 	else												//hvis sonen ikke eksisterer 
-		sonene[soneNR] = new Sone(soneNR, sisteOppdrag);             //blir sonen opprettet
+		sonene[nr] = new Sone(nr, sisteOppdrag);             //blir sonen opprettet
 
 	ifstream inn("02 DTA/SISTE.DTA");
 	int kførste, ksiste;
@@ -46,6 +44,19 @@ void Soner::eiendomNy()	{
 	ut << kførste << '\n' << ksiste << '\n'
 		<< sisteOppdrag;
 	skrivTilFil();
+}
+
+//Sletter en eiendom
+void Soner::eiendomSlett(int nr)	{
+	int i = 1;
+	bool funnet;
+
+	do {
+		if (sonene[i] != NULL)	{
+			funnet = sonene[i]->slettEiendom(nr);
+			i++;
+		}
+	} while (!funnet);
 }
 
 //Skriver alle sonene til fil
@@ -67,16 +78,18 @@ void Soner::displaySone(int sonenr)  {
 }
 
 void Soner::displayEiendom(int nr)  {
-	int i;
-	for (i=1; i <=MAXSONER; i++)  
-	  if (sonene[i] != NULL)
-		  sonene[i]->finnSone(nr);
+	int i = 1;
+	for (i; i <= MAXSONER; i++)	{
+		if (sonene[i] != NULL) {
+			sonene[i]->displayEien(nr);
+		}
+	}
 }
 
 void Soner::fortsettelseMeny(char valg) {
 	char valg2;
 	int nr;
-	valg2 = les();
+	cin >> valg2;
 		switch(valg2) {
 		case 'D': 
 			if (valg == 'S')  {
@@ -88,8 +101,10 @@ void Soner::fortsettelseMeny(char valg) {
 				displayEiendom(nr);
 			}
 			break;
-		case 'N': eiendomNy(); break;
-		case 'S': break;
+		case 'N': cin >> nr;
+			eiendomNy(nr); break;
+		case 'S': cin >> nr;
+			eiendomSlett(nr);  break;
 		case 'E': break;
 		}
 }

@@ -11,8 +11,9 @@ private:
 
 public:
 	Soner();								//constructor
-	void eiendomNy();							//legger til ny sone
-	void skrivTilFil();											//skriver til fil
+	void eiendomNy(int nr);						//legger til ny eiendom
+	void eiendomSlett(int nr);
+	void skrivTilFil();							//skriver til fil
 	void fortsettelseMeny(char valg);		// Viser meny
 	void displaySone(int sonenr);          // Finner en sone
 	void displayEiendom(int nr);

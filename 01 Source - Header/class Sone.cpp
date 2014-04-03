@@ -105,6 +105,30 @@ void Sone::display()  {
 	}
 }
 
+//Sletter en eiendom med et gitt oppdragsnr
+bool Sone::slettEiendom(int oppdragnr)	{
+	Eiendom* eiendom;
+	int antEiendommer;
+	int i = 1;
+	bool funnet = false;
+	char* sonefil = new char[strlen("SONE000.DTA") + 1];
+
+	antEiendommer = eiendommene->no_of_elements();
+	while (!funnet && i <= antEiendommer)	{
+		eiendom = (Eiendom*)eiendommene->remove_no(i);
+		if (eiendom->finnOppdragsnr(oppdragnr))	{
+			funnet = true;
+			eiendommene->destroy(i);
+			LagNavn(sonefil, "SONE", ".DT2", i, 3);
+			ofstream ut(sonefil);
+			skrivTilFil(ut);
+			i++;
+			cout << "eiendommen ble fjernet\n";
+		}
+		else eiendommene->add(eiendom);
+	}
+	return funnet;
+}
 
 //Returnerer sonens nummer
 int Sone::hentSonenr()  {
@@ -112,17 +136,19 @@ int Sone::hentSonenr()  {
 }
 
 
-void Sone::finnSone(int nr)  {
+void Sone::displayEien(int nr)  {
 	Eiendom* eiendom;                                            // Eiendom-peker
 	int antEiendommer;                             // Variabel: antall eiendommer
-	int i;                                                   // Variabel til loop
+	int i = 1;                                                   // Variabel til loop
+
 	antEiendommer=eiendommene->no_of_elements();      // Finner antall eiendommer
 
-	for (i=1; i<=antEiendommer; i++)  {           // Loop gjennom alle eiendommer
+	for (i; i <= antEiendommer; i++){           // Loop gjennom alle eiendommer
 		eiendom = (Eiendom*)eiendommene->remove_no(i); // Fjerner eiendom fra liste
 		if ((eiendom->finnOppdragsnr(nr))
 			|| (eiendom->finnPostnummer(nr)))	{
 			if (eiendom->type())	{
+				cout << "\n--EIENDOM--\n";
 				eiendom->display();
 			}
 			else

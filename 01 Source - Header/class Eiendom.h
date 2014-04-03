@@ -22,6 +22,7 @@ private:
 public:
 	Eiendom(int onr);
 	Eiendom(ifstream & inn, int onr);
+	virtual ~Eiendom();
 	void skrivTilFil(ofstream & ut);
 	virtual void skrivBoligTilFil(ofstream & ut)
 	{	/*tomt*/	};

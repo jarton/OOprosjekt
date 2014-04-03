@@ -16,6 +16,8 @@ Eiendom::Eiendom(int oppdragsnr)	{
 	oppdragsnummer = oppdragsnr;
 
 	dato = timer3->hentDato();
+	delete timer3;
+
 	bruksnummer = lesTall("bruksnummer", 1000, 9999);
 	ansattnummer = lesTall("ansattnr", 0, 1000);
 	pris = lesTall("pris", 1, 100000000);
@@ -66,6 +68,15 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 	strcpy(beskrivelse, buffer);
 	inn.getline(buffer, STRLEN);
 	enumSwitch(buffer);
+}
+
+//Virtuell Deconstor
+Eiendom::~Eiendom()	{
+	delete[] gateadresse,
+		postadresse,
+		eiernavn,
+		kommunenavn,
+		beskrivelse;
 }
 
 //Skriver alle eiendomsdata til fil 
@@ -124,9 +135,19 @@ void Eiendom::display()  {
 }
 
 bool Eiendom::finnPostnummer(int postnr)  {
-	int pnr;
-	pnr = atoi(postadresse);
-	if(postnr==pnr)
+	bool erlik;
+	char * postpek = postadresse;
+	char postarr[5];
+	int i = 0;
+
+	_itoa(postnr, postarr, 10);
+	do {
+		if (*postpek++ == postarr[i++])
+			erlik = true;
+		else erlik = false;
+	} while (erlik);
+		
+	if (i > 4)
 		return true;
 	else
 		return false;

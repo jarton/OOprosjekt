@@ -19,10 +19,11 @@ public:
 	Sone(ifstream & inn, int nr);
 	void nyEiendom(int oppdragsnr);
 	void skrivTilFil(ofstream & ut);
+	bool slettEiendom(int oppdragnr);
 	void skrivTypeFil(ofstream & ut);	
 	void display();               // Displayer all info om en sone
 	int hentSonenr();             // Returnerer sonens nummer
-	void finnSone(int nr);
+	void displayEien(int nr);
 };
 
 

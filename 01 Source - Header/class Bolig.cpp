@@ -35,6 +35,11 @@ Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
 	}	
 }
 
+//Decononstructor
+Bolig::~Bolig()  {
+	/*tom*/
+}
+
 //Skriver alle boligdata til fil
 void Bolig::skrivBoligTilFil(ofstream & ut)	{
 	skrivTilFil(ut);

@@ -13,8 +13,8 @@ int main()  {
 
 	Soner soner;
   Kunder kunder;
-  soner.skrivTilFil();
-  //lesFraFil();                             //  Oppgave 2F
+
+
 
   skrivMeny();
   valg = les();
@@ -30,7 +30,6 @@ int main()  {
     valg = les();
   }
 
- // skrivTilFil();                           //  Oppgave 2E
   cout << "\n\n";
   return 0;
 }
