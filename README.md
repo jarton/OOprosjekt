@@ -29,13 +29,13 @@ Fremmgang:
 
 3 FERDIG 
 
-4 Les/skriv SONE ferdig   Les SISTE ferdig --må gjøres--   skriv SISTE 
+4 FERDIG  
 
 5 Les fra SISTE ferdig -- må gjøres--  lese/skrive KUNDE og skrive SISTE  
 
-6 SD ferdig? ED nesten ferdig KD ferdig? --må gjøres--  småfix og testing  
+6 FERDIG --må gjøres--  småfix og testing  
 
-7 --må gjøres-- ALT  
+7 FERDIG --må gjøres-- skrive til Exxxxxx.  
 
 8 KN ferdig? KS nesten ferdig -- må gjøres--  småting og test  
 
