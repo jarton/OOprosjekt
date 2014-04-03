@@ -73,8 +73,10 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 
 //Finner sonenummer gitt i parameter og displayer
 void Soner::displaySone(int sonenr)  {
-		if (sonene[sonenr]->hentSonenr() == sonenr)        // Hvis sonens nr = parameter
-			sonene[sonenr]->display();                                 // Displayer sonen
+	for (int i = 1; i <= MAXSONER; i ++)  {
+		if (sonene[i]->hentSonenr() == sonenr)        // Hvis sonens nr = parameter
+			sonene[i]->display();   
+	}  // Displayer sonen
 }
 
 void Soner::displayEiendom(int nr)  {
