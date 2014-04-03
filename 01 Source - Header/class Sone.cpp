@@ -1,3 +1,4 @@
+#include "globale funksjoner og variabler.h"
 #include "class Sone.h"
 #include "class Eiendom.h"
 #include "class Bolig.h"
@@ -7,6 +8,19 @@
 #include <fstream>
 
 using namespace std;
+
+//Constructor som leser inn EN eiendom
+Sone::Sone(int nr, int oppdragsnr)	{
+	char buffer[STRLEN];
+	soneNummer = nr;
+	
+	lesTxt("sonebeskrivelse", buffer, STRLEN);
+	beskrivelse = new char[strlen(buffer) + 1];
+	strcpy(beskrivelse, buffer);
+
+	eiendommene = new List(Sorted);
+	nyEiendom(oppdragsnr);
+}
 
 // Constructor som leser fra fil
 Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
@@ -35,6 +49,19 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 		}
 	inn >> eientype;										//prover a lese inn ny type
 	}
+}
+
+//oppretter en ny eiendom
+void Sone::nyEiendom(int oppdragsnr)	{
+	Eiendom* eiendom;						//peker til bolig/eiendom
+	char type[STRLEN];					//array for type eiendom/bolig
+	
+	lesTxt("velg type Bolig  /   Eiendom", type, STRLEN);	//leser inn
+	if (type[0] == 'B' || type[0] == 'b')									//hvis bolig
+		eiendom = new Bolig(oppdragsnr);						//bolig opprettes
+	else if (type[0] == 'E' || type[0] == 'e')					//hvis eiendom
+		eiendom = new Eiendom(oppdragsnr);				//eiendom opprettes
+	eiendommene->add(eiendom);				//legger til nyopprettet i lista
 }
 
 //skriver sonen til fil

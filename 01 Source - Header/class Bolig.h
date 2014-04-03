@@ -10,6 +10,7 @@ private:
 	Statusonske statusonsket;
 
 public:
+	Bolig(int onr);
 	Bolig(ifstream & inn, int onr);
 	bool type();
 	void skrivBoligTilFil(ofstream & ut);

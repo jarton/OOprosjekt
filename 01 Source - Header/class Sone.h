@@ -15,8 +15,9 @@ private:
 
 
 public:
-	Sone();
+	Sone(int sonenr, int oppdragsnr);
 	Sone(ifstream & inn, int nr);
+	void nyEiendom(int oppdragsnr);
 	void skrivTilFil(ofstream & ut);
 	void skrivTypeFil(ofstream & ut);	
 	void display();               // Displayer all info om en sone

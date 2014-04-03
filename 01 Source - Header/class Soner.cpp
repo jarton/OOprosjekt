@@ -29,6 +29,25 @@ Soner::Soner()	{
 	}																										//med les inn costructor
 }
 
+//Leser inn en ny einendom i eksisterende sone eller lager ny sone
+void Soner::eiendomNy()	{									
+	int soneNR;									//Sonen som einendommen skal ligge i
+	soneNR = lesTall("skriv inn ønsket soneNR: \n", 1, 100);   //leser inn aktuelt nr
+	sisteOppdrag++;
+	if (sonene[soneNR])									//hvis sonen eksisterer
+		sonene[soneNR]->nyEiendom(sisteOppdrag);					//ny eiendom i eksisterende sone
+	else												//hvis sonen ikke eksisterer 
+		sonene[soneNR] = new Sone(soneNR, sisteOppdrag);             //blir sonen opprettet
+
+	ifstream inn("02 DTA/SISTE.DTA");
+	int kførste, ksiste;
+	inn >> kførste >> ksiste;
+	ofstream ut("02 DTA/SISTE.DT2");
+	ut << kførste << '\n' << ksiste << '\n'
+		<< sisteOppdrag;
+	skrivTilFil();
+}
+
 //Skriver alle sonene til fil
 void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 	char * sonefil  = new char [strlen("SONE000.DTA")+1];								//peker for navn på fil
@@ -58,7 +77,6 @@ void Soner::fortsettelseMeny(char valg) {
 	char valg2;
 	int nr;
 	valg2 = les();
-	while (valg2 != 'Q')  {
 		switch(valg2) {
 		case 'D': 
 			if (valg == 'S')  {
@@ -70,10 +88,9 @@ void Soner::fortsettelseMeny(char valg) {
 				displayEiendom(nr);
 			}
 			break;
-		case 'N': break;
+		case 'N': eiendomNy(); break;
 		case 'S': break;
 		case 'E': break;
 		}
-	}
 }
 

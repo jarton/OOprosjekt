@@ -20,6 +20,7 @@ private:
 	Eiendomstype eiendomstypen;
 
 public:
+	Eiendom(int onr);
 	Eiendom(ifstream & inn, int onr);
 	void skrivTilFil(ofstream & ut);
 	virtual void skrivBoligTilFil(ofstream & ut)
@@ -27,6 +28,7 @@ public:
 	virtual void displayBolig()
 	{ /*tomt*/		 };
 	virtual bool type();
+	void enumSwitch(char* t);
 	virtual void display();          // Displayer informasjon om en eiendom
 	bool finnPostnummer(int postnr);
 	bool finnOppdragsnr(int oppdnr);

@@ -14,7 +14,6 @@ char les();                                        // Leser inn et tegn
 
 void skrivMeny();		         //Skriver ut menyen til display
 void eiendomDisplay();
-void eiendomNy();
 void eiendomSlett();
 void eiendomEndre();
 void soneDisplay();
