@@ -1,6 +1,8 @@
 #include <iostream>
 #include "class Kunde.h"
+#include "class Kunder.h"
 #include <cstdlib>
+#include <fstream>
 #include "conster.h"
 #include "globale funksjoner og variabler.h"
 #include "class IntrSone.h"
@@ -93,4 +95,45 @@ bool Kunde::sjekkNr(int Knr)  {
 		return true;
 	else
 		return false;
+}
+
+
+Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
+	//kundeliste = new List(Sorted);
+	char buffer[STRLEN];
+	IntrSone* intrsone;
+
+	inn >> kundenummer;
+	inn.ignore();
+	if (kundenummer == nr)  {
+	inn.getline(buffer,STRLEN);
+	navn = new char[strlen(buffer + 1)];
+	strcpy(navn,buffer);
+	inn >> tlf;
+	inn.ignore();
+
+	inn.getline(buffer,STRLEN);
+	gateadresse = new char[strlen(buffer + 1)];
+	strcpy(gateadresse,buffer);
+
+	inn.getline(buffer,STRLEN);
+	postadresse = new char[strlen(buffer + 1)];
+	strcpy(postadresse,buffer);
+
+	inn.getline(buffer,STRLEN);
+	mail = new char[strlen(buffer + 1)];
+	strcpy(mail,buffer);
+
+	inn.ignore();
+	//while (!inn.eof())  {
+  	IntrSoneliste = new List(Sorted);
+  	intrsone = new IntrSone(inn,nr);
+	  IntrSoneliste->add(intrsone);
+	 // }
+	}
+	else
+		cout << "FEIL! Kundenummer fra fil '"<<kundenummer<<"' stemmer ikke overens med"
+		"kundenummeret i datastrukturen: '"<<nr<<"'\n";
+
+
 }

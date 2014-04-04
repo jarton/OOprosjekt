@@ -61,7 +61,16 @@ Kunder :: Kunder()  { //CONSTRUCTOR
 	ifstream inn("02 DTA/SISTE.DTA");
 	inn >> forsteKunde;
 	inn >> sisteKunde; inn.ignore();
-
+	///////// OBS! Må også lage for KUNDE000000.INF!!
+	char* kundedta = new char[strlen("KUNDE0001000.DTA")+1];
+	for (int i = forsteKunde; i <=sisteKunde; i++)  {
+		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);
+		ifstream dtainn(kundedta);
+		if (dtainn)  {																						//hvis den finnes
+			kunde = new Kunde(dtainn, i);
+			kundeliste->add(kunde);
+		}
+	}
 }
 
 

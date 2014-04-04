@@ -3,6 +3,10 @@
 
 #include "listtool2.h"
 #include "enumer.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
+
 
 class Kunde : public Num_element  {
 private:
@@ -14,6 +18,7 @@ private:
 	List* IntrSoneliste;
 
 public:
+	Kunde(ifstream & inn, int nr);
 	bool sjekkKNr(int knr);
 	Kunde(int knr);		//Constructor
 	void sjekkNrNvn(char* kundeinfo);

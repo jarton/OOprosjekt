@@ -13,6 +13,7 @@ private:
 
 public:
 	IntrSone();
+	IntrSone(ifstream & inn, int nr);
 	IntrSone(int sonenr);
 	IntrSone(IntrSone* intrsonen, int sonenr);
 	void endreSonenr(int nyttnr);

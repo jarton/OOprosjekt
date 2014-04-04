@@ -87,3 +87,18 @@ void IntrSone::display()  {
   cout << "\nEiendomstype: " <<  eiendomstype[eiendomstypen];
   cout << "\n0nkes: " <<  statusonske[statusonsket];
 }
+
+IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
+	char buffer[STRLEN];
+	inn >> sonenummer;
+	inn.ignore();
+	inn >> maxPris;
+	inn.ignore();
+	inn >> minAreal;
+	inn.ignore();
+	inn >> minAntSoverom;
+	inn.ignore();
+	inn.getline(buffer,STRLEN);
+	if (buffer[0]=='u')
+		boligfeeden = ukentlig;
+}
