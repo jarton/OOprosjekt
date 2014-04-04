@@ -8,7 +8,7 @@
 using namespace std;
 
 //Parameterløs constructor som leser input til data
-Bolig::Bolig(int oppdragsnr) : Eiendom(oppdragsnr)	{
+Bolig::Bolig(int oppdragsnr) : Eiendom(oppdragsnr) 	{
 	char buffer[STRLEN];
 
 	byggeaar = lesTall("byggeår", 1800, 2014);

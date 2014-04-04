@@ -10,7 +10,7 @@
 using namespace std;
 
 //Constructor u/parameter
-Eiendom::Eiendom(int oppdragsnr)	{
+Eiendom::Eiendom(int oppdragsnr) : Num_element(oppdragsnr)	{
 	char buffer[STRLEN];
 	Timer * timer3 = new Timer;
 	oppdragsnummer = oppdragsnr;
@@ -20,7 +20,7 @@ Eiendom::Eiendom(int oppdragsnr)	{
 
 	bruksnummer = lesTall("bruksnummer", 1000, 9999);
 	ansattnummer = lesTall("ansattnr", 0, 1000);
-	pris = lesTall("pris", 1, 100000000);
+	pris = lesTall("pris", 1, 10000000);
 	areal = lesTall("areal", 1, 1000);
 
 	lesTxt("gateadresse:", buffer, STRLEN);

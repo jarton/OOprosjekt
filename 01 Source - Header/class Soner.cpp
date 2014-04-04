@@ -3,8 +3,10 @@
 #include "conster.h"
 #include "class Soner.h"
 #include <fstream>
+#include <cstdlib>
 #include <stdlib.h>
 #include <cstring>
+#include <cctype>           // to upper
 using namespace std;
 
 
@@ -79,8 +81,9 @@ void Soner::displaySone(int sonenr)  {
 	}  // Displayer sonen
 }
 
-void Soner::displayEiendom(int nr)  {
+void Soner::displayEiendom(char* soneinfo)  {
 	int i = 1;
+	int nr=atoi(soneinfo);
 	for (i; i <= MAXSONER; i++)	{
 		if (sonene[i] != NULL) {
 			sonene[i]->displayEien(nr);
@@ -90,8 +93,10 @@ void Soner::displayEiendom(int nr)  {
 
 void Soner::fortsettelseMeny(char valg) {
 	char valg2;
+	char soneinfo[STRLEN];
 	int nr;
-	cin >> valg2;
+	valg2 = les();
+
 		switch(valg2) {
 		case 'D': 
 			if (valg == 'S')  {
@@ -99,8 +104,8 @@ void Soner::fortsettelseMeny(char valg) {
 			  displaySone(nr);
 			}
 			else if (valg =='E')  {
-				cin >> nr;
-				displayEiendom(nr);
+				cin.getline(soneinfo,STRLEN);
+				displayEiendom(soneinfo);
 			}
 			break;
 		case 'N': cin >> nr;

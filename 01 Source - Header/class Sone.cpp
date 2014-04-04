@@ -14,7 +14,7 @@ Sone::Sone(int nr, int oppdragsnr)	{
 	char buffer[STRLEN];
 	soneNummer = nr;
 	
-	lesTxt("sonebeskrivelse", buffer, STRLEN);
+	lesTxt("Sonebeskrivelse", buffer, STRLEN);
 	beskrivelse = new char[strlen(buffer) + 1];
 	strcpy(beskrivelse, buffer);
 

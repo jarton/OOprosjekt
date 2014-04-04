@@ -6,6 +6,7 @@
 #include <cstring>
 #include <cmath>
 #include <fstream>
+#include <cctype>                                // to upper
 using namespace std;
 
 
