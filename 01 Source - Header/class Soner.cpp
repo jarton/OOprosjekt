@@ -41,7 +41,7 @@ void Soner::eiendomNy(int nr)	{
 
 	ifstream inn("02 DTA/SISTE.DTA");
 	int kforste, ksiste;
-	inn >> kførste >> ksiste;
+	inn >> kforste >> ksiste;
 	ofstream ut("02 DTA/SISTE.DT2");
 	ut << kforste << '\n' << ksiste << '\n'
 		<< sisteOppdrag;
