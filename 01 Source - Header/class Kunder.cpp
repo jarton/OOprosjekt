@@ -122,8 +122,14 @@ void Kunder::skrivTilFil()  {
 		kunde->skrivTilFil(ut);
 		kundeliste->add(kunde);	
 	}
+	ifstream inn("02 DTA/SISTE.DTA");
+	int buf;
+	inn.ignore();
+	inn.ignore();
+	inn >> buf;
+
 	ofstream ut("02 DTA/SISTE.DTA");
 	ut << forsteKunde << endl;
 	ut << sisteKunde << endl;
-	// Her må også oppdragsnummer oppdateres!
+	ut << buf;
 }
