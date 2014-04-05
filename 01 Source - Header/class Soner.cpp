@@ -40,10 +40,10 @@ void Soner::eiendomNy(int nr)	{
 		sonene[nr] = new Sone(nr, sisteOppdrag);             //blir sonen opprettet
 
 	ifstream inn("02 DTA/SISTE.DTA");
-	int kførste, ksiste;
+	int kforste, ksiste;
 	inn >> kførste >> ksiste;
 	ofstream ut("02 DTA/SISTE.DT2");
-	ut << kførste << '\n' << ksiste << '\n'
+	ut << kforste << '\n' << ksiste << '\n'
 		<< sisteOppdrag;
 	skrivTilFil();
 }
