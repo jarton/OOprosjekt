@@ -108,6 +108,8 @@ IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 	inn.ignore();
 	inn.ignore();
 
+
+
 	/// Her må verdiene for enumene settes
 	boligfeeden=ukentlig;
 	eiendomstypen=tomt;

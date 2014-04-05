@@ -19,6 +19,8 @@ public:
 	void endreSonenr(int nyttnr);
 	void display();               // Displater info om IntrSone
 	void skrivTilFil(ofstream & ut, int nr);
+
+
 };
 
 #endif

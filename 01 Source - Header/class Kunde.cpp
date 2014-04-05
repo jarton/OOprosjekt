@@ -2,6 +2,7 @@
 #include "class Kunde.h"
 #include "class Kunder.h"
 #include <cstdlib>
+#include <cstring>
 #include <fstream>
 #include "conster.h"
 #include "globale funksjoner og variabler.h"
@@ -125,7 +126,7 @@ Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
 
 	inn >> ant;
 	inn.ignore();
-	if (ant > 1)
+	if (ant > 0)
 		IntrSoneliste = new List(Sorted);
 	for (int i = 1; i <= ant; i++)  {
   	intrsone = new IntrSone(inn,nr);
