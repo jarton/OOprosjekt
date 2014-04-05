@@ -1,4 +1,7 @@
 #include <iostream>
+#include "globale funksjoner og variabler.h"
+#include "class Soner.h"
+#include "class Kunder.h"
 
 using namespace std;
 
@@ -6,9 +9,27 @@ using namespace std;
 
 int main()  {
 
-	cout << "Test";
-	cout << "Test 2";
+	char valg;                               //  Brukerens valg/kommando.
+
+	Soner soner;
+  Kunder kunder;
 
 
-	return 0;
+
+  skrivMeny();
+  valg = les();
+  while (valg != 'Q')  {
+    switch(valg)  {
+      case 'E': soner.fortsettelseMeny(valg);  break;  // Eiendom
+			case 'S': soner.fortsettelseMeny(valg);  break;  // Sone (display)
+      case 'K': kunder.fortsettelseMeny(); break;  // Kunde
+      //case 'U': ;         break;  //  Senere
+      default : skrivMeny();	 break; // 
+    }
+		skrivMeny();
+    valg = les();
+  }
+
+  cout << "\n\n";
+  return 0;
 }
