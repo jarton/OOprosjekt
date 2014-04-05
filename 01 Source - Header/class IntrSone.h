@@ -20,7 +20,9 @@ public:
 	void display();               // Displater info om IntrSone
 	void skrivTilFil(ofstream & ut, int nr);
 
-
+	void enumBoligfeedSwitch(int nr);
+	void enumEiendomstypeSwitch(int nr);
+	void enumStatusSwitch(int nr);
 };
 
 #endif

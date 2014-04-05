@@ -108,12 +108,9 @@ IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 	inn.ignore();
 	inn.ignore();
 
-
-
-	/// Her må verdiene for enumene settes
-	boligfeeden=ukentlig;
-	eiendomstypen=tomt;
-	statusonsket=salg;
+	enumBoligfeedSwitch(bolFeed);
+	enumEiendomstypeSwitch(eiendomsTyp);
+	enumStatusSwitch(statOnsk);
 
 }
 
@@ -126,4 +123,30 @@ void IntrSone::skrivTilFil(ofstream & ut, int nr)  {
 	ut << eiendomstypen << endl;
 	ut << statusonsket << endl;
 	ut << endl;
+}
+
+
+void IntrSone::enumBoligfeedSwitch(int nr)  {
+	switch (nr)	{
+	case 0: boligfeeden = ukentlig; break;
+	case 1: boligfeeden = snarest; break;
+	};
+}
+
+void IntrSone::enumEiendomstypeSwitch(int nr)  {
+	switch (nr)	{
+	case 0: eiendomstypen = tomt; break;
+	case 1: eiendomstypen = enebolig; break;
+	case 2: eiendomstypen = rekkehus; break;
+	case 3: eiendomstypen = leilighet; break;
+	case 4: eiendomstypen = hytte; break;
+	};
+}
+
+void IntrSone::enumStatusSwitch(int nr)  {
+	switch (nr)	{
+	case 0: statusonsket = salg; break;
+	case 1: statusonsket = leie; break;
+	case 2: statusonsket = begge; break;
+	};
 }
