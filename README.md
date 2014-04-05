@@ -1,4 +1,4 @@
-OOprosjekt
+﻿OOprosjekt
 ==========
 1 Main m/lesKommando, skrivMeny og omrisset av klassene m/datamedlemmer.  
 
@@ -31,13 +31,13 @@ Fremmgang:
 
 4 FERDIG  
 
-5 Les fra SISTE ferdig -- må gjøres--  lese/skrive KUNDE og skrive SISTE  
+5 FERDIG
 
 6 FERDIG --må gjøres--  småfix og testing  
 
 7 FERDIG --må gjøres-- skrive til Exxxxxx.  
 
-8 KN ferdig? KS nesten ferdig -- må gjøres--  småting og test  
+8 KN ferdig? KS ferdig -- må gjøres--  småting og test  
 
 9 --må gjøres--  ALT  
 
