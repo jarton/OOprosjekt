@@ -19,6 +19,7 @@ private:
 
 public:
 	Kunde(ifstream & inn, int nr);
+	void skrivTilFil(ofstream & ut);
 	bool sjekkKNr(int knr);
 	Kunde(int knr);		//Constructor
 	void sjekkNrNvn(char* kundeinfo);

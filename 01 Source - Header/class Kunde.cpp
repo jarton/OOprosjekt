@@ -24,8 +24,6 @@ void Kunde::sjekkNrNvn(char* kundeinfo)  {
   	  IntrSoneliste->add(intrSone);                // Legges tilbake til listen
 		  }
    }
-	else 
-		cout << "\n OBS! Kunne ikke finne denne kunden!";
 }
   
 
@@ -101,6 +99,7 @@ bool Kunde::sjekkNr(int Knr)  {
 Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
 	//kundeliste = new List(Sorted);
 	char buffer[STRLEN];
+	int ant;
 	IntrSone* intrsone;
 
 	inn >> kundenummer;
@@ -124,16 +123,36 @@ Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
 	mail = new char[strlen(buffer + 1)];
 	strcpy(mail,buffer);
 
+	inn >> ant;
 	inn.ignore();
-	//while (!inn.eof())  {
-  	IntrSoneliste = new List(Sorted);
+	if (ant > 1)
+		IntrSoneliste = new List(Sorted);
+	for (int i = 1; i <= ant; i++)  {
   	intrsone = new IntrSone(inn,nr);
 	  IntrSoneliste->add(intrsone);
-	 // }
+	 }
 	}
 	else
 		cout << "FEIL! Kundenummer fra fil '"<<kundenummer<<"' stemmer ikke overens med"
 		"kundenummeret i datastrukturen: '"<<nr<<"'\n";
 
 
+}
+
+void Kunde::skrivTilFil(ofstream & ut)  {
+	int antIntrSoner = IntrSoneliste->no_of_elements();
+	ut << kundenummer << endl;
+	ut << navn << endl;
+	ut << tlf << endl;
+	ut << gateadresse << endl;
+	ut << postadresse << endl;
+	ut << mail << endl;
+	ut << antIntrSoner << endl;
+	ut << endl;
+	IntrSone* intrsone;
+	for (int i = 1; i <= antIntrSoner; i++)  {
+	  intrsone = (IntrSone*) IntrSoneliste->remove_no(i);
+		intrsone->skrivTilFil(ut,antIntrSoner);
+		IntrSoneliste->add(intrsone);
+	}
 }

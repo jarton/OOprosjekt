@@ -89,7 +89,9 @@ void IntrSone::display()  {
 }
 
 IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
-	char buffer[STRLEN];
+	int bolFeed;
+	int eiendomsTyp;
+	int statOnsk;
 	inn >> sonenummer;
 	inn.ignore();
 	inn >> maxPris;
@@ -98,7 +100,28 @@ IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 	inn.ignore();
 	inn >> minAntSoverom;
 	inn.ignore();
-	inn.getline(buffer,STRLEN);
-	if (buffer[0]=='u')
-		boligfeeden = ukentlig;
+  inn >> bolFeed;
+	inn.ignore();
+	inn >> eiendomsTyp;
+	inn.ignore();
+	inn >> statOnsk;
+	inn.ignore();
+	inn.ignore();
+
+	/// Her må verdiene for enumene settes
+	boligfeeden=ukentlig;
+	eiendomstypen=tomt;
+	statusonsket=salg;
+
+}
+
+void IntrSone::skrivTilFil(ofstream & ut, int nr)  {
+	ut << sonenummer << endl;
+	ut << maxPris << endl;
+	ut << minAreal << endl;
+	ut << minAntSoverom << endl;
+	ut << boligfeeden << endl;
+	ut << eiendomstypen << endl;
+	ut << statusonsket << endl;
+	ut << endl;
 }

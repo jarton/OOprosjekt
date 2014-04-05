@@ -48,11 +48,11 @@ void Kunder::finnKunde(char* kundeinfo)  {
 }
 
 void Kunder :: nyKunde()  { //Lager ny kunde
-	char* kunden;
 	Kunde* kunde;
-	
+	forsteKunde=1001;
 	kunde = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
 	kundeliste->add(kunde); //Legger den inn i listen over kunder.
+	skrivTilFil();
 }
 
 Kunder :: Kunder()  { //CONSTRUCTOR
@@ -78,7 +78,6 @@ void Kunder::slettKunde(int knr)  {
 	Kunde* kunde;
 	int knum;
 	char* kundedta = new char[strlen("KUNDE0001000.DTA") + 1];
-	char* kundeinf = new char[strlen("KUNDE0001000.INF") + 1];
 	int antkunder;
 	antkunder = kundeliste->no_of_elements();
 
@@ -94,13 +93,9 @@ void Kunder::slettKunde(int knr)  {
 
 	for (int i = forsteKunde+1; i <= sisteKunde; i++)	{
 		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);
-		LagNavn(kundeinf, "KUNDE", ".INF", i, 7);
 		ifstream dta(kundedta);
-		ifstream inf(kundeinf);
 		if (!kundedta)
       cout << "\nFilen '" << kundedta << "' finnes ikke!";
-		if (!kundeinf)
-      cout << "\nFilen '" << kundeinf << "' finnes ikke!";
 	  dta >> knum; 	
 		if (knum == knr)  {
 			dta.close();
@@ -108,14 +103,27 @@ void Kunder::slettKunde(int knr)  {
 			  cout << "\n\nFilen '" << kundedta << "' ble IKKE fjernet!";
 		  else
 			  cout << "\n\nFilen '" << kundedta << "' ble fjernet!";
-			inf.close();
-		//s	remove(kundeinf);
-			if (remove(kundeinf) != 0)
-				cout << "\n\nFilen '" << kundeinf << "' ble IKKE fjernet!";
-			else
-				cout << "\n\nFilen '" << kundeinf << "' ble fjernet!";
 		}
 	}
 	sisteKunde--;
+	skrivTilFil();
 }
-// <<<<----------- .INF blir ikke fjernet
+
+
+void Kunder::skrivTilFil()  {
+	char * kundefil  = new char [strlen("KUNDE0001001.DTA")+1];
+	int antKunder = kundeliste->no_of_elements();	
+	Kunde* kunde;
+	for (int i = 1; i <= antKunder; i++)  {
+		int r=i+1000;
+		LagNavn(kundefil, "KUNDE", ".DTA", r, 7);
+		ofstream ut(kundefil);
+		kunde = (Kunde*) kundeliste->remove(r);
+		kunde->skrivTilFil(ut);
+		kundeliste->add(kunde);	
+	}
+	ofstream ut("02 DTA/SISTE.DTA");
+	ut << forsteKunde << endl;
+	ut << sisteKunde << endl;
+	// Her må også oppdragsnummer oppdateres!
+}

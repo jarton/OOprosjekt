@@ -17,6 +17,7 @@ public:
 	void displayKunde(int kundenr);
 	void nyKunde();
 	void slettKunde(int knr);
+	void skrivTilFil();
 };
 
 
