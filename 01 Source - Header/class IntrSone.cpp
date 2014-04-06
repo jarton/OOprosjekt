@@ -68,6 +68,10 @@ IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
 
 IntrSone::IntrSone() {}
 
+IntrSone :: ~IntrSone(){
+	//Trenger ikke innmat
+
+}
 
 void IntrSone :: endreSonenr(int nyttnr){
 	sonenummer = nyttnr;

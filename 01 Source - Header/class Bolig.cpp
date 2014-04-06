@@ -37,7 +37,7 @@ Bolig::Bolig(ifstream & inn, int onr) : Eiendom(inn, onr)	{
 
 //Decononstructor
 Bolig::~Bolig()  {
-	/*tom*/
+	//Trenger ingen innmat
 }
 
 //Skriver alle boligdata til fil

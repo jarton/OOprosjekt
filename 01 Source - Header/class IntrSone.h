@@ -16,6 +16,7 @@ public:
 	IntrSone(ifstream & inn, int nr);
 	IntrSone(int sonenr);
 	IntrSone(IntrSone* intrsonen, int sonenr);
+	~IntrSone();
 	void endreSonenr(int nyttnr);
 	void display();               // Displater info om IntrSone
 	void skrivTilFil(ofstream & ut, int nr);

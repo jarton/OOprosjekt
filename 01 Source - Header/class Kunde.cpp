@@ -140,6 +140,16 @@ Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
 
 }
 
+Kunde :: ~Kunde(){
+	delete [] navn; delete [] gateadresse; //Slette chararrayer
+	delete [] postadresse; delete [] mail;
+	delete intrsone; //Slette interessesone
+	delete intrsonekopi; //Slette interessesone
+	delete IntrSoneliste; //Slette listen av IntrSone-objekter.
+}
+
+
+
 void Kunde::skrivTilFil(ofstream & ut)  {
 	int antIntrSoner = IntrSoneliste->no_of_elements();
 	ut << kundenummer << endl;
