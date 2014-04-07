@@ -9,21 +9,19 @@ using namespace std;
 
 class Sone  {
 private:
-	char* beskrivelse;
-	int soneNummer;      
-	List* eiendommene;
+	char* beskrivelse;				//sonebeskrivelse
+	int soneNummer;      	//sonens nr
+	List* eiendommene;				//liste med eiendommene
 
 
 public:
-	Sone(int sonenr, int oppdragsnr);
-	Sone(ifstream & inn, int nr);
-	void nyEiendom(int oppdragsnr);
-	void skrivTilFil(ofstream & ut);
-	bool slettEiendom(int oppdragnr);
-	void skrivTypeFil(ofstream & ut);	
+	Sone(int sonenr, int oppdragsnr);			//construcor som opretter 1 eiendom 
+	Sone(ifstream & inn, int nr);				//construcor fra fil som leser flere eiendommer
+	void nyEiendom(int oppdragsnr);			//opretter en ny eiendom
+	void skrivTilFil(ofstream & ut);		//skriver sonen til fil
+	bool slettEiendom(int oppdragnr);		//sletter en eiendom	
 	void display();               // Displayer all info om en sone
-	int hentSonenr();             // Returnerer sonens nummer
-	void displayEien(int nr);
+	void displayEien(int nr);			//displayer en /flere eiendommmer
 };
 
 

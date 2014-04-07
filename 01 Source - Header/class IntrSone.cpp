@@ -18,7 +18,7 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	kommando = 'B'; // Bare for å ikke ha noe søppel.
 
 	while(kommando != 'U' && kommando != 'S') { // SENERE: Fix dette. Alternativ metode.
-		kommando = les();
+		kommando = les();		//Leser ønsket boligfeed.
 		switch(kommando) {
 		case 'U': boligfeeden = ukentlig; break;
 		case 'S': boligfeeden = snarest; break;
@@ -27,15 +27,15 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 		}
 	}
 	
-	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte: ";
+	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte): ";
 
 	while(kommando != 'T' && kommando != 'E' && kommando != 'R' && 
 		kommando != 'L' && kommando != 'H'){ //Senere: fix dette. Stygg metode.
-		kommando = les();
+		kommando = les(); //Leser eiendomstype.
 		switch(kommando){
-		case 'T': eiendomstypen = tomt; break;
-		case 'E': eiendomstypen = enebolig; break;
-		case 'R': eiendomstypen = rekkehus; break;
+		case 'T': eiendomstypen = tomt; break;			//Setter
+		case 'E': eiendomstypen = enebolig; break;	//Riktig
+		case 'R': eiendomstypen = rekkehus; break;	//type.
 		case 'L': eiendomstypen = leilighet; break;
 		case 'H': eiendomstypen = hytte; break;
 		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
@@ -43,12 +43,12 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	}
 
 	cout << "\n\nOnsket status ([S]alg / [L]eie): ";
-	kommando = 'B'; //For å ikke ha søppel..
+	kommando = 'B'; //For å ikke inneholde søppel.
 
 	while (kommando != 'S' && kommando != 'L'){ //SENERE: Fix dette. Stygg metode.
-		kommando = les();
+		kommando = les();		//Leser ønsket status.
 		switch(kommando){
-		case 'S': statusonsket = salg; break;
+		case 'S': statusonsket = salg; break; //Setter riktig status.
 		case 'L': statusonsket = leie; break;
 		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
 		}
@@ -57,7 +57,7 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 }
 
 IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
-	maxPris = intrsonen->maxPris;
+	maxPris = intrsonen->maxPris;							
 	minAreal = intrsonen->minAreal;
 	minAntSoverom = intrsonen->minAntSoverom;
 	boligfeeden = intrsonen->boligfeeden;
@@ -74,7 +74,7 @@ IntrSone :: ~IntrSone(){
 }
 
 void IntrSone :: endreSonenr(int nyttnr){
-	sonenummer = nyttnr;
+	sonenummer = nyttnr; //Endrer sonenummer.
 }
 
 // Displayer informasjon om en interesse sone
@@ -96,11 +96,11 @@ IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 	int bolFeed;
 	int eiendomsTyp;
 	int statOnsk;
-	inn >> sonenummer;
-	inn.ignore();
-	inn >> maxPris;
-	inn.ignore();
-	inn >> minAreal;
+	inn >> sonenummer;			//Constructor
+	inn.ignore();						//som
+	inn >> maxPris;					//leser
+	inn.ignore();						//fra
+	inn >> minAreal;				//fil.
 	inn.ignore();
 	inn >> minAntSoverom;
 	inn.ignore();
@@ -112,17 +112,17 @@ IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 	inn.ignore();
 	inn.ignore();
 
-	enumBoligfeedSwitch(bolFeed);
-	enumEiendomstypeSwitch(eiendomsTyp);
-	enumStatusSwitch(statOnsk);
+	enumBoligfeedSwitch(bolFeed);		//Initierer enum.
+	enumEiendomstypeSwitch(eiendomsTyp);	//Initierer enum.
+	enumStatusSwitch(statOnsk);			//Initierer enum.
 
 }
 
 void IntrSone::skrivTilFil(ofstream & ut, int nr)  {
-	ut << sonenummer << endl;
-	ut << maxPris << endl;
-	ut << minAreal << endl;
-	ut << minAntSoverom << endl;
+	ut << sonenummer << endl;				//Skriver
+	ut << maxPris << endl;					//informasjon
+	ut << minAreal << endl;					//til
+	ut << minAntSoverom << endl;		//fil.
 	ut << boligfeeden << endl;
 	ut << eiendomstypen << endl;
 	ut << statusonsket << endl;
@@ -131,16 +131,16 @@ void IntrSone::skrivTilFil(ofstream & ut, int nr)  {
 
 
 void IntrSone::enumBoligfeedSwitch(int nr)  {
-	switch (nr)	{
-	case 0: boligfeeden = ukentlig; break;
+	switch (nr)	{	//Tar imot int som parameter.
+	case 0: boligfeeden = ukentlig; break;	//Setter riktig verdi i enum.
 	case 1: boligfeeden = snarest; break;
 	};
 }
 
 void IntrSone::enumEiendomstypeSwitch(int nr)  {
-	switch (nr)	{
+	switch (nr)	{ //Mottar int som parameter.
 	case 0: eiendomstypen = tomt; break;
-	case 1: eiendomstypen = enebolig; break;
+	case 1: eiendomstypen = enebolig; break;	//Setter riktig verdi i enum.
 	case 2: eiendomstypen = rekkehus; break;
 	case 3: eiendomstypen = leilighet; break;
 	case 4: eiendomstypen = hytte; break;
@@ -148,9 +148,9 @@ void IntrSone::enumEiendomstypeSwitch(int nr)  {
 }
 
 void IntrSone::enumStatusSwitch(int nr)  {
-	switch (nr)	{
+	switch (nr)	{	//Mottar int som parameter.
 	case 0: statusonsket = salg; break;
-	case 1: statusonsket = leie; break;
+	case 1: statusonsket = leie; break; //Setter riktig verdi i enum.
 	case 2: statusonsket = begge; break;
 	};
 }

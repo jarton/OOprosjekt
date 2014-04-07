@@ -2,7 +2,8 @@
 #include <cstdlib>																// itoa
 #include "conster.h"                              // bruke conster
 #include "class Soner.h"                          // bruker Soner
-#include "class Kunder.h"                         
+#include "class Kunder.h"
+#include <stdio.h>
 #include <cstring>
 #include <cmath>
 #include <fstream>
@@ -21,14 +22,13 @@ void lesTxt(char t[], char s[], const int LEN) {
 
 
 // Oppretter filnavn ti len char peker
-void LagNavn(char* t, char* s1, char * s2, int n, int LEN) {  //Lager filer
-	int tall = strlen(s1) + strlen (s2) + LEN;	             //Antall tegn i navn
-	int i = 0;                                                //int for løkke
-	char* nummer = new char[n+1];							   //array for nummeret på filen -0
-	_itoa(n, nummer, 10);                            //Gjør nummeret om til tekst
-	int potens = pow(10.0, (LEN-1));              //Tall for regning av desimaler
-	while ((potens > n) && potens != 1) {        //Løkke som finner antall nuller
-		potens /= 10;                            //Deler på 10 til antall er funnet
+void LagNavn(char* t, char* s1, char * s2, int n, int LEN) {   //Lager filer
+	int i = 0;                                                  //int for løkke
+	char* nummer = new char[LEN+1];								//array for nummeret på filen 
+	sprintf(nummer, "%d",  n);                         //Gjør nummeret om til tekst
+	int potens = pow(10.0, (LEN-1));                     //Tall for regning av desimaler
+	while ((potens > n) && potens != 1) {       //Løkke som finner antall nuller
+		potens /= 10;                             //Deler på 10 til antall er funnet
 		i++;	
 }
 char* nuller = new char[i];									 //array som inneholder alle nuller 

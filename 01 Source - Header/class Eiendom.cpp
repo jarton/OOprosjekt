@@ -12,66 +12,66 @@ using namespace std;
 
 //Constructor u/parameter
 Eiendom::Eiendom(int oppdragsnr) : Num_element(oppdragsnr)	{
-	char buffer[STRLEN];
-	Timer * timer3 = new Timer;
-	oppdragsnummer = oppdragsnr;
+	char buffer[STRLEN]; 								//buffer for innlesing
+	Timer * timer3 = new Timer;					//lager nyt timeobjekt
+	oppdragsnummer = oppdragsnr;				//setter oppdragsnr
 
-	dato = timer3->hentDato();
-	delete timer3;
+	dato = timer3->hentDato(); 				//Henter aktuell dato	
+	delete timer3;								//sletter timer objekter	
 
-	bruksnummer = lesTall("bruksnummer", 1000, 9999);
-	ansattnummer = lesTall("ansattnr", 0, 1000);
-	pris = lesTall("pris", 1, 10000000);
-	areal = lesTall("areal", 1, 1000);
+	bruksnummer = lesTall("bruksnummer", 1000, 9999); //Leser bruksnummer
+	ansattnummer = lesTall("ansattnr", 0, 1000); //Leser ansattnummer
+	pris = lesTall("pris", 1, 10000000); //Leser pris
+	areal = lesTall("areal", 1, 1000); //Leser areal
 
-	lesTxt("gateadresse:", buffer, STRLEN);
-	gateadresse = new char[strlen(buffer) + 1];
-	strcpy(gateadresse, buffer);
-	lesTxt("postadresse:", buffer, STRLEN);
-	postadresse = new char[strlen(buffer) + 1];
-	strcpy(postadresse, buffer);
-	lesTxt("eiernavn:", buffer, STRLEN);
-	eiernavn = new char[strlen(buffer) + 1];
-	strcpy(eiernavn, buffer);
-	lesTxt("komunenavn:", buffer, STRLEN);
-	kommunenavn = new char[strlen(buffer) + 1];
-	strcpy(kommunenavn, buffer);
-	lesTxt("beskrivelse:", buffer, STRLEN);
-	beskrivelse = new char[strlen(buffer) + 1];
-	strcpy(beskrivelse, buffer);
+	lesTxt("gateadresse:", buffer, STRLEN);			//Leser gateadresse
+	gateadresse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+	strcpy(gateadresse, buffer); //Kopierer fra buffer til gateadresse
+	lesTxt("postadresse:", buffer, STRLEN);			//Leser postadresse
+	postadresse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+	strcpy(postadresse, buffer); //Kopierer fra buffer til postadresse
+	lesTxt("eiernavn:", buffer, STRLEN);			//Leser eiernavn
+	eiernavn = new char[strlen(buffer) + 1];	//Gir pekeren innhold
+	strcpy(eiernavn, buffer); //Kopierer fra buffer til eiernavn
+	lesTxt("kommunenavn:", buffer, STRLEN);			//Leser kommunenavn
+	kommunenavn = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+	strcpy(kommunenavn, buffer);	//Kopierer fra buffer til kommunenavn
+	lesTxt("beskrivelse:", buffer, STRLEN);			//Leser beskrivelse
+	beskrivelse = new char[strlen(buffer) + 1];	//Gir pekeren innhold 
+	strcpy(beskrivelse, buffer);	//Kopierer fra buffer til beskrivelse.
 
-	lesTxt("type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN);
-	enumSwitch(buffer);
+	lesTxt("type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN); 
+	enumSwitch(buffer); //leser type eiendom.
 }
 
 //Constructor som leser eiendomsdata fra fil
 Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 	oppdragsnummer = onr;
 	inn >> dato >> bruksnummer
-	 	>> ansattnummer	>> pris >> areal;
+	 	>> ansattnummer	>> pris >> areal; //Leser diverse data.
 
 	char buffer[STRLEN];								//buffer for innlesing
 	inn.ignore();
-	inn.getline(buffer, STRLEN);						
+	inn.getline(buffer, STRLEN);	//Leser gateadresse.
 	gateadresse = new char[strlen(buffer + 1)];
-	strcpy(gateadresse, buffer);
-	inn.getline(buffer, STRLEN);
+	strcpy(gateadresse, buffer); //Kopierer.
+	inn.getline(buffer, STRLEN); //Leser postadresse.
 	postadresse = new char[strlen(buffer + 1)];
-	strcpy(postadresse, buffer);
-	inn.getline(buffer, STRLEN);
+	strcpy(postadresse, buffer); //Kopierer.
+	inn.getline(buffer, STRLEN); //Leser eiernavn.
 	eiernavn = new char[strlen(buffer + 1)];
-	strcpy(eiernavn, buffer);
-	inn.getline(buffer, STRLEN);
+	strcpy(eiernavn, buffer); //Kopierer.
+	inn.getline(buffer, STRLEN); //Leser kommunenavn.
 	kommunenavn = new char[strlen(buffer + 1)];
-	strcpy(kommunenavn, buffer);
-	inn.getline(buffer, STRLEN);
+	strcpy(kommunenavn, buffer); //Kopierer.
+	inn.getline(buffer, STRLEN); //Leser beskrivelse.
 	beskrivelse = new char[strlen(buffer + 1)];
-	strcpy(beskrivelse, buffer);
-	inn.getline(buffer, STRLEN);
+	strcpy(beskrivelse, buffer); //Kopierer.
+	inn.getline(buffer, STRLEN); //Leser type.
 	enumSwitch(buffer);
 }
 
-//Virtuell Deconstor
+//Virtuell Deconstructor
 Eiendom::~Eiendom()	{
 	delete[] gateadresse,
 		postadresse,
@@ -82,36 +82,36 @@ Eiendom::~Eiendom()	{
 
 //Skriver alle eiendomsdata til fil 
 void Eiendom::skrivTilFil(ofstream & ut)	{
-	ut << oppdragsnummer << '\n'
-		<< dato << '\n'
-		<< bruksnummer << '\n'
-		<< ansattnummer << '\n'
-		<< pris << '\n' << areal
-		<< '\n' << gateadresse
+	ut << oppdragsnummer << '\n'	//Skriver
+		<< dato << '\n'							//data
+		<< bruksnummer << '\n'			//fra
+		<< ansattnummer << '\n'			//Eiendom
+		<< pris << '\n' << areal		//til
+		<< '\n' << gateadresse			//fil.
 		<< '\n' << postadresse
 		<< '\n' << eiernavn
 		<< '\n' << kommunenavn
 		<< '\n' << beskrivelse
 		<< '\n';
-	if (eiendomstypen == tomt)
-		ut << "tomt";
-	else if (eiendomstypen == enebolig)
-		ut << "enebolig";
-	else if (eiendomstypen == rekkehus)
-		ut << "rekkehus";
-	else if (eiendomstypen == leilighet)
-		ut << "rekkehust";
+	if (eiendomstypen == tomt)						//Sjekker
+		ut << "tomt";												//type
+	else if (eiendomstypen == enebolig)		//eiendom
+		ut << "enebolig";										//og
+	else if (eiendomstypen == rekkehus)		//skriver
+		ut << "rekkehus";										//den
+	else if (eiendomstypen == leilighet)	//til
+		ut << "rekkehust";									//fil
 	else
 		ut << "hytte";
 }
 
 void Eiendom::enumSwitch(char * b)	{
-	switch (b[0])	{
-	case 't': eiendomstypen = tomt; break;
-	case 'e': eiendomstypen = enebolig; break;
-	case 'r': eiendomstypen = rekkehus; break;
-	case 'l': eiendomstypen = leilighet; break;
-	case 'h': eiendomstypen = hytte; break;
+	switch (b[0])	{		//Sjekker første bokstav i array.
+	case 't': eiendomstypen = tomt; break;			//Setter
+	case 'e': eiendomstypen = enebolig; break;	//riktig
+	case 'r': eiendomstypen = rekkehus; break;	//verdi
+	case 'l': eiendomstypen = leilighet; break;	//i
+	case 'h': eiendomstypen = hytte; break;			//enum.
 	};
 }
 
@@ -137,12 +137,12 @@ void Eiendom::display()  {
 
 bool Eiendom::finnPostnummer(int postnr)  {
 	bool erlik;
-	char * postpek = postadresse;
-	char postarr[5];
+	char * postpek = postadresse; //Hjelpepeker
+	char postarr[5]; //Hjelpearray
 	int i = 0;
 
-	sprintf(postarr, "%d", postnr);
-	do {
+	sprintf(postarr, "%d", postnr); //Gjør postnr om til tekst,	
+	do {														//og setter inn i postarr.
 		if (*postpek++ == postarr[i++])
 			erlik = true;
 		else erlik = false;
@@ -155,7 +155,7 @@ bool Eiendom::finnPostnummer(int postnr)  {
 }
 
 bool Eiendom::finnOppdragsnr(int oppdnr)  {
-	if(oppdnr==oppdragsnummer)
+	if(oppdnr==oppdragsnummer) //Sjekker om oppdragsnummeret er likt.
 		return true;
 	else
 		return false;
