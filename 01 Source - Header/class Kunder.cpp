@@ -56,19 +56,20 @@ void Kunder :: nyKunde()  { //Lager ny kunde
 }
 
 Kunder :: Kunder()  { //CONSTRUCTOR
-	Kunde* kunde;
-	kundeliste = new List(Sorted); //Lager liste. 
-	ifstream inn("02 DTA/SISTE.DTA");
-	inn >> forsteKunde;
-	inn >> sisteKunde; inn.ignore();
-	///////// OBS! Må også lage for KUNDE000000.INF!!
+	Kunde* kunde;                       // Kunde peker
+	kundeliste = new List(Sorted);     //Lager liste. 
+	ifstream inn("02 DTA/SISTE.DTA");    // Finner data om siste
+	inn >> forsteKunde;                // leser inn første kunde
+	inn >> sisteKunde;                // leser inn siste kunde
+	inn.ignore();                     // ignorerer oppdragsnummer
+
 	char* kundedta = new char[strlen("KUNDE0001000.DTA")+1];
-	for (int i = forsteKunde; i <=sisteKunde; i++)  {
-		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);
-		ifstream dtainn(kundedta);
-		if (dtainn)  {																						//hvis den finnes
-			kunde = new Kunde(dtainn, i);
-			kundeliste->add(kunde);
+	for (int i = forsteKunde; i <=sisteKunde; i++)  { // loop fra første tilsiste
+		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);    // Lager filnavn
+		ifstream dtainn(kundedta);                  // Oppretter filen
+		if (dtainn)  {																//Hvis den finnes..
+			kunde = new Kunde(dtainn, i);            // Lager en ny kunde
+			kundeliste->add(kunde);                  // legger kunden til i listen.
 		}
 	}
 }
