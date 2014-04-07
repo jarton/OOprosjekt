@@ -25,7 +25,7 @@ void Kunder::fortsettelseMeny()  {
 		case 'N': nyKunde(); break;
 		case 'S': 
 			cin >> kundenummer; 
-			if (kundenummer < forsteKunde+1 || kundenummer > sisteKunde)
+			if (kundenummer < forsteKunde || kundenummer > sisteKunde)
 				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
 			else
   			slettKunde(kundenummer); break;
@@ -74,65 +74,79 @@ Kunder :: Kunder()  { //CONSTRUCTOR
 	}
 }
 
-
+// Sletter en kunda fra datastrukturen, samt DTA- filen
 void Kunder::slettKunde(int knr)  {
-	Kunde* kunde;
-	int knum;
+	Kunde* kunde;                                       // Kunde peker
+	Kunde* forste;                               // Kunde peker (første kunde)
+	int knum;                                       // variablel for kundenummer
 	char* kundedta = new char[strlen("KUNDE0001000.DTA") + 1];
-	int antkunder;
-	antkunder = kundeliste->no_of_elements();
+	int antkunder = kundeliste->no_of_elements();    // finner antall kunder
 
-	for (int i = 1; i <= antkunder; i++)  {
-		kunde = (Kunde*)kundeliste->remove_no(i);
-		if (kunde->sjekkNr(knr) == true)  {
-			kundeliste->destroy(i);
-			cout << "\nKunden ble fjernet!" ;
-	  }
-		else
-			kundeliste->add(kunde);
-	}
-
-	for (int i = forsteKunde+1; i <= sisteKunde; i++)	{
-		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);
-		ifstream dta(kundedta);
-		if (!kundedta)
+	for (int i = 1; i <= antkunder; i++)  {           // Loop gjennom alle kunder
+		kunde = (Kunde*)kundeliste->remove_no(i);    // fjerner en kunde fra listen
+		int nr = kunde->hentKundenummer();          // henter kundens kundenr
+		LagNavn(kundedta, "KUNDE", ".DTA", nr, 7); // Oppretter filnavn
+		ifstream dta(kundedta);                      // oppretter utfil
+		if (!kundedta)                                // hvis utfil ikke eksisterer
       cout << "\nFilen '" << kundedta << "' finnes ikke!";
-	  dta >> knum; 	
-		if (knum == knr)  {
-			dta.close();
-		  if (remove(kundedta) != 0)
+	  dta >> knum; 	                            // leser inn kundenummer fra fil
+		if (knum == knr)  {             // hvis kundenummer på fil == datastruktur
+			dta.close();                              // stenger filen
+		  if (remove(kundedta) != 0)                 // fjerner filen
 			  cout << "\n\nFilen '" << kundedta << "' ble IKKE fjernet!";
 		  else
 			  cout << "\n\nFilen '" << kundedta << "' ble fjernet!";
 		}
+		kundeliste->add(kunde);                // Legger kunden tilbake i listen
 	}
-	sisteKunde--;
-	if (sisteKunde==1000)
-		forsteKunde=sisteKunde;
-	skrivTilFil();
+
+for (int i = 1; i <= antkunder; i++)  {  // loop gjennom alle kunder
+  kunde = (Kunde*)kundeliste->remove_no(i);  // fjerner en kunden fra listen
+  if (kunde->sjekkNr(knr) == true)  {   // hvis kundenummeret er lik innskrevet
+    kundeliste->destroy(i);             // destroyer kunden
+		break;
+	}
+  else 
+		kundeliste->add(kunde);            // legger kunden tilbake i listen
+}
+  int ant=kundeliste->no_of_elements();   // finner antallet i listen
+	if(ant > 0)  {                          // hvis antallet er større enn 0
+  	forste = (Kunde*)kundeliste->remove_no(1);  // fjerner 1. fra listen
+	  forsteKunde = forste->hentKundenummer();  // henter kundenummeret
+  	kundeliste->add(forste);                 // legger kundenummeret som forste
+	  skrivTilFil();                            // Skriver til fil
+	}
+	else if (ant == 0) {                  // hvis antall kunder = 0
+		forsteKunde=1000;                     // nullstiller forsteKunde
+		sisteKunde=1000;                      // nullstiller sisteKunde
+		skrivTilFil();                          // Skriver til fil
+	}
 }
 
 
+// skriver kundedata til fil
 void Kunder::skrivTilFil()  {
 	char * kundefil  = new char [strlen("KUNDE0001001.DTA")+1];
-	int antKunder = kundeliste->no_of_elements();	
-	Kunde* kunde;
-	for (int i = 1; i <= antKunder; i++)  {
-		int r=i+1000;
-		LagNavn(kundefil, "KUNDE", ".DTA", r, 7);
-		ofstream ut(kundefil);
-		kunde = (Kunde*) kundeliste->remove(r);
-		kunde->skrivTilFil(ut);
-		kundeliste->add(kunde);	
+	int antKunder = kundeliste->no_of_elements(); //finner antall kunder i listen
+	Kunde* kunde;                                 // Kunder Peker
+	for (int i = 1; i <= antKunder; i++)  {         // Lopp gjennom alle kunder
+		kunde = (Kunde*)kundeliste->remove_no(i);    // fjerner kunde fra listen
+	  int knr = kunde->hentKundenummer();             // henter kundenummeret
+  	kundeliste->add(kunde);                    // legger kunde tilbake i listen
+		LagNavn(kundefil, "KUNDE", ".DTA", knr, 7);  // lager filnavn
+		ofstream ut(kundefil);                         // opprettter utfl
+		kunde = (Kunde*) kundeliste->remove_no(i);   // fjerner fra listen
+		kunde->skrivTilFil(ut);                         // Skriver til fil
+		kundeliste->add(kunde);	                   // legger kunden tilbake i filen
 	}
-	ifstream inn("02 DTA/SISTE.DTA");
-	int buf;
-	inn.ignore();
-	inn.ignore();
-	inn >> buf;
+	ifstream inn("02 DTA/SISTE.DTA");       // henter inn Siste data
+	int buf;                  
+	inn.ignore();                      // ignorer 1. linje
+	inn.ignore();                      // ignorer 2. linje
+	inn >> buf;                         // leser inn oppdragsnummer
 
-	ofstream ut("02 DTA/SISTE.DTA");
-	ut << forsteKunde << endl;
-	ut << sisteKunde << endl;
-	ut << buf;
+	ofstream ut("02 DTA/SISTE.DTA");    // skriver ut siste-data
+	ut << forsteKunde << endl;          // skriver ut første kunde
+	ut << sisteKunde << endl;           // skriver ut siste kunde
+	ut << buf;                          // skriver ut oppdragsnummer
 }

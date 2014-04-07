@@ -164,3 +164,7 @@ void Kunde::skrivTilFil(ofstream & ut)  {
 		IntrSoneliste->add(intrsone);
 	}
 }
+
+int Kunde::hentKundenummer()  {
+	return kundenummer;
+}
