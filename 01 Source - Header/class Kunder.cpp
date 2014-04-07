@@ -9,26 +9,25 @@
 #include "globale funksjoner og variabler.h"
 using namespace std;
 
-void Kunder::fortsettelseMeny()  {
+void Kunder::fortsettelseMeny()  { //Meny innad K
 	char valg;
-	char newline;
 	char kundeinfo[STRLEN];
 	int kundenummer;
 
-	valg = les();
+	valg = les(); //Leser et upcaset tegn
 	switch(valg) {
 		case 'D': 
-		cin.get(newline);
-		cin.getline(kundeinfo,STRLEN); 
-		finnKunde(kundeinfo);	
+		cin.ignore();
+		cin.getline(kundeinfo,STRLEN);  //Leser inn kundeinfo
+		finnKunde(kundeinfo);	//Finner kunden og displayer
 		break;
-		case 'N': nyKunde(); break;
+		case 'N': nyKunde(); break; //Lager ny kunde
 		case 'S': 
-			cin >> kundenummer; 
-			if (kundenummer < forsteKunde || kundenummer > sisteKunde)
+			cin >> kundenummer;		//Henter kundenummer
+			if (kundenummer < forsteKunde || kundenummer > sisteKunde) //Hvis kunden ikke finnes
 				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
 			else
-  			slettKunde(kundenummer); break;
+  			slettKunde(kundenummer); break; //Sletter kunden.
 		case 'E': break;
 		default: break;
 	 }
@@ -37,20 +36,20 @@ void Kunder::fortsettelseMeny()  {
 void Kunder::finnKunde(char* kundeinfo)  {
 	Kunde* kunde;
 	//List* kundeliste;
-	int antallKunder= kundeliste->no_of_elements();
+	int antallKunder= kundeliste->no_of_elements(); //ant. kunder
 	int i;
 
-	for(i=1; i<=antallKunder; i++)  { 
-	kunde = (Kunde*) kundeliste->remove_no(i);
-	kunde->sjekkNrNvn(kundeinfo);
-	kundeliste->add(kunde);
+	for(i=1; i<=antallKunder; i++)  {  //Går gjennom kundene.
+	kunde = (Kunde*) kundeliste->remove_no(i); //Fjerner en kunde fra listen
+	kunde->sjekkNrNvn(kundeinfo); //Sjekker infoen, displayer eventuelt.
+	kundeliste->add(kunde); //Legger tilbake.
 	}
 }
 
 void Kunder :: nyKunde()  { //Lager ny kunde
 	Kunde* kunde;
-	if (forsteKunde == 1000)
-	  forsteKunde++;
+	if (forsteKunde == 1000) //Hvis ingen kunder enda.
+	  forsteKunde++; 
 	kunde = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
 	kundeliste->add(kunde); //Legger den inn i listen over kunder.
 	skrivTilFil();
