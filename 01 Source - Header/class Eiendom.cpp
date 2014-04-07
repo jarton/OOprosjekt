@@ -12,12 +12,12 @@ using namespace std;
 
 //Constructor u/parameter
 Eiendom::Eiendom(int oppdragsnr) : Num_element(oppdragsnr)	{
-	char buffer[STRLEN]; 
-	Timer * timer3 = new Timer;
-	oppdragsnummer = oppdragsnr;
+	char buffer[STRLEN]; 								//buffer for innlesing
+	Timer * timer3 = new Timer;					//lager nyt timeobjekt
+	oppdragsnummer = oppdragsnr;				//setter oppdragsnr
 
-	dato = timer3->hentDato(); //Henter aktuell dato
-	delete timer3;
+	dato = timer3->hentDato(); 				//Henter aktuell dato	
+	delete timer3;								//sletter timer objekter	
 
 	bruksnummer = lesTall("bruksnummer", 1000, 9999); //Leser bruksnummer
 	ansattnummer = lesTall("ansattnr", 0, 1000); //Leser ansattnummer

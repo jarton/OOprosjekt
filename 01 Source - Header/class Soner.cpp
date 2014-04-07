@@ -106,6 +106,7 @@ void Soner::fortsettelseMeny(char valg) {
 			}
 			break;
 		case 'N': cin >> nr;				//ny eiendom, les nr, opprett ny eiendom i sonr nr
+							cin.ignore();
 			eiendomNy(nr); break;
 		case 'S': cin >> nr;				//slett eiendom, les nr, slett eiendom i sone nr
 			eiendomSlett(nr);  break;

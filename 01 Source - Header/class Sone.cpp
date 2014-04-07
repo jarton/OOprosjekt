@@ -14,6 +14,7 @@ Sone::Sone(int nr, int oppdragsnr)	{
 	char buffer[STRLEN];									//buffer for innlesing
 	soneNummer = nr;								//setter sonens nr til medsent nr
 	
+
 	lesTxt("Sonebeskrivelse", buffer, STRLEN);		//leser inn sonebeskrivelse
 	beskrivelse = new char[strlen(buffer) + 1];		//lager array som er akkurat passe
 	strcpy(beskrivelse, buffer);									//kopierer fra buffer inn i array
@@ -55,6 +56,7 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 void Sone::nyEiendom(int oppdragsnr)	{
 	Eiendom* eiendom;									//peker til bolig/eiendom
 	char type[STRLEN];								//array for type eiendom/bolig
+	
 	
 	lesTxt("velg type Bolig  /   Eiendom", type, STRLEN);	//leser inn
 	if (type[0] == 'B' || type[0] == 'b')									//hvis bolig
