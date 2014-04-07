@@ -2,8 +2,6 @@
 #include <cstdlib>																// itoa
 #include "conster.h"                              // bruke conster
 #include "class Soner.h"                          // bruker Soner
-#include "conster.h"
-#include "class Soner.h"
 #include "class Kunder.h"
 #include <stdio.h>
 #include <cstring>
