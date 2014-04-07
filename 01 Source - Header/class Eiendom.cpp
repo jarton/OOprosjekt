@@ -3,6 +3,7 @@
 #include <cstdlib>																// itoa
 #include <fstream>
 #include "conster.h"
+#include "stdio.h"
 #include <cstring>
 #include "globale funksjoner og variabler.h"
 #include "timer3.h"
@@ -140,7 +141,7 @@ bool Eiendom::finnPostnummer(int postnr)  {
 	char postarr[5];
 	int i = 0;
 
-	_itoa(postnr, postarr, 10);
+	sprintf(postarr, "%d", postnr);
 	do {
 		if (*postpek++ == postarr[i++])
 			erlik = true;
