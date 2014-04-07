@@ -49,7 +49,8 @@ void Kunder::finnKunde(char* kundeinfo)  {
 
 void Kunder :: nyKunde()  { //Lager ny kunde
 	Kunde* kunde;
-	forsteKunde=1001;
+	if (forsteKunde == 1000)
+	  forsteKunde++;
 	kunde = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
 	kundeliste->add(kunde); //Legger den inn i listen over kunder.
 	skrivTilFil();
@@ -106,6 +107,8 @@ void Kunder::slettKunde(int knr)  {
 		}
 	}
 	sisteKunde--;
+	if (sisteKunde==1000)
+		forsteKunde=sisteKunde;
 	skrivTilFil();
 }
 
