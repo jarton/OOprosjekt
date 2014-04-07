@@ -24,7 +24,7 @@ void lesTxt(char t[], char s[], const int LEN) {
 // Oppretter filnavn ti len char peker
 void LagNavn(char* t, char* s1, char * s2, int n, int LEN) {   //Lager filer
 	int i = 0;                                                  //int for løkke
-	char* nummer = new char[n+1];							//array for nummeret på filen -0
+	char* nummer = new char[LEN+1];								//array for nummeret på filen 
 	sprintf(nummer, "%d",  n);                         //Gjør nummeret om til tekst
 	int potens = pow(10.0, (LEN-1));                     //Tall for regning av desimaler
 	while ((potens > n) && potens != 1) {       //Løkke som finner antall nuller

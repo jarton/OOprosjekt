@@ -10,13 +10,13 @@ private:
 	Sone* sonene[MAXSONER+1];
 
 public:
-	Soner();								//constructor
+	Soner();																	//constructor
 	void eiendomNy(int nr);						//legger til ny eiendom
-	void eiendomSlett(int nr);
+	void eiendomSlett(int nr);			//sletter en eiendom
 	void skrivTilFil();							//skriver til fil
 	void fortsettelseMeny(char valg);		// Viser meny
-	void displaySone(int sonenr);          // Finner en sone
-	void displayEiendom(char* soneinfo);
+	void displaySone(int sonenr);          // displayer en hel sone 
+	void displayEiendom(char* soneinfo);  //displayer en/flere eiendom
 };
 
 
