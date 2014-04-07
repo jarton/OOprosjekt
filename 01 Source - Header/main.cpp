@@ -1,35 +1,28 @@
-#include <iostream>
-#include "globale funksjoner og variabler.h"
-#include "class Soner.h"
-#include "class Kunder.h"
+#include <iostream>                                 // cin, cout
+#include "globale funksjoner og variabler.h"        // bruke globale funksj.
+#include "class Soner.h"                            // bruke Soner
+#include "class Kunder.h"                           // bruke Kunder
 
 using namespace std;
 
-
-
 int main()  {
 
-	char valg;                               //  Brukerens valg/kommando.
-
-	Soner soner;
-  Kunder kunder;
-
-
-
-  skrivMeny();
-  valg = les();
-  while (valg != 'Q')  {
+	char valg;                                       //  Brukerens valg/kommando.
+	Soner soner;                                            // Lage Soner-objekt.
+  Kunder kunder;                                         // Lage Kunder-objekt.
+	
+  skrivMeny();                                             // Displayer menyen.
+  valg = les();                                   // Leser inn et upcaset tegn.
+  while (valg != 'Q')  {                         // Loop til brukeren taster Q.
     switch(valg)  {
-      case 'E': soner.fortsettelseMeny(valg);  break;  // Eiendom
-			case 'S': soner.fortsettelseMeny(valg);  break;  // Sone (display)
-      case 'K': kunder.fortsettelseMeny(); break;  // Kunde
-      //case 'U': ;         break;  //  Senere
-      default : skrivMeny();	 break; // 
+      case 'E': soner.fortsettelseMeny(valg);  break; //Videre meny for Eiendom
+			case 'S': soner.fortsettelseMeny(valg);  break;  // Videre meny for Sone.
+      case 'K': kunder.fortsettelseMeny(); break;     // Videre meny for Kunde.
+      case 'U': break; /*TODO*/                            // Lager .INF filen.
+      default : cout << "\n\tOBS! Ugyldig kommando!\n\n";	 break; //feilmedling
     }
-		skrivMeny();
-    valg = les();
+		skrivMeny();              // Displayer meny
+    valg = les();             // Leser inn et upcaset tegn
   }
-
-  cout << "\n\n";
   return 0;
 }
