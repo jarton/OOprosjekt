@@ -18,6 +18,7 @@ private:
 	List* IntrSoneliste;
 
 public:
+	~Kunde();
 	Kunde(ifstream & inn, int nr);
 	void skrivTilFil(ofstream & ut);
 	bool sjekkKNr(int knr);

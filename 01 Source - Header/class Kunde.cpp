@@ -42,7 +42,6 @@ void Kunde::displayKunde()  {
 Kunde :: Kunde(int knr) : Num_element(knr) {
 	char ch[STRLEN];
 	char kommando;
-	int tall;
 	IntrSone* intrsonen; // Peker til intrsone-objekt
 	IntrSone* intrsonekopi; // Peker til kopiobjekt.
 
@@ -77,10 +76,10 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 	kommando = les();
 
 	while (kommando == 'J') { //Hvis "ja".
-		intrsonekopi = new IntrSone(*intrsonen); //Forsøk på default copy constructor..
+		intrsonekopi = new IntrSone(*intrsonen); //Default copy constructor..
 		sonenr = lesTall("\nSonenummer", 1, 100); //Leser sonenummer.
-		intrsonekopi->endreSonenr(sonenr);
-		IntrSoneliste->add(intrsonekopi); //Legger til kopien.
+		intrsonekopi->endreSonenr(sonenr); //Endrer sonenummeret på kopien.
+		IntrSoneliste->add(intrsonekopi); //Legger til kopien i listen.
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();
 	}
@@ -143,8 +142,6 @@ Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
 Kunde :: ~Kunde(){
 	delete [] navn; delete [] gateadresse; //Slette chararrayer
 	delete [] postadresse; delete [] mail;
-	delete intrsone; //Slette interessesone
-	delete intrsonekopi; //Slette interessesone
 	delete IntrSoneliste; //Slette listen av IntrSone-objekter.
 }
 
