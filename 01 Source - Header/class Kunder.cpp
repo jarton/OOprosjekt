@@ -28,7 +28,14 @@ void Kunder::fortsettelseMeny()  { //Meny innad K
 				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
 			else
   			slettKunde(kundenummer); break; //Sletter kunden.
-		case 'E': break;
+		case 'E': 
+			cin >> kundenummer;		//Henter kundenummer
+			if (kundenummer < forsteKunde || kundenummer > sisteKunde) //Hvis kunden ikke finnes
+				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
+			else
+  			endreKunde(kundenummer); 
+			break;
+
 		default: break;
 	 }
 }
@@ -149,4 +156,23 @@ void Kunder::skrivTilFil()  {
 	ut << forsteKunde << endl;          // skriver ut første kunde
 	ut << sisteKunde << endl;           // skriver ut siste kunde
 	ut << buf;                          // skriver ut oppdragsnummer
+}
+
+
+// Endrer på kunden sine data
+void Kunder::endreKunde(int knr)  {
+  Kunde* kunde;                                       // Kunde peker
+	char* kundefil = new char[strlen("KUNDE0001000.DTA") + 1];
+	LagNavn(kundefil, "KUNDE", ".DTA", knr, 7);  // lager filnavn
+	ofstream ut(kundefil);
+
+	if(kundeliste->in_list(knr))  {
+    kunde = (Kunde*)kundeliste->remove(knr);    // fjerner en kunde fra listen
+	  kunde->endreKundeData();
+	  kunde->skrivTilFil(ut);
+	  kundeliste->add(kunde);
+	}
+	else
+		cout << "\n Kunne ikke finne kunden med kundenummer: '"<<knr<<"'"<<endl;
+
 }

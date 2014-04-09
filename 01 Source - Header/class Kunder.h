@@ -16,6 +16,7 @@ public:
 	void finnKunde(char* kundeinfo);
 	void displayKunde(int kundenr);
 	void nyKunde();
+	void endreKunde(int knr);
 	void slettKunde(int knr);
 	void skrivTilFil();
 };

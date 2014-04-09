@@ -43,7 +43,7 @@ Fremmgang:
 
 10 --må gjøres--   ALT  
 
-11 --må gjøres -- ALT  
+11 -- KE: mangler å skrive til EXXX.DTA  --må gjøres -- ALT  
 
 
 Generelt  

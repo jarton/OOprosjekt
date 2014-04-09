@@ -167,3 +167,66 @@ int Kunde::hentKundenummer()  {
 	return kundenummer;
 }
 
+void Kunde::endreKundeData()  {
+	char ch[STRLEN];
+	char svar;
+	char endre;
+
+	cout << "\n Endring av kunde " << kundenummer << endl<<endl;
+
+	cout << "\n 0nsker du aa endre personelldata? (J/N)";
+	endre=les();
+	if (endre == 'J')  {
+  	cout << "\n Navn: " << navn;
+  	cout << "\n Endre navn? (Tast 'J/N')";
+  	svar=les();
+  	if (svar == 'J')  {
+	    delete [] navn;
+	  	lesTxt("\nNavn", ch, STRLEN);                         //leser inn navn
+	    navn = new char[strlen(ch)+1];             // lager ny char med eksakt lengde
+	    strcpy(navn, ch);
+    } 
+
+    cout << "\n Telefon: " << tlf;
+    cout << "\n Endre telefonnummer? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+			tlf = lesTall("\nTelefon ", 10000000, 99999999);      //Leser tlf-nummer  
+
+    cout << "\n E-post: " << mail;
+  	cout << "\n Endre E-post? (Tast 'J/N')";
+  	svar=les();
+  	if (svar == 'J')  {
+	    delete [] mail;
+      lesTxt("\nE-post", ch, STRLEN);              // leser mail
+	    mail = new char[strlen(ch)+1];           // lager ny char med eksakt lengde
+	    strcpy(mail, ch);
+	  }	
+
+	  cout << "\n Adresse: " << gateadresse<<", "<<postadresse;
+	  cout << "\n Endre Adresse? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  {
+	   	delete [] gateadresse;
+		  delete [] postadresse;
+   	  lesTxt("\nGateadresse", ch, STRLEN);             //leser gateadresse
+	    gateadresse = new char[strlen(ch)+1];      // lager ny char med eksakt lengde
+	    strcpy(gateadresse, ch);
+
+  	  lesTxt("\nPostnummer", ch, STRLEN);              //leser postnummer
+	    postadresse = new char[strlen(ch)+1];      // lager ny char med eksakt lengde
+	    strcpy(postadresse, ch);
+	  }
+	}
+	cout << "0nsker du aa endre data om kundens interesser? (J/N)";
+	svar=les();
+	if (svar=='J')  {
+		int antIntrSoner = IntrSoneliste->no_of_elements(); // antall intrsoner
+  	IntrSone* intrsone;                              // lager intrsone peker
+	  for (int i = 1; i <= antIntrSoner; i++)  {       // loop gjennom alle intrsoner
+	    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);  // fjerner fra listen
+	  	intrsone->endreIntrSone();              // skriver til fil
+		  IntrSoneliste->add(intrsone);                      // legger tilbake i listen
+	  }
+  }
+}

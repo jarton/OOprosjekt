@@ -7,53 +7,15 @@
 using namespace std;
 
 IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
-	char kommando; //Hjelpevariabel
+	
 	sonenummer=sonenr;
 	maxPris = lesTall("\nMaxpris", 1, 1000000000); //Leser max pris.
 	minAreal = lesTall("\nMinimum areal", 1, 10000); //Leser minimum areal.
 	minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom.
 
-	cout << "\nBoligfeed ([U]kentlig / [S]narest): "; //Spør om ønsket boligfeed.
-
-	kommando = 'B'; // Bare for å ikke ha noe søppel.
-
-	while(kommando != 'U' && kommando != 'S') { // SENERE: Fix dette. Alternativ metode.
-		kommando = les();		//Leser ønsket boligfeed.
-		switch(kommando) {
-		case 'U': boligfeeden = ukentlig; break;
-		case 'S': boligfeeden = snarest; break;
-		default: cout << "\nUlovlig kommando. Prov igjen."; break;
-
-		}
-	}
-	
-	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte): ";
-
-	while(kommando != 'T' && kommando != 'E' && kommando != 'R' && 
-		kommando != 'L' && kommando != 'H'){ //Senere: fix dette. Stygg metode.
-		kommando = les(); //Leser eiendomstype.
-		switch(kommando){
-		case 'T': eiendomstypen = tomt; break;			//Setter
-		case 'E': eiendomstypen = enebolig; break;	//Riktig
-		case 'R': eiendomstypen = rekkehus; break;	//type.
-		case 'L': eiendomstypen = leilighet; break;
-		case 'H': eiendomstypen = hytte; break;
-		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
-		}
-	}
-
-	cout << "\n\nOnsket status ([S]alg / [L]eie): ";
-	kommando = 'B'; //For å ikke inneholde søppel.
-
-	while (kommando != 'S' && kommando != 'L'){ //SENERE: Fix dette. Stygg metode.
-		kommando = les();		//Leser ønsket status.
-		switch(kommando){
-		case 'S': statusonsket = salg; break; //Setter riktig status.
-		case 'L': statusonsket = leie; break;
-		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
-		}
-	}
-
+  boligfeedFunk();
+	eiendomstypeFunk();
+	statusonskeFunk();
 }
 
 IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
@@ -153,4 +115,111 @@ void IntrSone::enumStatusSwitch(int nr)  {
 	case 1: statusonsket = leie; break; //Setter riktig verdi i enum.
 	case 2: statusonsket = begge; break;
 	};
+}
+
+// Endrer data på en intrsone
+void IntrSone:: endreIntrSone()   {
+	char svar;
+	cout << "\n0nsker du aa endre data i sone nummer "<<sonenummer<<"? (J/N)";
+	svar=les();
+	if (svar=='J')  {
+	  char* eiendomstype[] = {"Tomt", "Enebolig", "Rekkehus", "Leilighet", "Hytte"};
+	  char* statusonske[] = {"Salg", "Leie", "Salg og leie"};
+    char* boligfeed[]=  {"Ukentlig", "Snarest"};
+
+    cout << "\nMaksimums pris: " <<  maxPris;
+    cout << "\n Endre maksimums pris? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+	    maxPris = lesTall("\nMaxpris", 1, 1000000000); //Leser max pris.
+
+    cout << "\nMinimums areal: " <<  minAreal;
+    cout << "\n Endre minimums areal? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+	    minAreal = lesTall("\nMinimum areal", 1, 10000); //Leser minimum areal.
+
+		cout << "\nMinimum antall soverom: " <<  minAntSoverom;
+    cout << "\n Endre minimum antall soverom? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+	    minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom. 
+  
+  
+    cout << "\nBoligfeed: " << boligfeed[boligfeeden];
+    cout << "\n Endre boligfeed? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+			boligfeedFunk();
+
+    cout << "\nEiendomstype: " <<  eiendomstype[eiendomstypen];
+    cout << "\n Endre eiendomstype? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+			eiendomstypeFunk();
+
+    cout << "\n0nkes: " <<  statusonske[statusonsket];
+    cout << "\n Endre? (Tast 'J/N')";
+	  svar=les();
+	  if (svar == 'J')  
+			statusonskeFunk();
+
+	}
+
+	/* TODO::::::FRA OPPGAVE::For de sonene kunden skifter til umiddelbar/snarest boliginfo om, vil det også være
+aktuelt å legge til info om kunden bakerst på filene ’Exxxxxxx.DTA’.*/
+}
+
+
+void IntrSone::boligfeedFunk()  {
+	char kommando; //Hjelpevariabel
+	cout << "\nBoligfeed ([U]kentlig / [S]narest): "; //Spør om ønsket boligfeed.
+
+	kommando = 'B'; // Bare for å ikke ha noe søppel.
+
+	while(kommando != 'U' && kommando != 'S') { // SENERE: Fix dette. Alternativ metode.
+		kommando = les();		//Leser ønsket boligfeed.
+		switch(kommando) {
+		case 'U': boligfeeden = ukentlig; break;
+		case 'S': boligfeeden = snarest; break;
+		default: cout << "\nUlovlig kommando. Prov igjen."; break;
+
+		}
+	}
+
+}
+
+
+void IntrSone::eiendomstypeFunk() {
+	char kommando; //Hjelpevariabel
+	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte): ";
+
+	while(kommando != 'T' && kommando != 'E' && kommando != 'R' && 
+		kommando != 'L' && kommando != 'H'){ //Senere: fix dette. Stygg metode.
+		kommando = les(); //Leser eiendomstype.
+		switch(kommando){
+		case 'T': eiendomstypen = tomt; break;			//Setter
+		case 'E': eiendomstypen = enebolig; break;	//Riktig
+		case 'R': eiendomstypen = rekkehus; break;	//type.
+		case 'L': eiendomstypen = leilighet; break;
+		case 'H': eiendomstypen = hytte; break;
+		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
+		}
+	}
+}
+
+
+void IntrSone::statusonskeFunk()  {
+	char kommando; //Hjelpevariabel
+	cout << "\n\nOnsket status ([S]alg / [L]eie): ";
+	kommando = 'B'; //For å ikke inneholde søppel.
+
+	while (kommando != 'S' && kommando != 'L'){ //SENERE: Fix dette. Stygg metode.
+		kommando = les();		//Leser ønsket status.
+		switch(kommando){
+		case 'S': statusonsket = salg; break; //Setter riktig status.
+		case 'L': statusonsket = leie; break;
+		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
+		}
+	}
 }

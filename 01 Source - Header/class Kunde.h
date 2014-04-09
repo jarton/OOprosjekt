@@ -27,6 +27,7 @@ public:
 	void displayKunde();
 	bool sjekkNr(int nr);
 	int hentKundenummer();
+	void endreKundeData();
 	
 };
 

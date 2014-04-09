@@ -18,9 +18,13 @@ public:
 	IntrSone(IntrSone* intrsonen, int sonenr);
 	~IntrSone();
 	void endreSonenr(int nyttnr);
+	void endreIntrSone();
 	void display();               // Displater info om IntrSone
 	void skrivTilFil(ofstream & ut, int nr);
 
+	void statusonskeFunk();
+	void boligfeedFunk();
+	void eiendomstypeFunk();
 	void enumBoligfeedSwitch(int nr);
 	void enumEiendomstypeSwitch(int nr);
 	void enumStatusSwitch(int nr);

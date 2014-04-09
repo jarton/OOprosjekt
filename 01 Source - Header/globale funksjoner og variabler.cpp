@@ -88,3 +88,7 @@ void soneDisplay()  {
 	sonenr=lesTall("Skriv inn sonenummer: ",1,MAXSONER);
 	soner.displaySone(sonenr);
 }
+
+void ukentligUtskrift()  {
+
+}
