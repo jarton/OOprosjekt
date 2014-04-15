@@ -16,7 +16,8 @@
 
 8 Implementer kommandoene ’K N’ (vent med data til filen ’Exxxxxxx.DTA’) og ’K S’.  
 
-9 Lag skrivingen til filen ’Exxxxxxx.DTA’ ved kommandoene ’E N’ og ’K N’.
+9 Lag skrivingen til filen ’Exxxxxxx.DTA’ ved kommandoene ’E N’ og ’K N’.  
+
 10 Implementer kommandoene ’U’.  
 
 11 Implementer kommandoene ’E E’ og ’K E’. 7   
@@ -39,7 +40,7 @@ Fremmgang:
 
 8 KN ferdig? KS ferdig -- må gjøres--  småting og test  
 
-9 --må gjøres--  ALT  
+9 KN finner eiendommer, men skriver ikke til fil. !!global operator== laget som sammenligner en intrsone og eiendom laget  kan bukes i alle tilfeller (U, EN) der ein skall matche kunde + eiendom!! --må gjøres--  Resten  
 
 10 --må gjøres--   ALT  
 
@@ -48,4 +49,4 @@ Fremmgang:
 
 Generelt  
 
-i alle klasser: --må gjøes--  destructor  
+i alle klasser: --må gjøes--  destructor.  se etter ting som kan/må deletes!
