@@ -1,4 +1,5 @@
 #include "globale funksjoner og variabler.h"
+#include "class IntrSone.h"
 #include "class Sone.h"
 #include "class Eiendom.h"
 #include "class Bolig.h"
@@ -51,6 +52,20 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	inn >> eientype;										//prover a lese inn ny type
 	}
 }
+
+void Sone::sammenlign(IntrSone* isone) {
+  Eiendom* eiendom;
+  int antall;
+
+  antall = eiendommene->no_of_elements();
+  for (int i = 1; i <= antall; i++) {
+   eiendom = (Eiendom*) eiendommene->remove_no(i);
+   if (*isone == *eiendom)   //overloada operator
+	  //skrivtilfil .INF 
+
+  }
+}
+
 
 //oppretter en ny eiendom
 void Sone::nyEiendom(int oppdragsnr)	{

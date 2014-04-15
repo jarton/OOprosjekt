@@ -61,6 +61,10 @@ void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
 	} while (!funnet);								//går sålenge den ikke er funnet
 }
 
+void Soner::sammenlign(IntrSone* isone, int nr) {
+  sonene[nr]->sammenlign(isone);
+}
+
 //Skriver alle sonene til fil
 void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 	char * sonefil  = new char [strlen("SONE000.DTA")+1];								//peker for navn på fil

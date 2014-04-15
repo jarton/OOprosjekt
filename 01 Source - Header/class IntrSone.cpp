@@ -6,6 +6,17 @@
 
 using namespace std;
 
+char IntrSone::hentBoligfeeden() {
+  if (boligfeeden == snarest)
+	  return 'S';
+  else 
+	 return 'U'; 
+}
+
+int IntrSone::hentsonenum() {
+  return sonenummer;
+}
+
 IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	
 	sonenummer=sonenr;

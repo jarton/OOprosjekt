@@ -3,6 +3,7 @@
 
 #include "conster.h"
 #include "class Sone.h"
+#include "class IntrSone.h"
 
 class Soner  {
 private:
@@ -17,6 +18,7 @@ public:
 	void fortsettelseMeny(char valg);		// Viser meny
 	void displaySone(int sonenr);          // displayer en hel sone 
 	void displayEiendom(char* soneinfo);  //displayer en/flere eiendom
+	void sammenlign(IntrSone* isone, int nr);
 };
 
 

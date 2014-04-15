@@ -4,6 +4,7 @@
 #include "listtool2.h"
 #include <fstream>
 #include <iostream>
+#include "class IntrSone.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ public:
 	bool slettEiendom(int oppdragnr);		//sletter en eiendom	
 	void display();               // Displayer all info om en sone
 	void displayEien(int nr);			//displayer en /flere eiendommmer
+	void sammenlign(IntrSone* isone);
 };
 
 

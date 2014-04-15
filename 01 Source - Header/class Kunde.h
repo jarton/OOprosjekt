@@ -26,6 +26,7 @@ public:
 	void sjekkNrNvn(char* kundeinfo);
 	void displayKunde();
 	bool sjekkNr(int nr);
+	void finnMatch();
 	int hentKundenummer();
 	void endreKundeData();
 	

@@ -21,8 +21,9 @@ public:
 	void endreIntrSone();
 	void display();               // Displater info om IntrSone
 	void skrivTilFil(ofstream & ut, int nr);
-
+	int hentsonenum();
 	void statusonskeFunk();
+	char hentBoligfeeden();
 	void boligfeedFunk();
 	void eiendomstypeFunk();
 	void enumBoligfeedSwitch(int nr);

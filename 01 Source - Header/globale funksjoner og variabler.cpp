@@ -8,9 +8,14 @@
 #include <cmath>
 #include <fstream>
 #include <cctype>   
+#include "class Eiendom.h"
+
 // to upper
 using namespace std;
 
+void operator ==(IntrSone kun, Eiendom salg) {
+//  if ((kun.))
+}
 
 //  Leser inn en tekst med lengde ulik 0:
 void lesTxt(char t[], char s[], const int LEN) {    

@@ -7,9 +7,23 @@
 #include "conster.h" 
 #include "globale funksjoner og variabler.h"
 #include "class IntrSone.h"
+#include "class Soner.h"
 
 using namespace std;
 
+void Kunde::finnMatch() {
+  IntrSone* intrsone;
+  int antall;
+  int sonenum;
+
+  antall = IntrSoneliste->no_of_elements();
+  for (int i = 1; i <= antall; i++) {
+    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);
+    sonenum = intrsone->hentsonenum();
+    if (intrsone->hentBoligfeeden() == 'U') 
+     soneR->sammenlign(intrsone, sonenum); 
+  }
+}
 
 // Displayer kundeinfo og interesse sone info
 void Kunde::sjekkNrNvn(char* kundeinfo)  {

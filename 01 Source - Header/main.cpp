@@ -8,8 +8,9 @@ using namespace std;
 int main()  {
 
 	char valg;                                       //  Brukerens valg/kommando.
-	Soner soner;                                            // Lage Soner-objekt.
+  Soner soner;                                            // Lage Soner-objekt.
   Kunder kunder;                                         // Lage Kunder-objekt.
+  soneR = &soner;
 	
   skrivMeny();                                             // Displayer menyen.
   valg = les();                                   // Leser inn et upcaset tegn.
