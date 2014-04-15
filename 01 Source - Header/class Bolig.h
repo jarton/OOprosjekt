@@ -16,6 +16,8 @@ public:
 	bool type();
 	void skrivBoligTilFil(ofstream & ut);
 	void displayBolig();  // Displayer informasjon om en bolig
+	void hentInt(int* i, const char s);
+	const char * hentEnum(const char* s);
 };
 
 

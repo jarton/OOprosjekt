@@ -1,10 +1,41 @@
 #include <iostream>
+#include <cstring>
 #include "class Kunde.h"
 #include "class IntrSone.h"
 #include "globale funksjoner og variabler.h"
 #include <cstdlib>
 
 using namespace std;
+
+//"returnerer" intene for sammenligning
+void IntrSone::hentInt(int* i, const char s) {
+  switch(s) { 				//referanseoverforer vha peker
+	  case 'p': i = maxPris; break;    //setter i til maxpris
+	  case 'a': i = minAreal; break;    //setter i til minareal
+	  case 's': i = minAntSoverom; break;   //setter i til minsoverom
+  }
+}
+
+//returner enumverdi som charpeker
+const char* IntrSone::hentEnum(const char* s) {
+  if (strcmp(s, "Eiendomstype")) {    		//sjekker hvilken enum som skal
+    switch(eiendomstypen) {			//returnes
+      case tomt: return "tomt"; break;		 //switch som returnerer
+      case enebolig: return "enebolig"; break;	//verdien av enumen
+      case rekkehus: return "rekkehus"; break;	// som har de ulike eiendomstypene
+      case hytte: return "hytte"; break;
+      case leilighet: return "leilighet"; break;
+    };
+  };
+  if (strcmp(s, "Statusonske")) {    		//sjekker hvilken enum som skal
+    switch(statusonsket) {			//returnes
+      case salg: return "salg"; break;		 //switch som returnerer
+      case leie: return "enebolig"; break;	//verdien av enumen
+      case begge: return "begge"; break;
+    };
+  }
+}
+
 
 char IntrSone::hentBoligfeeden() {
   if (boligfeeden == snarest)

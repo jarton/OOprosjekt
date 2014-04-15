@@ -1,7 +1,8 @@
 #if !defined(__class_IntrSone_H)
 #define __class_IntrSone_H
-
+#include <fstream>
 #include "enumer.h"
+#include "listtool2.h"
 
 class IntrSone : public Num_element {
 private:
@@ -24,11 +25,13 @@ public:
 	int hentsonenum();
 	void statusonskeFunk();
 	char hentBoligfeeden();
+	void hentInt(int* i, const char s);
 	void boligfeedFunk();
 	void eiendomstypeFunk();
 	void enumBoligfeedSwitch(int nr);
 	void enumEiendomstypeSwitch(int nr);
 	void enumStatusSwitch(int nr);
+	const char* hentEnum(const char* s);
 };
 
 #endif

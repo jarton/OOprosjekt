@@ -100,9 +100,30 @@ void Eiendom::skrivTilFil(ofstream & ut)	{
 	else if (eiendomstypen == rekkehus)		//skriver
 		ut << "rekkehus";										//den
 	else if (eiendomstypen == leilighet)	//til
-		ut << "rekkehust";									//fil
+		ut << "leilighet";									//fil
 	else
 		ut << "hytte";
+}
+
+//"returner" intene for sammenligning
+void Eiendom::hentInt(int* i, const char s) {
+  switch(s) {			//referanseoverforing vha peker	
+    case 'p': i = pris; break;    //setter i til pris
+    case 'a': i = areal; break;   //setter i til areal
+  }  
+}
+
+//returnerer enumverdi som en char peker
+const char * Eiendom::hentEnum(const char * s) {
+  if (strcmp(s, "Eiendomstype")) {    		//sjekker hvilken enum som skal
+    switch(eiendomstypen) {			//returnes
+      case tomt: return "tomt"; break;		 //switch som returnerer
+      case enebolig: return "enebolig"; break;	//verdien av enumen
+      case rekkehus: return "rekkehus"; break;	// som har de ulike eiendomstypene
+      case hytte: return "hytte"; break;
+      case leilighet: return "leilighet"; break;
+    };
+  };
 }
 
 void Eiendom::enumSwitch(char * b)	{

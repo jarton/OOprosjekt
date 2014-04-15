@@ -13,8 +13,38 @@
 // to upper
 using namespace std;
 
-void operator ==(IntrSone kun, Eiendom salg) {
-//  if ((kun.))
+//overloda operator som finner om en eiendom matcher en kunde
+bool operator ==(IntrSone& kun, Eiendom* salg) {
+  int * kunInt = new int;	//peker på kunden sone verdier 
+  int * salgInt = new int;	//peker på eindommen sine verdier 
+  int antMatch = 0;		//antall kriterier som matcher 
+  int matchSomKreves = 3;	//ant kriterier som kreves for match
+
+if ((kun.hentEnum("Eiendomsonske") ==  //sjekker om typene erlike
+  salg->hentEnum("Eiendomsonke")))    //dvs feks. tomt == tomt
+    antMatch++;
+  kun.hentInt(kunInt, 'p');    //henter kundens MAXpris
+  salg->hentInt(salgInt, 'p');  //henter eiendommens pris
+  if (*kunInt >= *salgInt) 	//sjekker om MAXprisen er større en eienprisen 
+	antMatch++;		//hvis den koster mindre, en+ match
+  kun.hentInt(kunInt, 'a');	//henter kundens MINareal 
+  salg->hentInt(salgInt, 'a');  //henter eiendommens areal
+  if (*kunInt <= *salgInt)     //sjekker om eienAreal er større en kundens min
+	  antMatch++;		//hvis den er så enda en match +	
+  if (salg->type() == 0) {      //hvis det er en bolig som sammenlignes
+    matchSomKreves += 2;	//to ekstra kriterier skal stemme
+    kun.hentInt(kunInt, 's');   //henter MINsoverom kunden vil ha
+    salg->hentInt(salgInt, 's');   //henter antsoverom ibolig
+    if (kunInt <= salgInt)	   //ser om det er så mange eller fler
+	   antMatch++;           //en det kunden vil ha, hvis ja match++
+    if ((kun.hentEnum("Statusonske")) ==    //sjekkerom enumene er like
+	(salg->hentEnum("Statusonske")) ||     //eller om kunden er interesert i
+	strcmp(kun.hentEnum("Statusonske"), "begge"))    //bege typer
+	    antMatch++;					//hvis ja, match++
+  } 
+  if (antMatch == matchSomKreves)		//sjekker om alle kriterier er
+	  return true;  			//møtt, hvis ja return true
+  else return false;				//hvis ikke false
 }
 
 //  Leser inn en tekst med lengde ulik 0:
@@ -60,7 +90,7 @@ char les()  {
 
 
 //  Skriver ledetekst (t), leser og returnerer et tall mellom min og max:
-int lesTall(char* t, int min, int max)  {
+int lesTall(const char* t, int min, int max)  {
   int tall;
   do  {
     cout << '\t' << t << " (" << min << '-' << max <<  "):  ";

@@ -53,14 +53,15 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	}
 }
 
+//sammenligner en intrsone med alle eiendommene i sonen
 void Sone::sammenlign(IntrSone* isone) {
-  Eiendom* eiendom;
-  int antall;
+  Eiendom* eiendom;		//eiendomspeker
+  int antall;		//antall eiendommer i liste
 
-  antall = eiendommene->no_of_elements();
-  for (int i = 1; i <= antall; i++) {
-   eiendom = (Eiendom*) eiendommene->remove_no(i);
-   if (*isone == *eiendom)   //overloada operator
+  antall = eiendommene->no_of_elements(); //finner antall
+  for (int i = 1; i <= antall; i++) {	//løkke som går igjennom
+   eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
+   if (*isone == eiendom)   //overloada operator som finner match
 	  //skrivtilfil .INF 
 
   }

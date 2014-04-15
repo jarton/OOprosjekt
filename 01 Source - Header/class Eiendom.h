@@ -29,6 +29,8 @@ public:
 	virtual void displayBolig()
 	{ /*tomt*/		 };
 	virtual bool type();
+	virtual void hentInt(int* i, const char s);
+	virtual const char* hentEnum(const char* s);
 	void enumSwitch(char* t);
 	virtual void display();          // Displayer informasjon om en eiendom
 	bool finnPostnummer(int postnr);

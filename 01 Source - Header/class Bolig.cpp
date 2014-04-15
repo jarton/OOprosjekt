@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "globale funksjoner og variabler.h"
 #include "class Eiendom.h"
 #include "class Bolig.h"
@@ -51,6 +52,26 @@ void Bolig::skrivBoligTilFil(ofstream & ut)	{
 		ut << "leie";
 	else
 		ut << "salg";
+}
+
+//returnerer enumene for sammenligning
+const char* Bolig::hentEnum(const char* s) {
+	Eiendom::hentEnum(s);	     //kaller baseklassen for eiendomstype
+  if (strcmp(s, "Statusonske")) {    		//sjekker hvilken enum som skal
+    switch(statusonsket) {			//returnes
+      case salg: return "salg"; break;		 //switch som returnerer
+      case leie: return "enebolig"; break;	//verdien av enumen
+    };
+  }
+}
+
+//returner intene for sammenligning
+void Bolig::hentInt(int* i, const char s) {
+  switch(s) {			//referanseoverforing vha peker	
+    case 'p': i = pris; break;    //setter i til pris
+    case 'a': i = areal; break;   //setter i til areal
+    case 's': i = antSoverom; break; //setter i til antsoverom
+  }
 }
 
 bool Bolig::type()	{ //Funksjon for å sjekke objektets type.

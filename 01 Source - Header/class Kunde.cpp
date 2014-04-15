@@ -11,18 +11,19 @@
 
 using namespace std;
 
+//finner eiendommer som matcher kundens intrsoner 
 void Kunde::finnMatch() {
-  IntrSone* intrsone;
-  int antall;
-  int sonenum;
+  IntrSone* intrsone;	     //peker son peker på intessesoner
+  int antall;		   //antall interessoner som kunden har
+  int sonenum;		//sonenummer kunden er interest i
 
-  antall = IntrSoneliste->no_of_elements();
-  for (int i = 1; i <= antall; i++) {
-    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);
-    sonenum = intrsone->hentsonenum();
-    if (intrsone->hentBoligfeeden() == 'U') 
-     soneR->sammenlign(intrsone, sonenum); 
-  }
+  antall = IntrSoneliste->no_of_elements(); //finner ant i liste
+  for (int i = 1; i <= antall; i++) {		//løkke som gåt igjennom antall
+    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);	//tar ut et objekt
+    sonenum = intrsone->hentsonenum();			//henter sonnr
+    if (intrsone->hentBoligfeeden() == 'U')  //sjekker om info skal sendes umiddelbart
+     soneR->sammenlign(intrsone, sonenum); 	//sammenligner itrsonen med 
+  }						//en sone med gitt sonenr sine eiendommer
 }
 
 // Displayer kundeinfo og interesse sone info
@@ -97,6 +98,7 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();                             // Leser inn et upercaset teg
 	}
+	finnMatch();			//finner eiendommer nye kunden kan være intr i
 }
 
 // Funksjon som returnerer true\false om kundenummer er rett
