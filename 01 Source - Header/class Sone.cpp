@@ -62,8 +62,9 @@ void Sone::sammenlign(IntrSone* isone) {
   for (int i = 1; i <= antall; i++) {	//løkke som går igjennom
    eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
    if (*isone == eiendom)   //overloada operator som finner match
-	  //skrivtilfil .INF 
-
+	cout << "¨funka";
+	   //skrivtilfil .INF
+   eiendommene->add(eiendom);
   }
 }
 

@@ -5,12 +5,15 @@
 
 using namespace std;
 
+  Soner soner;                                            // Lage Soner-objekt.
+  Kunder kunder;                                         // Lage Kunder-objekt.
+
 int main()  {
 
 	char valg;                                       //  Brukerens valg/kommando.
-  Soner soner;                                            // Lage Soner-objekt.
-  Kunder kunder;                                         // Lage Kunder-objekt.
-  soneR = &soner;
+  //Soner soner;                                            // Lage Soner-objekt.
+  //Kunder kunder;                                         // Lage Kunder-objekt.
+
 	
   skrivMeny();                                             // Displayer menyen.
   valg = les();                                   // Leser inn et upcaset tegn.

@@ -17,12 +17,14 @@ void Kunde::finnMatch() {
   int antall;		   //antall interessoner som kunden har
   int sonenum;		//sonenummer kunden er interest i
 
+ 
   antall = IntrSoneliste->no_of_elements(); //finner ant i liste
   for (int i = 1; i <= antall; i++) {		//løkke som gåt igjennom antall
     intrsone = (IntrSone*) IntrSoneliste->remove_no(i);	//tar ut et objekt
     sonenum = intrsone->hentsonenum();			//henter sonnr
-    if (intrsone->hentBoligfeeden() == 'U')  //sjekker om info skal sendes umiddelbart
-     soneR->sammenlign(intrsone, sonenum); 	//sammenligner itrsonen med 
+    if (intrsone->hentBoligfeeden() == 'S')  //sjekker om info skal sendes umiddelbart
+		soner.sammenlign(intrsone, sonenum); 	//sammenligner itrsonen med
+	IntrSoneliste-> add(intrsone);
   }						//en sone med gitt sonenr sine eiendommer
 }
 

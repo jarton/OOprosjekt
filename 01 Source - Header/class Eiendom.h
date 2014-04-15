@@ -11,13 +11,16 @@ using namespace std;
 
 class Eiendom : public Num_element  {
 private:
-	int oppdragsnummer, dato, bruksnummer, ansattnummer, pris, areal;
+	int oppdragsnummer, dato, bruksnummer, ansattnummer;
 	char* gateadresse;
 	char* postadresse;
 	char* eiernavn;
 	char* kommunenavn;
 	char* beskrivelse;
 	Eiendomstype eiendomstypen;
+
+protected:
+	int pris, areal;
 
 public:
 	Eiendom(int onr);

@@ -10,15 +10,15 @@ using namespace std;
 //"returnerer" intene for sammenligning
 void IntrSone::hentInt(int* i, const char s) {
   switch(s) { 				//referanseoverforer vha peker
-	  case 'p': i = maxPris; break;    //setter i til maxpris
-	  case 'a': i = minAreal; break;    //setter i til minareal
-	  case 's': i = minAntSoverom; break;   //setter i til minsoverom
+	  case 'p': *i = maxPris; break;    //setter i til maxpris
+	  case 'a': *i = minAreal; break;    //setter i til minareal
+	  case 's': *i = minAntSoverom; break;   //setter i til minsoverom
   }
 }
 
 //returner enumverdi som charpeker
 const char* IntrSone::hentEnum(const char* s) {
-  if (strcmp(s, "Eiendomstype")) {    		//sjekker hvilken enum som skal
+  if (!strcmp("Eiendomstype", s)) {    		//sjekker hvilken enum som skal
     switch(eiendomstypen) {			//returnes
       case tomt: return "tomt"; break;		 //switch som returnerer
       case enebolig: return "enebolig"; break;	//verdien av enumen
@@ -27,7 +27,7 @@ const char* IntrSone::hentEnum(const char* s) {
       case leilighet: return "leilighet"; break;
     };
   };
-  if (strcmp(s, "Statusonske")) {    		//sjekker hvilken enum som skal
+  if (!strcmp("Statusonske", s)) {    		//sjekker hvilken enum som skal
     switch(statusonsket) {			//returnes
       case salg: return "salg"; break;		 //switch som returnerer
       case leie: return "enebolig"; break;	//verdien av enumen
@@ -235,10 +235,8 @@ void IntrSone::boligfeedFunk()  {
 void IntrSone::eiendomstypeFunk() {
 	char kommando; //Hjelpevariabel
 	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte): ";
-
-	while(kommando != 'T' && kommando != 'E' && kommando != 'R' && 
-		kommando != 'L' && kommando != 'H'){ //Senere: fix dette. Stygg metode.
-		kommando = les(); //Leser eiendomstype.
+	kommando = les(); //Leser eiendomstype.
+	do {
 		switch(kommando){
 		case 'T': eiendomstypen = tomt; break;			//Setter
 		case 'E': eiendomstypen = enebolig; break;	//Riktig
@@ -247,7 +245,8 @@ void IntrSone::eiendomstypeFunk() {
 		case 'H': eiendomstypen = hytte; break;
 		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
 		}
-	}
+	} while(kommando != 'T' && kommando != 'E' && kommando != 'R' && 
+		kommando != 'L' && kommando != 'H'); //Senere: fix dette. Stygg metode.
 }
 
 

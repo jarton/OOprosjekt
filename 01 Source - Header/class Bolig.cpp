@@ -57,7 +57,7 @@ void Bolig::skrivBoligTilFil(ofstream & ut)	{
 //returnerer enumene for sammenligning
 const char* Bolig::hentEnum(const char* s) {
 	Eiendom::hentEnum(s);	     //kaller baseklassen for eiendomstype
-  if (strcmp(s, "Statusonske")) {    		//sjekker hvilken enum som skal
+  if (!strcmp("Statusonske", s)) {    		//sjekker hvilken enum som skal
     switch(statusonsket) {			//returnes
       case salg: return "salg"; break;		 //switch som returnerer
       case leie: return "enebolig"; break;	//verdien av enumen
@@ -68,9 +68,9 @@ const char* Bolig::hentEnum(const char* s) {
 //returner intene for sammenligning
 void Bolig::hentInt(int* i, const char s) {
   switch(s) {			//referanseoverforing vha peker	
-    case 'p': i = pris; break;    //setter i til pris
-    case 'a': i = areal; break;   //setter i til areal
-    case 's': i = antSoverom; break; //setter i til antsoverom
+    case 'p': *i = pris; break;    //setter i til pris
+    case 'a': *i = areal; break;   //setter i til areal
+    case 's': *i = antSoverom; break; //setter i til antsoverom
   }
 }
 

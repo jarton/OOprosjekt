@@ -62,7 +62,8 @@ void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
 }
 
 void Soner::sammenlign(IntrSone* isone, int nr) {
-  sonene[nr]->sammenlign(isone);
+  if (sonene[nr] != NULL)
+	sonene[nr]->sammenlign(isone);
 }
 
 //Skriver alle sonene til fil
@@ -79,7 +80,8 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 
 //Finner sonenummer gitt i parameter og displayer
 void Soner::displaySone(int sonenr)  {
-			sonene[sonenr]->display();     //kaller den aktuelle sonen sin display
+	if (sonene[sonenr] != NULL)
+		sonene[sonenr]->display();     //kaller den aktuelle sonen sin display
 }
 
 void Soner::displayEiendom(char* soneinfo)  {

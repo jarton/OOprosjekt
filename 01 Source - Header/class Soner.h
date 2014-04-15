@@ -21,5 +21,4 @@ public:
 	void sammenlign(IntrSone* isone, int nr);
 };
 
-
 #endif

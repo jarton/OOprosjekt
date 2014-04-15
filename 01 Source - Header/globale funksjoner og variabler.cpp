@@ -20,8 +20,8 @@ bool operator ==(IntrSone& kun, Eiendom* salg) {
   int antMatch = 0;		//antall kriterier som matcher 
   int matchSomKreves = 3;	//ant kriterier som kreves for match
 
-if ((kun.hentEnum("Eiendomsonske") ==  //sjekker om typene erlike
-  salg->hentEnum("Eiendomsonke")))    //dvs feks. tomt == tomt
+if ((kun.hentEnum("Eiendomstype") ==  //sjekker om typene erlike
+  salg->hentEnum("Eiendomstype")))    //dvs feks. tomt == tomt
     antMatch++;
   kun.hentInt(kunInt, 'p');    //henter kundens MAXpris
   salg->hentInt(salgInt, 'p');  //henter eiendommens pris

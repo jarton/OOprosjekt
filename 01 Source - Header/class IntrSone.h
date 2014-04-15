@@ -4,6 +4,8 @@
 #include "enumer.h"
 #include "listtool2.h"
 
+using namespace std;
+
 class IntrSone : public Num_element {
 private:
 	int sonenummer, maxPris, minAreal, minAntSoverom;
