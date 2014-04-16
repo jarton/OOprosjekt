@@ -5,6 +5,7 @@
 #include "enumer.h"
 #include <fstream>
 #include <iostream>
+#include "class Eiendom.h"
 using namespace std;
 
 
@@ -29,7 +30,8 @@ public:
 	void finnMatch();
 	int hentKundenummer();
 	void endreKundeData();
-	
+	void skrivExx(int oppdnrMatch);	
+	void sjekkEnEien(Eiendom* eien);
 };
 
 

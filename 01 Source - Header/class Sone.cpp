@@ -54,20 +54,20 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 }
 
 //sammenligner en intrsone med alle eiendommene i sonen
-void Sone::sammenlign(IntrSone* isone) {
+int* Sone::sammenlign(IntrSone* isone) {
   Eiendom* eiendom;		//eiendomspeker
   int antall;		//antall eiendommer i liste
+	int* oppdnr = new int;
 
   antall = eiendommene->no_of_elements(); //finner antall
   for (int i = 1; i <= antall; i++) {	//løkke som går igjennom
    eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
    if (*isone == eiendom)   //overloada operator som finner match
-	cout << "¨funka";
-	   //skrivtilfil .INF
+	 	 	eiendom->hentInt(oppdnr, 'o'); 
+	 else *oppdnr = 0;
    eiendommene->add(eiendom);
   }
 }
-
 
 //oppretter en ny eiendom
 void Sone::nyEiendom(int oppdragsnr)	{
@@ -78,8 +78,9 @@ void Sone::nyEiendom(int oppdragsnr)	{
 	lesTxt("velg type Bolig  /   Eiendom", type, STRLEN);	//leser inn
 	if (type[0] == 'B' || type[0] == 'b')									//hvis bolig
 		eiendom = new Bolig(oppdragsnr);						//bolig opprettes
-	else if (type[0] == 'E' || type[0] == 'e')					//hvis eiendom
+	else (type[0] == 'E' || type[0] == 'e')					//hvis eiendom
 		eiendom = new Eiendom(oppdragsnr);				//eiendom opprettes
+	//kunder.sammenlign(eiendom);
 	eiendommene->add(eiendom);				//legger til nyopprettet i lista
 }
 

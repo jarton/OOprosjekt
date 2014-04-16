@@ -13,19 +13,27 @@ using namespace std;
 
 //finner eiendommer som matcher kundens intrsoner 
 void Kunde::finnMatch() {
-  IntrSone* intrsone;	     //peker son peker på intessesoner
-  int antall;		   //antall interessoner som kunden har
-  int sonenum;		//sonenummer kunden er interest i
+  IntrSone* intrsone;	     										//peker son peker på intessesoner
+  int antall;		   													//antall interessoner som kunden har
+  int sonenum;																//sonenummer kunden er interest i
 
  
-  antall = IntrSoneliste->no_of_elements(); //finner ant i liste
-  for (int i = 1; i <= antall; i++) {		//løkke som gåt igjennom antall
-    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);	//tar ut et objekt
-    sonenum = intrsone->hentsonenum();			//henter sonnr
-    if (intrsone->hentBoligfeeden() == 'S')  //sjekker om info skal sendes umiddelbart
-		soner.sammenlign(intrsone, sonenum); 	//sammenligner itrsonen med
-	IntrSoneliste-> add(intrsone);
-  }						//en sone med gitt sonenr sine eiendommer
+  antall = IntrSoneliste->no_of_elements(); 								//finner ant i liste
+  for (int i = 1; i <= antall; i++) {						 //løkke som gåt igjennom antall
+    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
+    sonenum = intrsone->hentsonenum();													//henter sonnr
+    if (intrsone->hentBoligfeeden() == 'S') {  		//sjekker om kunden vil ha info 
+				soner.sammenlign(intrsone, sonenum); 			//snarest, sammenligner inrsonen 
+			}
+		}
+	IntrSoneliste-> add(intrsone); 										//med alle eiendommer
+  }						
+}
+
+void Kunde::skrivExx(int oppdnrMatch) {
+	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1]
+	LagNavn(filnavn, "E", ".DTA", oppdnrMatch, 7);
+	
 }
 
 // Displayer kundeinfo og interesse sone info
@@ -34,7 +42,7 @@ void Kunde::sjekkNrNvn(char* kundeinfo)  {
 	int knr;                                          // variabel til kundenummer
 	knr = atoi(kundeinfo);                //henter kundenummer(inr) fra kundeinfo
 	int antintsonr = IntrSoneliste->no_of_elements();  // finner antall intrsoner
-	if (knr==kundenummer || strcmp(kundeinfo,navn)==0)  {               // hvis innskrevet knr = kundenummeret
+	if (knr==kundenummer || strcmp(kundeinfo,navn)==0)  {   //kundenummer erlikt 
     displayKunde();                                      // displayer kundeinfo
 		for (int i = 1; i <= antintsonr; i++)  {    // loop gjennom alle intersoner
       intrSone = (IntrSone*) IntrSoneliste->remove_no(i);// fjerner  fra listen
@@ -96,7 +104,7 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 		intrsonekopi = new IntrSone(*intrsonen);       //Default copy constructor
 		sonenr = lesTall("\nSonenummer", 1, 100);        //Leser sonenummer.
 		intrsonekopi->endreSonenr(sonenr);        //Endrer sonenummeret på kopien.
-		IntrSoneliste->add(intrsonekopi);               //Legger til kopien i listen.
+		IntrSoneliste->add(intrsonekopi);              //Legger til kopien i listen.
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();                             // Leser inn et upercaset teg
 	}
@@ -148,7 +156,8 @@ Kunde::Kunde(ifstream & inn, int nr) : Num_element(nr)  {
 	 }
 	}
 	else
-		cout << "FEIL! Kundenummer fra fil '"<<kundenummer<<"' stemmer ikke overens med"
+		cout << "FEIL! Kundenummer fra fil '"<<kundenummer<<
+						"' stemmer ikke overens med" <<
 		"kundenummeret i datastrukturen: '"<<nr<<"'\n";
 }                                         // Feilmelding
 
@@ -172,10 +181,10 @@ void Kunde::skrivTilFil(ofstream & ut)  {
 	ut << antIntrSoner << endl;
 	ut << endl;
 	IntrSone* intrsone;                              // lager intrsone peker
-	for (int i = 1; i <= antIntrSoner; i++)  {       // loop gjennom alle intrsoner
+	for (int i = 1; i <= antIntrSoner; i++)  {       //loop gjennom alle intrsoner
 	  intrsone = (IntrSone*) IntrSoneliste->remove_no(i);  // fjerner fra listen
 		intrsone->skrivTilFil(ut,antIntrSoner);              // skriver til fil
-		IntrSoneliste->add(intrsone);                      // legger tilbake i listen
+		IntrSoneliste->add(intrsone);                     // legger tilbake i listen
 	}
 }
 
@@ -201,7 +210,7 @@ void Kunde::endreKundeData()  {
   	if (svar == 'J')  {
 	    delete [] navn;
 	  	lesTxt("\nNavn", ch, STRLEN);                         //leser inn navn
-	    navn = new char[strlen(ch)+1];             // lager ny char med eksakt lengde
+	    navn = new char[strlen(ch)+1];          // lager ny char med eksakt lengde
 	    strcpy(navn, ch);
     } 
 
@@ -217,7 +226,7 @@ void Kunde::endreKundeData()  {
   	if (svar == 'J')  {
 	    delete [] mail;
       lesTxt("\nE-post", ch, STRLEN);              // leser mail
-	    mail = new char[strlen(ch)+1];           // lager ny char med eksakt lengde
+	    mail = new char[strlen(ch)+1];          // lager ny char med eksakt lengde
 	    strcpy(mail, ch);
 	  }	
 
@@ -228,11 +237,11 @@ void Kunde::endreKundeData()  {
 	   	delete [] gateadresse;
 		  delete [] postadresse;
    	  lesTxt("\nGateadresse", ch, STRLEN);             //leser gateadresse
-	    gateadresse = new char[strlen(ch)+1];      // lager ny char med eksakt lengde
+	    gateadresse = new char[strlen(ch)+1];   // lager ny char med eksakt lengde
 	    strcpy(gateadresse, ch);
 
   	  lesTxt("\nPostnummer", ch, STRLEN);              //leser postnummer
-	    postadresse = new char[strlen(ch)+1];      // lager ny char med eksakt lengde
+	    postadresse = new char[strlen(ch)+1];   // lager ny char med eksakt lengde
 	    strcpy(postadresse, ch);
 	  }
 	}
@@ -241,10 +250,10 @@ void Kunde::endreKundeData()  {
 	if (svar=='J')  {
 		int antIntrSoner = IntrSoneliste->no_of_elements(); // antall intrsoner
   	IntrSone* intrsone;                              // lager intrsone peker
-	  for (int i = 1; i <= antIntrSoner; i++)  {       // loop gjennom alle intrsoner
+	  for (int i = 1; i <= antIntrSoner; i++)  {    // loop gjennom alle intrsoner
 	    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);  // fjerner fra listen
 	  	intrsone->endreIntrSone();              // skriver til fil
-		  IntrSoneliste->add(intrsone);                      // legger tilbake i listen
+		  IntrSoneliste->add(intrsone);                   // legger tilbake i listen
 	  }
   }
 }

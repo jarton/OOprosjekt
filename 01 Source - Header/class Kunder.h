@@ -3,6 +3,7 @@
 
 #include "listtool2.h"
 #include "enumer.h"
+#include "class Eiendom.h"
 using namespace std;
 
 class Kunder  {
@@ -19,6 +20,7 @@ public:
 	void endreKunde(int knr);
 	void slettKunde(int knr);
 	void skrivTilFil();
+	void sammenlign(Eiendom* eien);
 };
 
 

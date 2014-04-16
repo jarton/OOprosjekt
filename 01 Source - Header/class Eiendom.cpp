@@ -110,6 +110,7 @@ void Eiendom::hentInt(int* i, const char s) {
   switch(s) {			//referanseoverforing vha peker	
     case 'p': *i = pris; break;    //setter i til pris
     case 'a': *i = areal; break;   //setter i til areal
+		case 'o': *i = oppdragsnummer; break;
   }  
 }
 

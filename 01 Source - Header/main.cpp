@@ -11,9 +11,6 @@ using namespace std;
 int main()  {
 
 	char valg;                                       //  Brukerens valg/kommando.
-  //Soner soner;                                            // Lage Soner-objekt.
-  //Kunder kunder;                                         // Lage Kunder-objekt.
-
 	
   skrivMeny();                                             // Displayer menyen.
   valg = les();                                   // Leser inn et upcaset tegn.
@@ -22,11 +19,11 @@ int main()  {
       case 'E': soner.fortsettelseMeny(valg);  break; //Videre meny for Eiendom
 			case 'S': soner.fortsettelseMeny(valg);  break;  // Videre meny for Sone.
       case 'K': kunder.fortsettelseMeny(); break;     // Videre meny for Kunde.
-      case 'U': ukentligUtskrift(); break;                            // Lager .INF filen.
-      default : cout << "\n\tOBS! Ugyldig kommando!\n\n";	 break; //feilmedling
+      case 'U': ukentligUtskrift(); break;                  // Lager .INF filen.
+      default : cout << "\n\tOBS! Ugyldig kommando!\n\n";	 break;  //feilmedling
     }
-		skrivMeny();              // Displayer meny
-    valg = les();             // Leser inn et upcaset tegn
+		skrivMeny();                                             // Displayer meny
+    valg = les();                                // Leser inn et upcaset tegn
   }
   return 0;
 }

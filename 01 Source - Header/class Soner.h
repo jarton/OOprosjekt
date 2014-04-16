@@ -18,7 +18,7 @@ public:
 	void fortsettelseMeny(char valg);		// Viser meny
 	void displaySone(int sonenr);          // displayer en hel sone 
 	void displayEiendom(char* soneinfo);  //displayer en/flere eiendom
-	void sammenlign(IntrSone* isone, int nr);
+	void sammenlign(IntrSone* isone, int nr, int oppdnrMatch);
 };
 
 #endif

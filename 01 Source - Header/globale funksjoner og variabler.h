@@ -9,10 +9,10 @@
 
 //Variabler
 extern Soner soner;
-
+extern Kunder kunder;
 //Funksjoner
 int  lesTall(const char* t, int min, int max);          // Leser inn et tall 
-void  lesTxt(char t[], char s[], const int LEN);   // Leser inn en tekst
+void  lesTxt(const char t[], char s[], const int LEN);   // Leser inn en tekst
 char les();                                        // Leser inn et tegn
 void ukentligUtskrift();
 

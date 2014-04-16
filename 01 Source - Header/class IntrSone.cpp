@@ -18,32 +18,33 @@ void IntrSone::hentInt(int* i, const char s) {
 
 //returner enumverdi som charpeker
 const char* IntrSone::hentEnum(const char* s) {
-  if (!strcmp("Eiendomstype", s)) {    		//sjekker hvilken enum som skal
-    switch(eiendomstypen) {			//returnes
-      case tomt: return "tomt"; break;		 //switch som returnerer
-      case enebolig: return "enebolig"; break;	//verdien av enumen
-      case rekkehus: return "rekkehus"; break;	// som har de ulike eiendomstypene
-      case hytte: return "hytte"; break;
+  if (!strcmp("Eiendomstype", s)) {    					//sjekker hvilken enum som skal
+    switch(eiendomstypen) {													//returnes
+      case tomt: return "tomt"; break;		 							//switch som returnerer
+      case enebolig: return "enebolig"; break;							//verdien av enumen
+      case rekkehus: return "rekkehus"; break;							//i form av en char
+      case hytte: return "hytte"; break;												//peker 		
       case leilighet: return "leilighet"; break;
     };
   };
-  if (!strcmp("Statusonske", s)) {    		//sjekker hvilken enum som skal
-    switch(statusonsket) {			//returnes
-      case salg: return "salg"; break;		 //switch som returnerer
-      case leie: return "enebolig"; break;	//verdien av enumen
+  if (!strcmp("Statusonske", s)) {    					//sjekker hvilken enum som skal
+    switch(statusonsket) {													//returnes
+      case salg: return "salg"; break;		 							//switch som returnerer
+      case leie: return "enebolig"; break;								//verdien av enumen
       case begge: return "begge"; break;
     };
   }
 }
 
-
+//returnerer om kunden ønker info ummelbart eller snarest
 char IntrSone::hentBoligfeeden() {
-  if (boligfeeden == snarest)
-	  return 'S';
+  if (boligfeeden == snarest)               //returnerer verdien av enumen
+	  return 'S';															//i form av en char 
   else 
-	 return 'U'; 
+	  return 'U'; 
 }
 
+//returnerer sonenummeret til interessesonen
 int IntrSone::hentsonenum() {
   return sonenummer;
 }
@@ -51,9 +52,9 @@ int IntrSone::hentsonenum() {
 IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	
 	sonenummer=sonenr;
-	maxPris = lesTall("\nMaxpris", 1, 1000000000); //Leser max pris.
-	minAreal = lesTall("\nMinimum areal", 1, 10000); //Leser minimum areal.
-	minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom.
+	maxPris = lesTall("\nMaxpris", 1, 1000000000); 							//Leser max pris.
+	minAreal = lesTall("\nMinimum areal", 1, 10000); 				//Leser minimum areal.
+	minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100);  //Leser soverom.
 
   boligfeedFunk();
 	eiendomstypeFunk();
@@ -165,7 +166,8 @@ void IntrSone:: endreIntrSone()   {
 	cout << "\n0nsker du aa endre data i sone nummer "<<sonenummer<<"? (J/N)";
 	svar=les();
 	if (svar=='J')  {
-	  char* eiendomstype[] = {"Tomt", "Enebolig", "Rekkehus", "Leilighet", "Hytte"};
+	  char* eiendomstype[] = {"Tomt", "Enebolig",
+					 									"Rekkehus", "Leilighet", "Hytte"};
 	  char* statusonske[] = {"Salg", "Leie", "Salg og leie"};
     char* boligfeed[]=  {"Ukentlig", "Snarest"};
 
@@ -185,7 +187,8 @@ void IntrSone:: endreIntrSone()   {
     cout << "\n Endre minimum antall soverom? (Tast 'J/N')";
 	  svar=les();
 	  if (svar == 'J')  
-	    minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser minimum ant. soverom. 
+	    minAntSoverom = lesTall("\nMinimum antall 
+																		soverom", 0, 100); //Leser soverom. 
   
   
     cout << "\nBoligfeed: " << boligfeed[boligfeeden];
@@ -208,7 +211,8 @@ void IntrSone:: endreIntrSone()   {
 
 	}
 
-	/* TODO::::::FRA OPPGAVE::For de sonene kunden skifter til umiddelbar/snarest boliginfo om, vil det også være
+	/* TODO::::::FRA OPPGAVE::For de sonene kunden skifter til 
+	 * umiddelbar/snarest boliginfo om, vil det også være
 aktuelt å legge til info om kunden bakerst på filene ’Exxxxxxx.DTA’.*/
 }
 
@@ -219,8 +223,8 @@ void IntrSone::boligfeedFunk()  {
 
 	kommando = 'B'; // Bare for å ikke ha noe søppel.
 
-	while(kommando != 'U' && kommando != 'S') { // SENERE: Fix dette. Alternativ metode.
-		kommando = les();		//Leser ønsket boligfeed.
+	while(kommando != 'U' && kommando != 'S') { //TODO: Fix .Alternativ metode.
+		kommando = les();															//Leser ønsket boligfeed.
 		switch(kommando) {
 		case 'U': boligfeeden = ukentlig; break;
 		case 'S': boligfeeden = snarest; break;
@@ -234,7 +238,8 @@ void IntrSone::boligfeedFunk()  {
 
 void IntrSone::eiendomstypeFunk() {
 	char kommando; //Hjelpevariabel
-	cout << "\n\nEiendomstype ([T]omt, [E]nebolig, [R]ekkehus, [L]eilighet, [H]ytte): ";
+	cout << "\n\nEiendomstype ([T]omt, [E]nebolig," <<
+				 "	[R]ekkehus, [L]eilighet, [H]ytte): ";
 	kommando = les(); //Leser eiendomstype.
 	do {
 		switch(kommando){

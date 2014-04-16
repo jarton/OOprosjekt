@@ -158,6 +158,17 @@ void Kunder::skrivTilFil()  {
 	ut << buf;                          // skriver ut oppdragsnummer
 }
 
+void Kunder::sammenlign(Eiendom* eien) {
+	Kunde* kunde;
+	int antkunder;
+	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1]
+
+	antkunder=kundeliste->no_of_elements();
+	for (int i = 1; i <= antkunder; i++)	{
+		kunde = (Kunde*) kundeliste->remove_no(i);
+		kunde->
+	}
+}
 
 // Endrer på kunden sine data
 void Kunder::endreKunde(int knr)  {
