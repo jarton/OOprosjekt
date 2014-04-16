@@ -21,6 +21,7 @@ public:
 	void slettKunde(int knr);
 	void skrivTilFil();
 	void sammenlign(Eiendom* eien);
+	void skrivEx(int kundenummer, int oppdrnr);
 };
 
 

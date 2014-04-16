@@ -23,17 +23,19 @@ void Kunde::finnMatch() {
     intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
     sonenum = intrsone->hentsonenum();													//henter sonnr
     if (intrsone->hentBoligfeeden() == 'S') {  		//sjekker om kunden vil ha info 
-				soner.sammenlign(intrsone, sonenum); 			//snarest, sammenligner inrsonen 
+				soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen 
 			}
 		}
 	IntrSoneliste-> add(intrsone); 										//med alle eiendommer
   }						
 }
 
+//skriver ern kunde til exx.
 void Kunde::skrivExx(int oppdnrMatch) {
 	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1]
 	LagNavn(filnavn, "E", ".DTA", oppdnrMatch, 7);
-	
+//skriver til fil	
+//kunden legges til bakesert på filen hviss den finnes (APPHEND)
 }
 
 // Displayer kundeinfo og interesse sone info

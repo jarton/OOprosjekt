@@ -61,9 +61,9 @@ void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
 	} while (!funnet);								//går sålenge den ikke er funnet
 }
 
-void Soner::sammenlign(IntrSone* isone, int nr, int oppdnrMatch) {
+void Soner::sammenlign(IntrSone* isone, int nr, int kundenr) {
   if (sonene[nr] != NULL)
-	sonene[nr]->sammenlign(isone, oppdnrMatch);
+	sonene[nr]->sammenlign(isone, kundenr);
 }
 
 //Skriver alle sonene til fil

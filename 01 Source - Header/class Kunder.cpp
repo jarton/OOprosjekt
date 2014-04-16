@@ -158,15 +158,23 @@ void Kunder::skrivTilFil()  {
 	ut << buf;                          // skriver ut oppdragsnummer
 }
 
+//finner en kunde og skriver den til en exx fil
+void skrivEx(int kundenummer, int oppdrnr) {
+//finer den kunden med gitt kundenummer og kaller den kunden sin
+//skrivtilExx() og oppdragsnr sendes med (filnavn)
+//denne tilkalles når en ny kunde opprettes og har blit sammenligna med alle
+//eiendommene
+}
+
+//går igennom alle kunder og sammenligner med en bolig
 void Kunder::sammenlign(Eiendom* eien) {
 	Kunde* kunde;
 	int antkunder;
-	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1]
 
 	antkunder=kundeliste->no_of_elements();
 	for (int i = 1; i <= antkunder; i++)	{
 		kunde = (Kunde*) kundeliste->remove_no(i);
-		kunde->
+		//går ignneom alle kunder og finner match med eiendommen
 	}
 }
 

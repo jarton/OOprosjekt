@@ -124,5 +124,11 @@ void soneDisplay()  {
 }
 
 void ukentligUtskrift()  {
-
+//kaller kunder sin sammenlign. sender med tom eiendompeker og dermed
+//skal forandres denne og underliggende funksjoner (en kunde sinn finn 
+//match som tar alle sine intrsoner og sammenligner med alle aktuelle
+//eiendommer) lit slik at
+//den går igjennom alle kunder og deres intsoner og sammenligner alle med
+//alle eiendommene og skriver de ut. mye av dette erallerede implementert
+//denne funksjonen kalles på en spesiell dag. vha timer 3 (?)
 }

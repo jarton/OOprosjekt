@@ -54,18 +54,18 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 }
 
 //sammenligner en intrsone med alle eiendommene i sonen
-int* Sone::sammenlign(IntrSone* isone) {
+void Sone::sammenlign(IntrSone* isone, int kundnr) {
   Eiendom* eiendom;		//eiendomspeker
   int antall;		//antall eiendommer i liste
 	int* oppdnr = new int;
 
   antall = eiendommene->no_of_elements(); //finner antall
   for (int i = 1; i <= antall; i++) {	//løkke som går igjennom
-   eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
-   if (*isone == eiendom)   //overloada operator som finner match
-	 	 	eiendom->hentInt(oppdnr, 'o'); 
-	 else *oppdnr = 0;
-   eiendommene->add(eiendom);
+    eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
+    if (*isone == eiendom) {   //overloada operator som finner match
+	 	 	eiendom->hentInt(oppdnr, 'o');  //finner oppdragsnr
+			kunder.skrivEx(kundnr, *oppdnr);			//skriver filen via kunden /m oppdnr
+	  }
   }
 }
 
@@ -80,7 +80,7 @@ void Sone::nyEiendom(int oppdragsnr)	{
 		eiendom = new Bolig(oppdragsnr);						//bolig opprettes
 	else (type[0] == 'E' || type[0] == 'e')					//hvis eiendom
 		eiendom = new Eiendom(oppdragsnr);				//eiendom opprettes
-	//kunder.sammenlign(eiendom);
+	kunder.sammenlign(eiendom);
 	eiendommene->add(eiendom);				//legger til nyopprettet i lista
 }
 
