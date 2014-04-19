@@ -160,12 +160,16 @@ void Kunder::skrivTilFil()  {
 
 //finner en kunde og skriver den til en exx fil
 void skrivEx(int kundenummer, int oppdrnr) {
-//finer den kunden med gitt kundenummer og kaller den kunden sin
-//skrivtilExx() og oppdragsnr sendes med (filnavn)
-//denne tilkalles når en ny kunde opprettes og har blit sammenligna med alle
-//eiendommene
 Kunde* kunde;
-kunde->skrivExx(oppdrnr);
+int kundenr, antKunder;
+
+antKunder = kundeliste->no_of_elements();
+for (int i =1; i <= antKunder; i++) {
+	kunde = (Kunde*) kundeliste->remove_no(i);
+	kundenr = kunde->hentKundenummer();
+	if (kundenummer == kundenr)
+		kunde->skrivExx(oppdrnr);
+	kundeliste->add(kunde);
 }
 
 //går igennom alle kunder og sammenligner med en eiendom, eller
@@ -177,7 +181,7 @@ void Kunder::sammenlign(Eiendom* eien) {
 	for (int i = 1; i <= antkunder; i++)	{
 		kunde = (Kunde*) kundeliste->remove_no(i);
 		if (eien == NULL)
-						kunde->finnMatch('U');
+		 	kunde->finnMatch('U');
 		else
 			kunde->sjekkEnEien(eien);
 		kundeliste->add(kunde);
