@@ -25,7 +25,6 @@ void kundeDisplay();
 void kundeNy();
 void kundeSlett();
 void kundeEndre();
-void utskrift();
 void LagNavn(char* t, char* s1, char * s2, int n, int LEN);
 bool operator ==(IntrSone& kun, Eiendom* salg);
 void lesFraFil();

@@ -63,7 +63,7 @@ void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
 
 void Soner::sammenlign(IntrSone* isone, int nr, int kundenr) {
   if (sonene[nr] != NULL)
-	sonene[nr]->sammenlign(isone, kundenr);
+	sonene[nr]->sammenlign(isone, kundenr, type);
 }
 
 //Skriver alle sonene til fil

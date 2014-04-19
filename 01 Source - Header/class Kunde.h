@@ -27,7 +27,7 @@ public:
 	void sjekkNrNvn(char* kundeinfo);
 	void displayKunde();
 	bool sjekkNr(int nr);
-	void finnMatch();
+	void finnMatch(const char boligfeed);
 	int hentKundenummer();
 	void endreKundeData();
 	void skrivExx(int oppdnrMatch);	

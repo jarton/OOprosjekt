@@ -25,6 +25,7 @@ public:
 	void display();               // Displayer all info om en sone
 	void displayEien(int nr);			//displayer en /flere eiendommmer
 	void sammenlign(IntrSone* isone, int kundenr);
+	void skrivINF(int kundenr, Eiendom* eien);
 };
 
 

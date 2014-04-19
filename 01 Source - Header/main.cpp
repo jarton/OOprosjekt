@@ -5,8 +5,8 @@
 
 using namespace std;
 
-  Soner soner;                                            // Lage Soner-objekt.
-  Kunder kunder;                                         // Lage Kunder-objekt.
+  Soner soner;                       // Lage Soner-objekt. må stå utenfor main
+  Kunder kunder;                      // Lage Kunder-objekt. pga extern
 
 int main()  {
 
@@ -19,7 +19,7 @@ int main()  {
       case 'E': soner.fortsettelseMeny(valg);  break; //Videre meny for Eiendom
 			case 'S': soner.fortsettelseMeny(valg);  break;  // Videre meny for Sone.
       case 'K': kunder.fortsettelseMeny(); break;     // Videre meny for Kunde.
-      case 'U': ukentligUtskrift(); break;                  // Lager .INF filen.
+      case 'U': kunder.sammenlign(NULL); break;           // Lager .INF filen.
       default : cout << "\n\tOBS! Ugyldig kommando!\n\n";	 break;  //feilmedling
     }
 		skrivMeny();                                             // Displayer meny

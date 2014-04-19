@@ -6,31 +6,33 @@
 #include <fstream>                              // ifstream ofstream
 #include "conster.h" 
 #include "globale funksjoner og variabler.h"
-#include "class IntrSone.h"
-#include "class Soner.h"
-
+#include "class IntrSone.h" #include "class Soner.h" 
 using namespace std;
 
+//går igjennom alle interessesonene til kunden og finner match for en eiendom
+void sjekkEnEien(Eiendom* eien) {
+//går igjennomm alle intrsonene og sjekker de med medsendt eiendom
+//vha == overloada
+//hvis de er like kalles skriv til exxx.dta funksjonen.
+}
+
 //finner eiendommer som matcher kundens intrsoner 
-void Kunde::finnMatch() {
+void Kunde::finnMatch(const char boligfeed) {
   IntrSone* intrsone;	     										//peker son peker på intessesoner
   int antall;		   													//antall interessoner som kunden har
   int sonenum;																//sonenummer kunden er interest i
 
- 
   antall = IntrSoneliste->no_of_elements(); 								//finner ant i liste
   for (int i = 1; i <= antall; i++) {						 //løkke som gåt igjennom antall
     intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
     sonenum = intrsone->hentsonenum();													//henter sonnr
-    if (intrsone->hentBoligfeeden() == 'S') {  		//sjekker om kunden vil ha info 
-				soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen 
-			}
-		}
-	IntrSoneliste-> add(intrsone); 										//med alle eiendommer
-  }						
-}
+    if (intrsone->hentBoligfeeden() == boligfeed) //sjekker om kunden vil ha info 
+			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen 
+		IntrSoneliste-> add(intrsone); 										//med alle eiendommer
+	}
+}						
 
-//skriver ern kunde til exx.
+//skriver ern kunde til exx.DTA
 void Kunde::skrivExx(int oppdnrMatch) {
 	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1]
 	LagNavn(filnavn, "E", ".DTA", oppdnrMatch, 7);
@@ -110,7 +112,7 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();                             // Leser inn et upercaset teg
 	}
-	finnMatch();			//finner eiendommer nye kunden kan være intr i
+	finnMatch('S');			//finner eiendommer nye kunden kan være intr i
 }
 
 // Funksjon som returnerer true\false om kundenummer er rett

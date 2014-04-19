@@ -164,17 +164,23 @@ void skrivEx(int kundenummer, int oppdrnr) {
 //skrivtilExx() og oppdragsnr sendes med (filnavn)
 //denne tilkalles når en ny kunde opprettes og har blit sammenligna med alle
 //eiendommene
+Kunde* kunde;
+kunde->skrivExx(oppdrnr);
 }
 
-//går igennom alle kunder og sammenligner med en bolig
-void Kunder::sammenlign(Eiendom* eien) {
-	Kunde* kunde;
-	int antkunder;
-
+//går igennom alle kunder og sammenligner med en eiendom, eller
+//sjekker alle kunder opp mot alle eiendommer
+void Kunder::sammenlign(Eiendom* eien) { 
+				Kunde* kunde;
+				int antkunder;
 	antkunder=kundeliste->no_of_elements();
 	for (int i = 1; i <= antkunder; i++)	{
 		kunde = (Kunde*) kundeliste->remove_no(i);
-		//går ignneom alle kunder og finner match med eiendommen
+		if (eien == NULL)
+						kunde->finnMatch('U');
+		else
+			kunde->sjekkEnEien(eien);
+		kundeliste->add(kunde);
 	}
 }
 

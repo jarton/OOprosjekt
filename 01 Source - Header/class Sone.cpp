@@ -58,15 +58,29 @@ void Sone::sammenlign(IntrSone* isone, int kundnr) {
   Eiendom* eiendom;		//eiendomspeker
   int antall;		//antall eiendommer i liste
 	int* oppdnr = new int;
+	char status;
 
   antall = eiendommene->no_of_elements(); //finner antall
+	status = isone->hentBoligfeeden();
   for (int i = 1; i <= antall; i++) {	//løkke som går igjennom
     eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
     if (*isone == eiendom) {   //overloada operator som finner match
-	 	 	eiendom->hentInt(oppdnr, 'o');  //finner oppdragsnr
-			kunder.skrivEx(kundnr, *oppdnr);			//skriver filen via kunden /m oppdnr
+			if (status == 'S') {
+	 	 		eiendom->hentInt(oppdnr, 'o');  //finner oppdragsnr
+				kunder.skrivEx(kundnr, *oppdnr);			//skriver filen via kunden /m oppdnr
+			}
+			else
+			  skrivINF(kundnr, eiendom);	
 	  }
+		eiendommene->add(eiendom);
   }
+}
+
+//Skriver eiendommer oppdrag til .INF fil
+void skrivINF(int kundenr, Eiendom* eien) {
+//lager navn vha kundenr.
+//skriver det som skal med fra eiendommen. apphend hvis det står noe der ifr
+//før
 }
 
 //oppretter en ny eiendom
