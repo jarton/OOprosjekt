@@ -187,8 +187,7 @@ void IntrSone:: endreIntrSone()   {
     cout << "\n Endre minimum antall soverom? (Tast 'J/N')";
 	  svar=les();
 	  if (svar == 'J')  
-	    minAntSoverom = lesTall("\nMinimum antall 
-																		soverom", 0, 100); //Leser soverom. 
+	    minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser soverom. 
   
   
     cout << "\nBoligfeed: " << boligfeed[boligfeeden];

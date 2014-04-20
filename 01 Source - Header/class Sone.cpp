@@ -92,7 +92,7 @@ void Sone::nyEiendom(int oppdragsnr)	{
 	lesTxt("velg type Bolig  /   Eiendom", type, STRLEN);	//leser inn
 	if (type[0] == 'B' || type[0] == 'b')									//hvis bolig
 		eiendom = new Bolig(oppdragsnr);						//bolig opprettes
-	else (type[0] == 'E' || type[0] == 'e')					//hvis eiendom
+	else if (type[0] == 'E' || type[0] == 'e')					//hvis eiendom
 		eiendom = new Eiendom(oppdragsnr);				//eiendom opprettes
 	kunder.sammenlign(eiendom);
 	eiendommene->add(eiendom);				//legger til nyopprettet i lista

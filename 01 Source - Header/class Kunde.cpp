@@ -6,7 +6,8 @@
 #include <fstream>                              // ifstream ofstream
 #include "conster.h" 
 #include "globale funksjoner og variabler.h"
-#include "class IntrSone.h" #include "class Soner.h" 
+#include "class IntrSone.h" 
+#include "class Soner.h" 
 using namespace std;
 
 //går igjennom alle interessesonene til kunden og finner match for en eiendom
@@ -34,7 +35,7 @@ void Kunde::finnMatch(const char boligfeed) {
 
 //skriver ern kunde til exx.DTA
 void Kunde::skrivExx(int oppdnrMatch) {
-	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1]
+	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1];
 	LagNavn(filnavn, "E", ".DTA", oppdnrMatch, 7);
 //skriver til fil	
 //kunden legges til bakesert på filen hviss den finnes (APPHEND)

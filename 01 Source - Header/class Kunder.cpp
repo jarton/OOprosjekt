@@ -159,17 +159,18 @@ void Kunder::skrivTilFil()  {
 }
 
 //finner en kunde og skriver den til en exx fil
-void skrivEx(int kundenummer, int oppdrnr) {
+void Kunder::skrivEx(int kundenummer, int oppdrnr) {
 Kunde* kunde;
 int kundenr, antKunder;
 
-antKunder = kundeliste->no_of_elements();
+antKunder=kundeliste->no_of_elements();
 for (int i =1; i <= antKunder; i++) {
 	kunde = (Kunde*) kundeliste->remove_no(i);
 	kundenr = kunde->hentKundenummer();
 	if (kundenummer == kundenr)
 		kunde->skrivExx(oppdrnr);
 	kundeliste->add(kunde);
+  }
 }
 
 //går igennom alle kunder og sammenligner med en eiendom, eller
