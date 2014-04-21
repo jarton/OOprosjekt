@@ -82,9 +82,7 @@ void Sone::skrivINF(int kundenr, Eiendom* eien) {
 	char * kundeINF  = new char [strlen("KUNDE0001001.INF")+1];
 	LagNavn(kundeINF, "KUNDE", ".INF", kundenr, 7);
 	ofstream ut(kundeINF, ios::app);
-	ut << "HEEEEIIII";
-	
-
+	eien->skrivINF(ut);
 	
 //lager navn vha kundenr.
 //skriver det som skal med fra eiendommen. apphend hvis det står noe der ifr

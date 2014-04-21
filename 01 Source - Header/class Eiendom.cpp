@@ -269,3 +269,12 @@ void Eiendom::endreData()  {
 	     enumSwitch(buffer); //leser type eiendom
 		}
 }
+
+void Eiendom::skrivINF(ofstream &ut) {
+	ut << "Bruksnummer: " << bruksnummer << endl;
+	ut << "Adresse: " << gateadresse << ", " << postadresse <<  endl;
+	ut << "Kommunde: " <<kommunenavn << endl;
+	ut << "Eier: " << eiernavn << endl;
+	ut << "Type: " << eiendomstypen << endl;
+	ut << "Beskrivelse: " << beskrivelse << endl;
+}
