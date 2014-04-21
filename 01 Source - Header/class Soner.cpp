@@ -13,7 +13,7 @@ using namespace std;
 
 //constructor
 Soner::Soner()	{
-	ifstream inn("02 DTA/SISTE.DTA");				//leser inn siste brukte oppdrag
+	ifstream inn("SISTE.DTA");				//leser inn siste brukte oppdrag
 	inn.ignore(1000000, '\n');
 	inn.ignore(1000000, '\n');							//ignorerer kundedata på fil
 	inn >> sisteOppdrag;										//leser sisteoppdrag
@@ -39,10 +39,10 @@ void Soner::eiendomNy(int nr)	{
 	else																				//hvis sonen ikke eksisterer 
 		sonene[nr] = new Sone(nr, sisteOppdrag);             //blir sonen opprettet
 
-	ifstream inn("02 DTA/SISTE.DTA");			//leser inn alt på SISTE.DTA
+	ifstream inn("SISTE.DTA");			//leser inn alt på SISTE.DTA
 	int kforste, ksiste;									//første og sistekunde
 	inn >> kforste >> ksiste;							//leser de inn i midleritige variabler
-	ofstream ut("02 DTA/SISTE.DT2");			//skriver SISTE.DTA filen
+	ofstream ut("SISTE.DT2");			//skriver SISTE.DTA filen
 	ut << kforste << '\n' << ksiste << '\n'		//skriver ut første og sistekunde
 		<< sisteOppdrag;												//og "oppdaterer" sisteoppdrag
 	skrivTilFil();													//skriver nye eiendomen til fil
