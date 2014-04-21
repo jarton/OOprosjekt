@@ -87,7 +87,7 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 	char * sonefil  = new char [strlen("SONE000.DTA")+1];								//peker for navn på fil
 	for (int i = 1; i <= MAXSONER; i++)	{														//peker for navn på fil
 		if (sonene[i] != NULL)	{																	//hvis en sone eksister
-			LagNavn(sonefil, "SONE", ".DT2", i, 3);
+			LagNavn(sonefil, "SONE", ".DTA", i, 3);
 			ofstream ut(sonefil);   																//lag navn på fil
 			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
 		}
