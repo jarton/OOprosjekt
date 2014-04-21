@@ -19,28 +19,29 @@ Eiendom::Eiendom(int oppdragsnr) : Num_element(oppdragsnr)	{
 	dato = timer3->hentDato(); 				//Henter aktuell dato	
 	delete timer3;								//sletter timer objekter	
 
-	bruksnummer = lesTall("bruksnummer", 1000, 9999); //Leser bruksnummer
-	ansattnummer = lesTall("ansattnr", 0, 1000); //Leser ansattnummer
-	pris = lesTall("pris", 1, 10000000); //Leser pris
-	areal = lesTall("areal", 1, 1000); //Leser areal
+	cout << "\n\nTILDELT OPPDRAGSNUMMER: " << oppdragsnummer << endl;
+	bruksnummer = lesTall("Bruksnummer", 1000, 9999); //Leser bruksnummer
+	ansattnummer = lesTall("Ansattnr", 0, 1000); //Leser ansattnummer
+	pris = lesTall("Pris", 1, 10000000); //Leser pris
+	areal = lesTall("Areal", 1, 1000); //Leser areal
 
-	lesTxt("gateadresse:", buffer, STRLEN);			//Leser gateadresse
+	lesTxt("Gateadresse", buffer, STRLEN);			//Leser gateadresse
 	gateadresse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
 	strcpy(gateadresse, buffer); //Kopierer fra buffer til gateadresse
-	lesTxt("postadresse:", buffer, STRLEN);			//Leser postadresse
+	lesTxt("Postadresse", buffer, STRLEN);			//Leser postadresse
 	postadresse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
 	strcpy(postadresse, buffer); //Kopierer fra buffer til postadresse
-	lesTxt("eiernavn:", buffer, STRLEN);			//Leser eiernavn
+	lesTxt("Eiernavn", buffer, STRLEN);			//Leser eiernavn
 	eiernavn = new char[strlen(buffer) + 1];	//Gir pekeren innhold
 	strcpy(eiernavn, buffer); //Kopierer fra buffer til eiernavn
-	lesTxt("kommunenavn:", buffer, STRLEN);			//Leser kommunenavn
+	lesTxt("Kommunenavn", buffer, STRLEN);			//Leser kommunenavn
 	kommunenavn = new char[strlen(buffer) + 1]; //Gir pekeren innhold
 	strcpy(kommunenavn, buffer);	//Kopierer fra buffer til kommunenavn
-	lesTxt("beskrivelse:", buffer, STRLEN);			//Leser beskrivelse
+	lesTxt("Beskrivelse", buffer, STRLEN);			//Leser beskrivelse
 	beskrivelse = new char[strlen(buffer) + 1];	//Gir pekeren innhold 
 	strcpy(beskrivelse, buffer);	//Kopierer fra buffer til beskrivelse.
 
-	lesTxt("type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN); 
+	lesTxt("Type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN); 
 	enumSwitch(buffer); //leser type eiendom.
 }
 
