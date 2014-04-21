@@ -38,8 +38,9 @@ void Kunde::finnMatch(const char boligfeed) {
     intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
     sonenum = intrsone->hentsonenum();													//henter sonnr
     if (intrsone->hentBoligfeeden() == boligfeed)  {  //sjekker om kunden vil ha info 
-			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen   <<<------ // Her er det en feil! Programmet går ikke inn på funksjonen!
 			skrivINF();
+			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen   <<<------ // Her er det en feil! Programmet går ikke inn på funksjonen!
+			
 		}
 		IntrSoneliste-> add(intrsone); 										//med alle eiendommer
 	}
@@ -277,11 +278,7 @@ void Kunde::endreKundeData()  {
   }
 }
 
-
-
-
-
-// Til senere???????????????????????????????????????????????????  Skriver INF filen
+// Skriver persondata til INF-filen
 void Kunde::skrivINF() {
 	char * kundeINF  = new char [strlen("KUNDE0001001.INF")+1];
 	LagNavn(kundeINF, "KUNDE", ".INF", kundenummer, 7);
