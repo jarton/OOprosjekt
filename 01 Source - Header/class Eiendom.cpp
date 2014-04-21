@@ -128,7 +128,7 @@ const char * Eiendom::hentEnum(const char * s) {
   };
 }
 
-void Eiendom::enumSwitch(char * b)	{
+void Eiendom::enumSwitch()	{
 	char kommando;				 //Hjelpevariabel
 	do {
 		kommando = les();			//Leser eiendomstype.

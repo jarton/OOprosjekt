@@ -30,7 +30,7 @@ public:
 	virtual bool type();                        // Sjekker type (bolig\eiendom)
 	virtual void hentInt(int* i, const char s); //Return en int til sammenlikning
 	virtual const char* hentEnum(const char* s);//Return enum til sammenlikning
-	void enumSwitch(char* t);                  // Setter verdi på enum
+	void enumSwitch();                  // Setter verdi på enum
 	virtual void display();                // Display informasjon om en eiendom
 	bool finnPostnummer(int postnr);       // Sjekker om postnummer er rett
 	bool finnOppdragsnr(int oppdnr);       // Sjekker om oppdragsnr er rett
