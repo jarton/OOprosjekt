@@ -66,7 +66,7 @@ void Kunder :: nyKunde()  { //Lager ny kunde
 Kunder :: Kunder()  { //CONSTRUCTOR
 	Kunde* kunde;                       // Kunde peker
 	kundeliste = new List(Sorted);     //Lager liste. 
-	ifstream inn("02 DTA/SISTE.DTA");    // Finner data om siste
+	ifstream inn("SISTE.DTA");    // Finner data om siste
 	inn >> forsteKunde;                // leser inn første kunde
 	inn >> sisteKunde;                // leser inn siste kunde
 	inn.ignore();                     // ignorerer oppdragsnummer
@@ -147,13 +147,13 @@ void Kunder::skrivTilFil()  {
 		kunde->skrivTilFil(ut);                         // Skriver til fil
 		kundeliste->add(kunde);	                   // legger kunden tilbake i filen
 	}
-	ifstream inn("02 DTA/SISTE.DTA");       // henter inn Siste data
+	ifstream inn("SISTE.DTA");       // henter inn Siste data
 	int buf;                  
 	inn.ignore();                      // ignorer 1. linje
 	inn.ignore();                      // ignorer 2. linje
 	inn >> buf;                         // leser inn oppdragsnummer
 
-	ofstream ut("02 DTA/SISTE.DTA");    // skriver ut siste-data
+	ofstream ut("SISTE.DTA");    // skriver ut siste-data
 	ut << forsteKunde << endl;          // skriver ut første kunde
 	ut << sisteKunde << endl;           // skriver ut siste kunde
 	ut << buf;                          // skriver ut oppdragsnummer
