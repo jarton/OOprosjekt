@@ -39,6 +39,7 @@ public:
 	bool finnPostnummer(int postnr);
 	bool finnOppdragsnr(int oppdnr);
 	void endreData();
+	void skrivINF(ofstream &ut);
 };
 
 #endif
