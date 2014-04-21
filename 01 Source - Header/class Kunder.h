@@ -4,6 +4,7 @@
 #include "listtool2.h"
 #include "enumer.h"
 #include "class Eiendom.h"
+
 using namespace std;
 
 class Kunder  {
@@ -12,16 +13,16 @@ private:
 	List* kundeliste;
 
 public:
-	Kunder();
-	void fortsettelseMeny();
-	void finnKunde(char* kundeinfo);
-	void displayKunde(int kundenr);
-	void nyKunde();
-	void endreKunde(int knr);
-	void slettKunde(int knr);
-	void skrivTilFil();
-	void sammenlign(Eiendom* eien);
-	void skrivEx(int kundenummer, int oppdrnr);
+	Kunder();                        // Paramterløs constructor
+	void fortsettelseMeny();         // Videre meny etter den i main
+	void finnKunde(char* kundeinfo);  //finner en kunde på kundenummer eller navn
+	void displayKunde(int kundenr);  // displayer en kunde
+	void nyKunde();                  // Oppretter en ny kunde
+	void endreKunde(int knr);       // Endrer data om en kunde
+	void slettKunde(int knr);         // Fjerner en kunde fra datastrukturen
+	void skrivTilFil();               // Skriver kundens data til fil
+	void sammenlign(Eiendom* eien);   // sammenlikner kundens data med annet
+	void skrivEx(int kundenummer, int oppdrnr); //finne kunde og skriver Ex.DTA
 };
 
 
