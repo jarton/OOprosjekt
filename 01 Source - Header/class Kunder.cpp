@@ -59,6 +59,7 @@ void Kunder :: nyKunde()  { //Lager ny kunde
 	  forsteKunde++; 
 	kunde = new Kunde(++sisteKunde); //Oppretter ny kunde i memory, øker sistekunde.
 	kundeliste->add(kunde); //Legger den inn i listen over kunder.
+	kunde->finnMatch('S');  //finner eiendommer hvis kunden vil ha info snarest
 	skrivTilFil();
 }
 

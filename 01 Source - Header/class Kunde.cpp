@@ -126,8 +126,7 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 		IntrSoneliste->add(intrsonekopi);              //Legger til kopien i listen.
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();                             // Leser inn et upercaset teg
-	}
-	finnMatch('S');			//finner eiendommer nye kunden kan være intr i
+	} 
 }
 
 // Funksjon som returnerer true\false om kundenummer er rett
