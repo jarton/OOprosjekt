@@ -44,6 +44,7 @@ bool operator ==(IntrSone& kun, Eiendom* salg) {
   if (antMatch == matchSomKreves)									//sjekker om alle kriterier er
 	  return true;  																	//møtt, hvis ja return true
   else return false;																		//hvis ikke false
+  delete salgInt, kunInt;
 }
 
 //  Leser inn en tekst med lengde ulik 0:
