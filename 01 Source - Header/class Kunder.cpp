@@ -176,8 +176,8 @@ for (int i =1; i <= antKunder; i++) {
 //går igennom alle kunder og sammenligner med en eiendom, eller
 //sjekker alle kunder opp mot alle eiendommer
 void Kunder::sammenlign(Eiendom* eien) { 
-				Kunde* kunde;
-				int antkunder;
+	Kunde* kunde;
+	int antkunder;
 	antkunder=kundeliste->no_of_elements();
 	for (int i = 1; i <= antkunder; i++)	{
 		kunde = (Kunde*) kundeliste->remove_no(i);		
