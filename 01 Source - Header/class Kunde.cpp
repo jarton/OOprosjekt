@@ -8,13 +8,23 @@
 #include "globale funksjoner og variabler.h"
 #include "class IntrSone.h" 
 #include "class Soner.h" 
+
 using namespace std;
 
 //går igjennom alle interessesonene til kunden og finner match for en eiendom
-void sjekkEnEien(Eiendom* eien) {
-//går igjennomm alle intrsonene og sjekker de med medsendt eiendom
-//vha == overloada
-//hvis de er like kalles skriv til exxx.dta funksjonen.
+void Kunde::sjekkEnEien(Eiendom* eien) {
+	IntrSone* intrsone;														//peker på aktuell intrsone
+	int antall;																		//antall i lista
+	int* oppdragsnr = new int;										//intpeker som peker på oppnr
+
+	eien->hentInt(oppdragsnr, 'o');								//henter oppdragsnr til eiendom
+  antall=IntrSoneliste->no_of_elements(); 								//finner ant i liste
+  for (int i = 1; i <= antall; i++) {						 //løkke som gåt igjennom antall
+    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
+    if (*intrsone == eien)   								//sammenligner eiendom og intrsone
+			skrivExx(*oppdragsnr);							//skriver kunden til fila hvis match
+		IntrSoneliste-> add(intrsone); 										//legger tilbake i lista
+	}
 }
 
 //finner eiendommer som matcher kundens intrsoner 
@@ -35,10 +45,12 @@ void Kunde::finnMatch(const char boligfeed) {
 
 //skriver ern kunde til exx.DTA
 void Kunde::skrivExx(int oppdnrMatch) {
-	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1];
-	LagNavn(filnavn, "E", ".DTA", oppdnrMatch, 7);
-//skriver til fil	
-//kunden legges til bakesert på filen hviss den finnes (APPHEND)
+	char* filnavn = new char[strlen("Exxxxxxx.DTA")+1];  //array for filnavn
+	LagNavn(filnavn, "E", ".DTA", oppdnrMatch, 7);				//lager navn
+	ofstream ut(filnavn, ios::app);									//åpner filer og apphender
+
+	ut << navn << '\n'													//skriver kundens navn og epost
+		<< mail << "\n\n";												//bakerst på filen
 }
 
 // Displayer kundeinfo og interesse sone info

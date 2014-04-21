@@ -55,29 +55,30 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 
 //sammenligner en intrsone med alle eiendommene i sonen
 void Sone::sammenlign(IntrSone* isone, int kundnr) {
-  Eiendom* eiendom;		//eiendomspeker
-  int antall;		//antall eiendommer i liste
-	int* oppdnr = new int;
-	char status;
+  Eiendom* eiendom;												//eiendomspeker for aktuell eiendom
+  int antall;																//antall eiendommer i liste
+	int* oppdnr = new int;									//intpeker for oppdragsnret
+	char status;															//snarest eller ukentlig
 
   antall = eiendommene->no_of_elements(); //finner antall
-	status = isone->hentBoligfeeden();
-  for (int i = 1; i <= antall; i++) {	//løkke som går igjennom
-    eiendom = (Eiendom*) eiendommene->remove_no(i);	//tar ut en
-    if (*isone == eiendom) {   //overloada operator som finner match
-			if (status == 'S') {
-	 	 		eiendom->hentInt(oppdnr, 'o');  //finner oppdragsnr
-				kunder.skrivEx(kundnr, *oppdnr);			//skriver filen via kunden /m oppdnr
+	status = isone->hentBoligfeeden();			//finner når kunden ønsker info
+  for (int i = 1; i <= antall; i++) {							//løkke som går igjennom
+    eiendom = (Eiendom*) eiendommene->remove_no(i);						//tar ut en
+    if (*isone == eiendom) {   					//overloada operator som finner match
+			if (status == 'S') {								//hvis status ønskes umiddelbart
+	 	 		eiendom->hentInt(oppdnr, 'o'); 							 //finner oppdragsnr
+				kunder.skrivEx(kundnr, *oppdnr);		//skriver filen via kunden /m oppdnr
 			}
-			else
-			  skrivINF(kundnr, eiendom);	
+			else															//status er ukentlig og inf skal skrives
+			  skrivINF(kundnr, eiendom);			//srkiver til INF filen
 	  }
-		eiendommene->add(eiendom);
+		eiendommene->add(eiendom);					//legger eiendommen tilbake i lista
   }
 }
 
 //Skriver eiendommer oppdrag til .INF fil
-void skrivINF(int kundenr, Eiendom* eien) {
+void Sone::skrivINF(int kundenr, Eiendom* eien) {
+	
 //lager navn vha kundenr.
 //skriver det som skal med fra eiendommen. apphend hvis det står noe der ifr
 //før
