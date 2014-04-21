@@ -30,6 +30,7 @@ void Kunde::sjekkEnEien(Eiendom* eien) {
 //finner eiendommer som matcher kundens intrsoner 
 void Kunde::finnMatch(const char boligfeed) {
   IntrSone* intrsone;	     										//peker son peker på intessesoner
+	Sone* sone;
   int antall;		   													//antall interessoner som kunden har
   int sonenum;																//sonenummer kunden er interest i
 
@@ -39,7 +40,7 @@ void Kunde::finnMatch(const char boligfeed) {
     sonenum = intrsone->hentsonenum();													//henter sonnr
     if (intrsone->hentBoligfeeden() == boligfeed)  {  //sjekker om kunden vil ha info 
 			skrivINF();
-			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen   <<<------ // Her er det en feil! Programmet går ikke inn på funksjonen!
+			sone->sammenlign(intrsone, kundenummer); 			//snarest, sammenligner inrsonen   <<<------ // Her er det en feil! Programmet går ikke inn på funksjonen!
 			
 		}
 		IntrSoneliste-> add(intrsone); 										//med alle eiendommer

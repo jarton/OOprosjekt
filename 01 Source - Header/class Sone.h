@@ -24,7 +24,7 @@ public:
 	bool slettEiendom(int oppdragnr);		//sletter en eiendom	
 	void display();               // Displayer all info om en sone
 	void displayEien(int nr);			//displayer en /flere eiendommmer
-	void sammenlign(IntrSone* isone, int kundenr);
+	void sammenlign(IntrSone* isone, int kundnr);
 	void skrivINF(int kundenr, Eiendom* eien);
 	
 };

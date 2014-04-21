@@ -60,7 +60,7 @@ void Sone::sammenlign(IntrSone* isone, int kundnr) {
 	int* oppdnr = new int;									//intpeker for oppdragsnret
 	char status;															//snarest eller ukentlig
 
-  antall = eiendommene->no_of_elements(); //finner antall
+  antall = eiendommene->no_of_elements(); //finner antall                 <<------- // her stopper det på kommando u
 	status = isone->hentBoligfeeden();			//finner når kunden ønsker info
   for (int i = 1; i <= antall; i++) {							//løkke som går igjennom
     eiendom = (Eiendom*) eiendommene->remove_no(i);						//tar ut en
@@ -81,7 +81,8 @@ void Sone::skrivINF(int kundenr, Eiendom* eien) {
 	char * kundeINF  = new char [strlen("KUNDE0001001.INF")+1];
 	LagNavn(kundeINF, "KUNDE", ".INF", kundenr, 7);
 	ofstream ut(kundeINF, ios::app);
-	ut << "Her skrives info om eiendom ut....";
+	ut << "HEEEEIIII";
+	
 
 	
 //lager navn vha kundenr.
