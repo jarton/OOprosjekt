@@ -10,15 +10,14 @@ private:
 	Statusonske statusonsket;
 
 public:
-	Bolig(int onr);
-	Bolig(ifstream & inn, int onr);
-	~Bolig();
-	bool type();
-	void skrivBoligTilFil(ofstream & ut);
-	void displayBolig();  // Displayer informasjon om en bolig
-	void hentInt(int* i, const char s);
-	const char * hentEnum(const char* s);
+	Bolig(int onr);                       // Constructor. Leser inn data om bolig
+	Bolig(ifstream & inn, int onr);       // Constructor. Leser data fra fil
+	~Bolig();                             // Destructor
+	bool type();                          // Sjekker type (Eiendom eller bolig)
+	void skrivBoligTilFil(ofstream & ut); // Skriver data til fil
+	void displayBolig();                  // Displayer informasjon om en bolig
+	void hentInt(int* i, const char s);   // Return en int til sammenlikning
+	const char * hentEnum(const char* s); // Return enum til sammenlikning
 };
-
 
 #endif

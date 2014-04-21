@@ -3,9 +3,7 @@
 
 #include "listtool2.h"
 #include "enumer.h"
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
+#include <fstream>     // ifstream, ofstream
 
 using namespace std;
 
@@ -23,23 +21,21 @@ protected:
 	int pris, areal;
 
 public:
-	Eiendom(int onr);
-	Eiendom(ifstream & inn, int onr);
-	virtual ~Eiendom();
-	void skrivTilFil(ofstream & ut);
-	virtual void skrivBoligTilFil(ofstream & ut)
-	{	/*tomt*/	};
-	virtual void displayBolig()
-	{ /*tomt*/		 };
-	virtual bool type();
-	virtual void hentInt(int* i, const char s);
-	virtual const char* hentEnum(const char* s);
-	void enumSwitch(char* t);
-	virtual void display();          // Displayer informasjon om en eiendom
-	bool finnPostnummer(int postnr);
-	bool finnOppdragsnr(int oppdnr);
-	void endreData();
-	void skrivINF(ofstream &ut);
+	Eiendom(int onr);                     // Constructor. Leser inn data om bolig
+	Eiendom(ifstream & inn, int onr);     // Constructor. Leser data fra fil
+	virtual ~Eiendom();                   // Virtuell destructor
+	void skrivTilFil(ofstream & ut);      // Skriver data til fil
+	virtual void skrivBoligTilFil(ofstream & ut); // Skriv til fil (bolig)
+	virtual void displayBolig();                // Displayer en bolig
+	virtual bool type();                        // Sjekker type (bolig\eiendom)
+	virtual void hentInt(int* i, const char s); //Return en int til sammenlikning
+	virtual const char* hentEnum(const char* s);//Return enum til sammenlikning
+	void enumSwitch(char* t);                  // Setter verdi på enum
+	virtual void display();                // Display informasjon om en eiendom
+	bool finnPostnummer(int postnr);       // Sjekker om postnummer er rett
+	bool finnOppdragsnr(int oppdnr);       // Sjekker om oppdragsnr er rett
+	void endreData();                      // Endrer datra om en eiendom
+	void skrivINF(ofstream &ut);           // Skriver data til INF-filen
 };
 
 #endif
