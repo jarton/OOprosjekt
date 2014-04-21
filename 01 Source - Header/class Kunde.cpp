@@ -127,7 +127,10 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 	while (kommando == 'J') {                      //Hvis "ja".
 		intrsonekopi = new IntrSone(*intrsonen);       //Default copy constructor
 		sonenr = lesTall("\nSonenummer", 1, 100);        //Leser sonenummer.
-		intrsonekopi->endreSonenr(sonenr);        //Endrer sonenummeret på kopien.
+		if (!IntrSoneliste->in_list(sonenr))  
+		  intrsonekopi->endreSonenr(sonenr);        //Endrer sonenummeret på kopien.
+		else
+			cout << "OBS!! Nummer " << sonenr << " ligger allerede i listen!" << endl;
 		IntrSoneliste->add(intrsonekopi);              //Legger til kopien i listen.
 		cout << "\n\nLegge til en ny sone? (J/N)";
 		kommando = les();                             // Leser inn et upercaset teg
