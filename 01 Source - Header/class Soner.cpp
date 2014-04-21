@@ -29,6 +29,7 @@ Soner::Soner()	{
 		if (inn)																						//hvis den finnes
 			sonene[i] = new Sone(inn, i);								//lag ny sone og les den inn
 	}																										//med les inn costructor
+	delete [] sonefil;
 }
 
 //Leser inn en ny einendom i eksisterende sone eller lager ny sone
@@ -42,7 +43,7 @@ void Soner::eiendomNy(int nr)	{
 	ifstream inn("SISTE.DTA");			//leser inn alt på SISTE.DTA
 	int kforste, ksiste;									//første og sistekunde
 	inn >> kforste >> ksiste;							//leser de inn i midleritige variabler
-	ofstream ut("SISTE.DT2");			//skriver SISTE.DTA filen
+	ofstream ut("SISTE.DTA");			//skriver SISTE.DTA filen
 	ut << kforste << '\n' << ksiste << '\n'		//skriver ut første og sistekunde
 		<< sisteOppdrag;												//og "oppdaterer" sisteoppdrag
 	skrivTilFil();													//skriver nye eiendomen til fil
@@ -91,6 +92,7 @@ void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
 			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
 		}
 	}
+	delete [] sonefil;
 }
 
 //Finner sonenummer gitt i parameter og displayer
