@@ -12,11 +12,11 @@ using namespace std;
 Bolig::Bolig(int oppdragsnr) : Eiendom(oppdragsnr) 	{
 	char kommando;
 
-	byggeaar = lesTall("byggeår", 1800, 2014);			//Leser byggeår
-	bruttoareal = lesTall("bruttoareal", 2, 1000);	//Leser bruttoareal
-	boareal = lesTall("boareal", 2, 1000);					//Leser boareal
-	antSoverom = lesTall("antall soverom", 0, 250);	//Leser antall soverom
-	cout << "\ntil leie eller salgs (L/S): ";		//Leser om den er til leie eller salgs
+	byggeaar = lesTall("Byggeaar", 1800, 2014);			//Leser byggeår
+	bruttoareal = lesTall("Bruttoareal", 2, 1000);	//Leser bruttoareal
+	boareal = lesTall("Boareal", 2, 1000);					//Leser boareal
+	antSoverom = lesTall("Antall soverom", 0, 250);	//Leser antall soverom
+	cout << "\nTil leie eller salgs (L/S): ";		//Leser om den er til leie eller salgs
 	if (kommando == 'L')
 		statusonsket = leie;
 	else if (kommando == 'S')
