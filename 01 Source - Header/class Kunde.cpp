@@ -16,14 +16,19 @@ void Kunde::sjekkEnEien(Eiendom* eien) {
 	IntrSone* intrsone;														//peker på aktuell intrsone
 	int antall;																		//antall i lista
 	int* oppdragsnr = new int;										//intpeker som peker på oppnr
+	bool funnet = false;							//bool for om en av intrsonene matcher
 
 	eien->hentInt(oppdragsnr, 'o');								//henter oppdragsnr til eiendom
-  antall=IntrSoneliste->no_of_elements(); 								//finner ant i liste
-  for (int i = 1; i <= antall; i++) {						 //løkke som gåt igjennom antall
-    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
-    if (*intrsone == eien)   								//sammenligner eiendom og intrsone
-			skrivExx(*oppdragsnr);							//skriver kunden til fila hvis match
-		IntrSoneliste-> add(intrsone); 										//legger tilbake i lista
+	antall = IntrSoneliste->no_of_elements(); 								//finner ant i liste
+	for (int i = 1; i <= antall; i++) {						 //løkke som gåt igjennom antall
+		intrsone = (IntrSone*)IntrSoneliste->remove_no(i);				//tar ut et objekt
+		if (*intrsone == eien) {   								//sammenligner eiendom og intrsone
+			if (funnet == false) {
+				skrivExx(*oppdragsnr);							//skriver kunden til fila hvis match
+				funnet = true;
+			}
+		}
+		IntrSoneliste->add(intrsone); 										//legger tilbake i lista
 	}
 }
 
