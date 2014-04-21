@@ -58,6 +58,7 @@ void Kunde::skrivExx(int oppdnrMatch) {
 
 	ut << navn << '\n'													//skriver kundens navn og epost
 		<< mail << "\n\n";												//bakerst på filen
+	delete [] filnavn;
 }
 
 // Displayer kundeinfo og interesse sone info
@@ -298,4 +299,5 @@ void Kunde::skrivINF() {
 	ut << postadresse <<", "<< gateadresse << endl;
 	ut << tlf << endl;
 	ut << mail << endl << endl;
+	delete [] kundeINF;
 }
