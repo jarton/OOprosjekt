@@ -40,13 +40,13 @@ Fremmgang:
 
 8 KN ferdig? KS ferdig -- må gjøres--  småting og test  
 
-9 KN finner eiendommer, men skriver ikke til fil. !!global operator== laget som sammenligner en intrsone og eiendom laget  kan bukes i alle tilfeller (U, EN) der ein skall matche kunde + eiendom!! --må gjøres--  Resten  
+9 FERDIG?  --må gjøres--  EN må kalle på Kunder sinn sammenlign og sende med eiendommen    
 
-10 --må gjøres--   ALT  
+10 U fungerer? --må gjøres-- funksjonen skriv til .INF
 
-11 -- KE: mangler å skrive til EXXX.DTA  --må gjøres -- ALT  
+11 -- KE: mangler å skrive til EXXX.DTA  --må gjøres -- Eiendom endre + resten  
 
 
 Generelt  
-
+kommentering, 80 bredde, testing, generelt forbedringer.
 i alle klasser: --må gjøes--  destructor.  se etter ting som kan/må deletes!
