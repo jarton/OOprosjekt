@@ -41,7 +41,7 @@ Eiendom::Eiendom(int oppdragsnr) : Num_element(oppdragsnr)	{
 	beskrivelse = new char[strlen(buffer) + 1];	//Gir pekeren innhold 
 	strcpy(beskrivelse, buffer);	//Kopierer fra buffer til beskrivelse.
 
-	lesTxt("Type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN); 
+	cout << "Type: Tomt, Enebolig, Rekkehus eller Hytte\n";
 	enumSwitch(buffer); //leser type eiendom.
 }
 
@@ -129,13 +129,19 @@ const char * Eiendom::hentEnum(const char * s) {
 }
 
 void Eiendom::enumSwitch(char * b)	{
-	switch (b[0])	{		//Sjekker første bokstav i array.
-	case 't': eiendomstypen = tomt; break;			//Setter
-	case 'e': eiendomstypen = enebolig; break;	//riktig
-	case 'r': eiendomstypen = rekkehus; break;	//verdi
-	case 'l': eiendomstypen = leilighet; break;	//i
-	case 'h': eiendomstypen = hytte; break;			//enum.
-	};
+	char kommando;				 //Hjelpevariabel
+	do {
+		kommando = les();			//Leser eiendomstype.
+		switch (kommando) {		//Sjekker første bokstav i array.
+		case 'T': eiendomstypen = tomt; break;			//Setter
+		case 'E': eiendomstypen = enebolig; break;	//riktig
+		case 'R': eiendomstypen = rekkehus; break;	//verdi
+		case 'L': eiendomstypen = leilighet; break;	//i
+		case 'H': eiendomstypen = hytte; break;			//enum.
+		default: cout << "\n\nUlovlig kommando. Prov igjen."; break;
+		}
+	} while (kommando != 'T' && kommando != 'E' && kommando != 'R' &&
+		kommando != 'L' && kommando != 'H'); 
 }
 
 //Returnerer 1 om det er en eiendom
