@@ -38,6 +38,7 @@ public:
 	virtual void display();          // Displayer informasjon om en eiendom
 	bool finnPostnummer(int postnr);
 	bool finnOppdragsnr(int oppdnr);
+	void endreData();
 };
 
 #endif

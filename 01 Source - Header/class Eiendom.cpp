@@ -183,3 +183,89 @@ bool Eiendom::finnOppdragsnr(int oppdnr)  {
 	else
 		return false;
 }
+
+void Eiendom::endreData()  {
+	char svar;
+	char buffer[STRLEN];
+
+	cout << "\n Endring av oppdrag nummer " << oppdragsnummer << endl<<endl;
+
+	cout << "\n Dato: " << dato;
+  cout << "\n Endre bruksnummer? (Tast 'J/N')";
+  svar=les();
+  if (svar == 'J')  {
+	Timer * timer3 = new Timer;					//lager nyt timeobjekt
+	dato = timer3->hentDato(); 				//Henter aktuell dato	
+	delete timer3;	
+	cout << "Dato Oppdater!" << endl;
+	}
+
+	cout << "\n Bruksnummer: " << bruksnummer;
+  cout << "\n Endre bruksnummer? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  
+			bruksnummer = lesTall("Bruksnummer", 1000, 9999); //Leser bruksnummer 
+
+	cout << "\n Ansattnummer: " << ansattnummer;
+  cout << "\n Endre ansattnummer? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  
+			ansattnummer = lesTall("Ansattnr", 0, 1000); //Leser ansattnummer
+
+  cout << "\n Gateaddresse: " << gateadresse;
+  cout << "\n Endre gateaddresse? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+			delete [] gateadresse;
+		  lesTxt("Gateadresse", buffer, STRLEN);			//Leser gateadresse
+	    gateadresse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+	    strcpy(gateadresse, buffer); //Kopierer fra buffer til gateadresse
+		}
+
+	cout << "\n Postaddresse: " << postadresse;
+  cout << "\n Endre postaddresse? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+			delete [] postadresse;
+		  lesTxt("Postaddresse", buffer, STRLEN);			//Leser gateadresse
+			postadresse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+			strcpy(postadresse, buffer); //Kopierer fra buffer til gateadresse
+		}
+
+	cout << "\n Eierens navn: " << eiernavn;
+  cout << "\n Endre eiers navn? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+			delete [] eiernavn;
+		  lesTxt("Navn", buffer, STRLEN);			//Leser gateadresse
+			eiernavn = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+			strcpy(eiernavn, buffer); //Kopierer fra buffer til gateadresse
+		}
+
+	cout << "\n Kommune: " << kommunenavn;
+  cout << "\n Endre kommune? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+			delete [] kommunenavn;
+		  lesTxt("Kommune", buffer, STRLEN);			//Leser gateadresse
+			kommunenavn = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+			strcpy(kommunenavn, buffer); //Kopierer fra buffer til gateadresse
+		}
+
+	cout << "\n Beskrivelse: " << beskrivelse;
+  cout << "\n Endre Beskrivelse? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+			delete [] beskrivelse;
+		  lesTxt("Beskrivelse", buffer, STRLEN);			//Leser gateadresse
+			kommunenavn = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+			strcpy(kommunenavn, buffer); //Kopierer fra buffer til gateadresse
+		}
+
+  cout << "\n Endre Eiendomstype? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+		  lesTxt("Type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN); 
+	     enumSwitch(buffer); //leser type eiendom
+		}
+}

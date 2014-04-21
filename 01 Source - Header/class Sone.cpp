@@ -56,6 +56,7 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 //sammenligner en intrsone med alle eiendommene i sonen
 void Sone::sammenlign(IntrSone* isone, int kundnr) {
   Eiendom* eiendom;												//eiendomspeker for aktuell eiendom
+	Sone* sone;
   int antall;																//antall eiendommer i liste
 	int* oppdnr = new int;									//intpeker for oppdragsnret
 	char status;															//snarest eller ukentlig
@@ -146,6 +147,9 @@ void Sone::display()  {
 	}
 }
 
+// Endrer info om en eiendom
+
+
 //Sletter en eiendom med et gitt oppdragsnr
 bool Sone::slettEiendom(int oppdragnr)	{
 	Eiendom* eiendom;									//peker til bolig/eiendom
@@ -192,3 +196,24 @@ void Sone::displayEien(int nr)  {
 	}
 }
 
+bool Sone::endreData(int nr)  {
+	Eiendom* eiendom;									//peker til bolig/eiendom
+	int antEiendommer;							//antall eiendommer i liste
+	int i = 1;										//int for whileloop
+	bool funnet = false;						//bool om eiendommen er funnet
+	//char* sonefil = new char[strlen("SONE000.DTA") + 1];	//navn på fil
+
+	antEiendommer = eiendommene->no_of_elements();	//finner antall i liste
+	while (!funnet && i <= antEiendommer)	{				//sålenge ikke funnet & mindre en antall
+		eiendom = (Eiendom*)eiendommene->remove_no(i);	//fjern akuelle
+		if (eiendom->finnOppdragsnr(nr))	{		//sjekk oppdragsnr
+			funnet = true;													//hvis det er likt funnet er true
+			eiendom->endreData();
+		}
+		else { 
+			eiendommene->add(eiendom); 
+			i++;
+		}            //hvis ikke erlik legg tilbake og tell opp
+	}
+	return funnet;	    //return om eiendommen ble funnet i aktuelle sonen
+}

@@ -19,6 +19,7 @@ public:
 	void displaySone(int sonenr);          // displayer en hel sone 
 	void displayEiendom(char* soneinfo);  //displayer en/flere eiendom
 	void sammenlign(IntrSone* isone, int nr, int kundenr);
+	void eiendomEndre(int nr);
 };
 
 #endif

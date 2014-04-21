@@ -48,6 +48,19 @@ void Soner::eiendomNy(int nr)	{
 	skrivTilFil();													//skriver nye eiendomen til fil
 }
 
+// Endrer informasjon om en eiendom
+void Soner::eiendomEndre(int nr)  {
+	int i = 1;													//int for do-while løkka
+	bool funnet;												//om eiendommen er funnet
+
+	do {														//går igjennom hvær sone som 
+		if (sonene[i] != NULL)	{									//finnes
+			funnet = sonene[i]->endreData(nr);			//og ser etter eiendommen
+			i++;																			//nestesone
+		}
+	} while (!funnet);								//går sålenge den ikke er funnet
+}
+
 //Sletter en eiendom
 void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
 	int i = 1;													//int for do-while løkka
@@ -116,7 +129,8 @@ void Soner::fortsettelseMeny(char valg) {
 			eiendomNy(nr); break;
 		case 'S': cin >> nr;				//slett eiendom, les nr, slett eiendom i sone nr
 			eiendomSlett(nr);  break;
-		case 'E': break;
+		case 'E': cin >> nr;
+			eiendomEndre(nr); break;
 		}
 }
 
