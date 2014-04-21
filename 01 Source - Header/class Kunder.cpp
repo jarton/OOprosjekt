@@ -207,4 +207,5 @@ void Kunder::endreKunde(int knr)  {
 	else
 		cout << "\n Kunne ikke finne kunden med kundenummer: '"<<knr<<"'"<<endl;
 
+	delete [] kundefil;
 }

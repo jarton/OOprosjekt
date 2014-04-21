@@ -84,6 +84,8 @@ void Sone::skrivINF(int kundenr, Eiendom* eien) {
 	ofstream ut(kundeINF, ios::app);
 	eien->skrivINF(ut);
 	
+
+	delete [] kundeINF;
 //lager navn vha kundenr.
 //skriver det som skal med fra eiendommen. apphend hvis det står noe der ifr
 //før
@@ -170,6 +172,7 @@ bool Sone::slettEiendom(int oppdragnr)	{
 		else { eiendommene->add(eiendom); i++;} //hvis ikke erlik legg tilbake og tell opp
 	}
 	return funnet;	    //return om eiendommen ble funnet i aktuelle sonen
+	delete [] sonefil;
 }
 
 //displayer en/flere eiendommer
@@ -218,4 +221,5 @@ bool Sone::endreData(int nr)  {
 		}            //hvis ikke erlik legg tilbake og tell opp
 	}
 	return funnet;	    //return om eiendommen ble funnet i aktuelle sonen
+	delete [] sonefil;
 }
