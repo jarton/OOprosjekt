@@ -17,6 +17,7 @@ Bolig::Bolig(int oppdragsnr) : Eiendom(oppdragsnr) 	{
 	boareal = lesTall("Boareal", 2, 1000);					//Leser boareal
 	antSoverom = lesTall("Antall soverom", 0, 250);	//Leser antall soverom
 	cout << "\nTil leie eller salgs (L/S): ";		//Leser om den er til leie eller salgs
+	kommando = les();
 	if (kommando == 'L')
 		statusonsket = leie;
 	else if (kommando == 'S')
