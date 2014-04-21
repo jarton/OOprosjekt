@@ -39,7 +39,7 @@ void Kunde::finnMatch(const char boligfeed) {
     sonenum = intrsone->hentsonenum();													//henter sonnr
     if (intrsone->hentBoligfeeden() == boligfeed)  {  //sjekker om kunden vil ha info 
 			skrivINF();
-			soner.sammenlign(intrsone, kundenummer); 			//snarest, sammenligner inrsonen  
+			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen  
 		}
 		IntrSoneliste-> add(intrsone); 										//med alle eiendommer
 	}
