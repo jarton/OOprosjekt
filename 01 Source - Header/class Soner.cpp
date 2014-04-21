@@ -54,11 +54,13 @@ void Soner::eiendomEndre(int nr)  {
 	bool funnet;												//om eiendommen er funnet
 
 	do {														//går igjennom hvær sone som 
-		if (sonene[i] != NULL)	{									//finnes
+		if (sonene[i] != NULL)	{								//finnes
 			funnet = sonene[i]->endreData(nr);			//og ser etter eiendommen
-			i++;																			//nestesone
+			if (funnet)
+				break;
 		}
-	} while (!funnet);								//går sålenge den ikke er funnet
+	  i++;															//nestesone
+	} while (!funnet && i<=MAXSONER);								//går sålenge den ikke er funnet
 }
 
 //Sletter en eiendom

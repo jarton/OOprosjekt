@@ -201,7 +201,7 @@ bool Sone::endreData(int nr)  {
 	int antEiendommer;							//antall eiendommer i liste
 	int i = 1;										//int for whileloop
 	bool funnet = false;						//bool om eiendommen er funnet
-	//char* sonefil = new char[strlen("SONE000.DTA") + 1];	//navn på fil
+	char* sonefil = new char[strlen("SONE000.DTA") + 1];	//navn på fil
 
 	antEiendommer = eiendommene->no_of_elements();	//finner antall i liste
 	while (!funnet && i <= antEiendommer)	{				//sålenge ikke funnet & mindre en antall
@@ -209,6 +209,10 @@ bool Sone::endreData(int nr)  {
 		if (eiendom->finnOppdragsnr(nr))	{		//sjekk oppdragsnr
 			funnet = true;													//hvis det er likt funnet er true
 			eiendom->endreData();
+			LagNavn(sonefil, "SONE", ".DT2", soneNummer, 3);	//får navn på sonen sin fil
+			ofstream ut(sonefil);												//åpener sonen sin fil
+			skrivTilFil(ut);							//skriver oppdart eiendomliste til fil
+			eiendommene->add(eiendom);
 		}
 		else { 
 			eiendommene->add(eiendom); 

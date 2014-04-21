@@ -191,7 +191,7 @@ void Eiendom::endreData()  {
 	cout << "\n Endring av oppdrag nummer " << oppdragsnummer << endl<<endl;
 
 	cout << "\n Dato: " << dato;
-  cout << "\n Endre bruksnummer? (Tast 'J/N')";
+  cout << "\n Endre dato? (Tast 'J/N')";
   svar=les();
   if (svar == 'J')  {
 	Timer * timer3 = new Timer;					//lager nyt timeobjekt
@@ -258,8 +258,8 @@ void Eiendom::endreData()  {
     if (svar == 'J')  {
 			delete [] beskrivelse;
 		  lesTxt("Beskrivelse", buffer, STRLEN);			//Leser gateadresse
-			kommunenavn = new char[strlen(buffer) + 1]; //Gir pekeren innhold
-			strcpy(kommunenavn, buffer); //Kopierer fra buffer til gateadresse
+			beskrivelse = new char[strlen(buffer) + 1]; //Gir pekeren innhold
+			strcpy(beskrivelse, buffer); //Kopierer fra buffer til gateadresse
 		}
 
   cout << "\n Endre Eiendomstype? (Tast 'J/N')";
