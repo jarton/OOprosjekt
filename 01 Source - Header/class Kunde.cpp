@@ -38,7 +38,7 @@ void Kunde::finnMatch(const char boligfeed) {
     intrsone = (IntrSone*) IntrSoneliste->remove_no(i);				//tar ut et objekt
     sonenum = intrsone->hentsonenum();													//henter sonnr
     if (intrsone->hentBoligfeeden() == boligfeed) //sjekker om kunden vil ha info 
-			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen 
+			soner.sammenlign(intrsone, sonenum, kundenummer); 			//snarest, sammenligner inrsonen   <<<------ // Her er det en feil! Programmet går ikke inn på funksjonen!
 		IntrSoneliste-> add(intrsone); 										//med alle eiendommer
 	}
 }						
