@@ -3,8 +3,7 @@
 
 #include "listtool2.h"
 #include "enumer.h"
-#include <fstream>
-#include <iostream>
+#include <fstream>           // ifstream, Ofstream
 #include "class Eiendom.h"
 using namespace std;
 
@@ -19,21 +18,19 @@ private:
 	List* IntrSoneliste;
 
 public:
-	~Kunde();
-	Kunde(ifstream & inn, int nr);
-	void skrivTilFil(ofstream & ut);
-	bool sjekkKNr(int knr);
-	Kunde(int knr);		//Constructor
-	void sjekkNrNvn(char* kundeinfo);
-	void displayKunde();
-	bool sjekkNr(int nr);
-	void finnMatch(const char boligfeed);
-	int hentKundenummer();
-	void endreKundeData();
-	void skrivExx(int oppdnrMatch);	
-	void sjekkEnEien(Eiendom* eien);
-
-	void skrivINF();
+	~Kunde();                        // Destructor
+	Kunde(ifstream & inn, int nr);   // Constructor som leser fra fil
+	void skrivTilFil(ofstream & ut);  // skriver data til fil
+	bool sjekkKNr(int knr);           // Sjekker om kundenummer er rett
+	Kunde(int knr);		                //Constructor - Ny Kunde
+	void sjekkNrNvn(char* kundeinfo);  // Sjekker om Kundenummer og navn er rett
+	void displayKunde();               // Displayer info om en kunde
+	void finnMatch(const char boligfeed);  // Finner match: eiendommer og kunder
+	int hentKundenummer();              // Henter kundenummer
+	void endreKundeData();              // Endrer data om kunden
+	void skrivExx(int oppdnrMatch);	    // Skriver kunde til Exxx.DTA
+	void sjekkEnEien(Eiendom* eien);    // Finner match: eiendommer og kunder
+	void skrivINF();                    // Skriver kunde til INF filen
 };
 
 
