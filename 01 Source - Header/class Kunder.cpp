@@ -180,9 +180,10 @@ void Kunder::sammenlign(Eiendom* eien) {
 				int antkunder;
 	antkunder=kundeliste->no_of_elements();
 	for (int i = 1; i <= antkunder; i++)	{
-		kunde = (Kunde*) kundeliste->remove_no(i);
-		if (eien == NULL)
-		 	kunde->finnMatch('U');
+		kunde = (Kunde*) kundeliste->remove_no(i);		
+		if (eien == NULL)  {
+		 	kunde->finnMatch('U'); 
+		}
 		else
 			kunde->sjekkEnEien(eien);
 		kundeliste->add(kunde);

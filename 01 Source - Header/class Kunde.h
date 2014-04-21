@@ -32,6 +32,8 @@ public:
 	void endreKundeData();
 	void skrivExx(int oppdnrMatch);	
 	void sjekkEnEien(Eiendom* eien);
+
+	void skrivINF();
 };
 
 
