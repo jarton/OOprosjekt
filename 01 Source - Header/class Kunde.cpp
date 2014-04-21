@@ -281,7 +281,8 @@ void Kunde::endreKundeData()  {
 	  	intrsone->endreIntrSone();              // skriver til fil
 		  IntrSoneliste->add(intrsone);                   // legger tilbake i listen
 	  }
-  }
+	}
+	finnMatch('S');  //finner eiendommer hvis kunden vil ha info snarest
 }
 
 // Skriver persondata til INF-filen
