@@ -275,6 +275,17 @@ void Eiendom::skrivINF(ofstream &ut) {
 	ut << "Adresse: " << gateadresse << ", " << postadresse <<  endl;
 	ut << "Kommunde: " <<kommunenavn << endl;
 	ut << "Eier: " << eiernavn << endl;
-	ut << "Type: " << eiendomstypen << endl;
+	ut << "Type: ";
+	if (eiendomstypen == tomt)						//Sjekker
+		ut << "tomt";												//type
+	else if (eiendomstypen == enebolig)		//eiendom
+		ut << "enebolig";										//og
+	else if (eiendomstypen == rekkehus)		//skriver
+		ut << "rekkehus";										//den
+	else if (eiendomstypen == leilighet)	//til
+		ut << "leilighet";									//fil
+	else
+		ut << "hytte";
+	ut << endl;
 	ut << "Beskrivelse: " << beskrivelse << endl;
 }
