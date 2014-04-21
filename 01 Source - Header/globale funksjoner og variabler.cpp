@@ -77,6 +77,7 @@ strcpy(t, s1);														    //legger første del av navnet inn
 strcat(t, nuller);													     //legger sp på nullene
 strcat(t, nummer);																        //så nummer
 strcat(t, s2);																	      //og tilslutt filendingen
+delete [] nummer;
 }
 
 
