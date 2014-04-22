@@ -11,6 +11,59 @@
 
 using namespace std;
 
+// Kunde constructor som legger til ny kunde
+Kunde::Kunde(int knr) : Num_element(knr) {
+	char ch[STRLEN];
+	char kommando;
+	IntrSone* intrsonen;                         // Peker til intrsone-objekt
+	IntrSone* intrsonekopi;                      // Peker til kopiobjekt.
+
+	kundenummer = knr;
+	cout << "\n\nTILDELT KUNDENUMMER: " << knr;
+
+	tlf = lesTall("\nTelefon ", 10000000, 99999999);      //Leser tlf-nummer
+
+	lesTxt("\nNavn", ch, STRLEN);                         //leser inn navn
+	navn = new char[strlen(ch) + 1];             // lager ny char med eksakt lengde
+	strcpy(navn, ch);
+
+	lesTxt("\nGateadresse", ch, STRLEN);             //leser gateadresse
+	gateadresse = new char[strlen(ch) + 1];      // lager ny char med eksakt lengde
+	strcpy(gateadresse, ch);
+
+	lesTxt("\nPostnummer", ch, STRLEN);              //leser postnummer
+	postadresse = new char[strlen(ch) + 1];      // lager ny char med eksakt lengde
+	strcpy(postadresse, ch);
+
+	lesTxt("\nE-post", ch, STRLEN);              // leser mail
+	mail = new char[strlen(ch) + 1];           // lager ny char med eksakt lengde
+	strcpy(mail, ch);
+
+	IntrSoneliste = new List(Sorted);            //lager IntrSone-liste.
+	int sonenr = lesTall("\nSonenummer", 1, 100);  // leser inn tall 1-100
+
+	intrsonen = new IntrSone(sonenr);                 //Nytt IntrSone objekt..
+	IntrSoneliste->add(intrsonen);                     //Legger det til i listen.
+
+	cout << "\nLegge til en ny sone? (J/N)";
+	kommando = les();                                // Leser inn et upcaset tegn
+
+	while (kommando == 'J') {                      //Hvis "ja".
+
+		sonenr = lesTall("\nSonenummer", 1, 100);        //Leser sonenummer.
+		if (!IntrSoneliste->in_list(sonenr))  {
+			intrsonekopi = new IntrSone(*intrsonen);       //Default copy constructor
+			intrsonekopi->endreSonenr(sonenr);        //Endrer sonenummeret på kopien.
+			IntrSoneliste->add(intrsonekopi);              //Legger til kopien i listen.
+		}
+		else
+			cout << "OBS!! Nummer " << sonenr << " ligger allerede i listen!" << endl;
+
+		cout << "\n\nLegge til en ny sone? (J/N)";
+		kommando = les();                             // Leser inn et upercaset teg
+	}
+}
+
 //går igjennom alle interessesonene til kunden og finner match for en eiendom
 void Kunde::sjekkEnEien(Eiendom* eien) {
 	IntrSone* intrsone;														//peker på aktuell intrsone
@@ -86,60 +139,6 @@ void Kunde::displayKunde()  {
 	cout << "\n E-post: " << mail;
 	cout << "\n Adresse: " << gateadresse<<", "<<postadresse;
 }	
-
-
-// Kunde constructor som legger til ny kunde
-Kunde :: Kunde(int knr) : Num_element(knr) {  
-	char ch[STRLEN];
-	char kommando;
-	IntrSone* intrsonen;                         // Peker til intrsone-objekt
-	IntrSone* intrsonekopi;                      // Peker til kopiobjekt.
-
-	kundenummer = knr;           
-	cout << "\n\nTILDELT KUNDENUMMER: " << knr;
-
-	tlf = lesTall("\nTelefon ", 10000000, 99999999);      //Leser tlf-nummer
-
-	lesTxt("\nNavn", ch, STRLEN);                         //leser inn navn
-	navn = new char[strlen(ch)+1];             // lager ny char med eksakt lengde
-	strcpy(navn, ch);
-
-	lesTxt("\nGateadresse", ch, STRLEN);             //leser gateadresse
-	gateadresse = new char[strlen(ch)+1];      // lager ny char med eksakt lengde
-	strcpy(gateadresse, ch);
-
-	lesTxt("\nPostnummer", ch, STRLEN);              //leser postnummer
-	postadresse = new char[strlen(ch)+1];      // lager ny char med eksakt lengde
-	strcpy(postadresse, ch);
-
-	lesTxt("\nE-post", ch, STRLEN);              // leser mail
-	mail = new char[strlen(ch)+1];           // lager ny char med eksakt lengde
-	strcpy(mail, ch);
-
-	IntrSoneliste = new List(Sorted);            //lager IntrSone-liste.
-	int sonenr = lesTall("\nSonenummer", 1, 100);  // leser inn tall 1-100
-	
-	intrsonen = new IntrSone(sonenr);                 //Nytt IntrSone objekt..
-	IntrSoneliste->add(intrsonen);                     //Legger det til i listen.
-	
-	cout << "\nLegge til en ny sone? (J/N)";
-	kommando = les();                                // Leser inn et upcaset tegn
-
-	while (kommando == 'J') {                      //Hvis "ja".
-		
-		sonenr = lesTall("\nSonenummer", 1, 100);        //Leser sonenummer.
-		if (!IntrSoneliste->in_list(sonenr))  {
-			intrsonekopi = new IntrSone(*intrsonen);       //Default copy constructor
-		  intrsonekopi->endreSonenr(sonenr);        //Endrer sonenummeret på kopien.
-			IntrSoneliste->add(intrsonekopi);              //Legger til kopien i listen.
-		}
-		else
-			cout << "OBS!! Nummer " << sonenr << " ligger allerede i listen!" << endl;
-		
-		cout << "\n\nLegge til en ny sone? (J/N)";
-		kommando = les();                             // Leser inn et upercaset teg
-	} 
-}
 
 // Funksjon som returnerer true\false om kundenummer er rett
 bool Kunde::sjekkKNr(int knr) {
@@ -279,25 +278,25 @@ void Kunde::endreKundeData()  {
 	svar=les();
 	if (svar=='J')  {
 		int antIntrSoner = IntrSoneliste->no_of_elements(); // antall intrsoner
-  	IntrSone* intrsone;                              // lager intrsone peker
+  		IntrSone* intrsone;                              // lager intrsone peker
 	  for (int i = 1; i <= antIntrSoner; i++)  {    // loop gjennom alle intrsoner
 	    intrsone = (IntrSone*) IntrSoneliste->remove_no(i);  // fjerner fra listen
 	  	intrsone->endreIntrSone();              // skriver til fil
-		  IntrSoneliste->add(intrsone);                   // legger tilbake i listen
+		IntrSoneliste->add(intrsone);                   // legger tilbake i listen
 	  }
+	  finnMatch('S');			//finner eiendommer hvis kunden vil ha info snarest
 	}
-	finnMatch('S');  //finner eiendommer hvis kunden vil ha info snarest
 }
 
 // Skriver persondata til INF-filen
 void Kunde::skrivINF() {
 	char * kundeINF  = new char [strlen("KUNDE0001001.INF")+1];
-	LagNavn(kundeINF, "KUNDE", ".INF", kundenummer, 7);
+	LagNavn(kundeINF, "KUNDE", ".INF", kundenummer, 7);			//lager filnavn
   ofstream ut(kundeINF);
-	ut << kundenummer << endl;
+	ut << kundenummer << endl;				//skriver ut all kundeinfoen
 	ut << navn << endl;
 	ut << postadresse <<", "<< gateadresse << endl;
 	ut << tlf << endl;
 	ut << mail << endl << endl;
-	delete [] kundeINF;
+	delete [] kundeINF;				//sletter filnavn arrayen
 }
