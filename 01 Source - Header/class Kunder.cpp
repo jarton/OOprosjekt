@@ -2,47 +2,34 @@
 #include <fstream>
 #include "class Kunder.h"
 #include "class Kunde.h"
-#include <cstdio>       // Remove
-#include <stdio.h>      // Remove
 #include <cstring>
 #include "conster.h"
 #include "globale funksjoner og variabler.h"
 using namespace std;
 
-void Kunder::fortsettelseMeny()  { //Meny innad K
-	char valg;
-	char kundeinfo[STRLEN];
-	int kundenummer;
+//CONSTRUCTOR
+Kunder::Kunder()  {
+	Kunde* kunde;                       // Kunde peker
+	kundeliste = new List(Sorted);     //Lager liste. 
+	ifstream inn("SISTE.DTA");    // Finner data om siste
+	inn >> forsteKunde;                // leser inn første kunde
+	inn >> sisteKunde;                // leser inn siste kunde
+	inn.ignore();                     // ignorerer oppdragsnummer
 
-	valg = les(); //Leser et upcaset tegn
-	switch(valg) {
-		case 'D': 
-		cin.ignore();
-		cin.getline(kundeinfo,STRLEN);  //Leser inn kundeinfo
-		finnKunde(kundeinfo);	//Finner kunden og displayer
-		break;
-		case 'N': nyKunde(); break; //Lager ny kunde
-		case 'S': 
-			cin >> kundenummer;		//Henter kundenummer
-			if (kundenummer < forsteKunde || kundenummer > sisteKunde) //Hvis kunden ikke finnes
-				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
-			else
-  			slettKunde(kundenummer); break; //Sletter kunden.
-		case 'E': 
-			cin >> kundenummer;		//Henter kundenummer
-			if (kundenummer < forsteKunde || kundenummer > sisteKunde) //Hvis kunden ikke finnes
-				cout << "\n OBS! Ingen kunde med kundenummer '"<<kundenummer<<"' er regisrtert!";
-			else
-  			endreKunde(kundenummer); 
-			break;
-
-		default: break;
-	 }
+	char* kundedta = new char[strlen("KUNDE0001000.DTA") + 1];
+	for (int i = forsteKunde; i <= sisteKunde; i++)  { // loop fra første tilsiste
+		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);    // Lager filnavn
+		ifstream dtainn(kundedta);                  // Oppretter filen
+		if (dtainn)  {																//Hvis den finnes..
+			kunde = new Kunde(dtainn, i);            // Lager en ny kunde
+			kundeliste->add(kunde);                  // legger kunden til i listen.
+		}
+	}
 }
 
+//finner en spesiell kunde og displayer
 void Kunder::finnKunde(char* kundeinfo)  {
 	Kunde* kunde;
-	//List* kundeliste;
 	int antallKunder= kundeliste->no_of_elements(); //ant. kunder
 	int i;
 
@@ -61,25 +48,6 @@ void Kunder :: nyKunde()  { //Lager ny kunde
 	kundeliste->add(kunde); //Legger den inn i listen over kunder.
 	kunde->finnMatch('S');  //finner eiendommer hvis kunden vil ha info snarest
 	skrivTilFil();
-}
-
-Kunder :: Kunder()  { //CONSTRUCTOR
-	Kunde* kunde;                       // Kunde peker
-	kundeliste = new List(Sorted);     //Lager liste. 
-	ifstream inn("SISTE.DTA");    // Finner data om siste
-	inn >> forsteKunde;                // leser inn første kunde
-	inn >> sisteKunde;                // leser inn siste kunde
-	inn.ignore();                     // ignorerer oppdragsnummer
-
-	char* kundedta = new char[strlen("KUNDE0001000.DTA")+1];
-	for (int i = forsteKunde; i <=sisteKunde; i++)  { // loop fra første tilsiste
-		LagNavn(kundedta, "KUNDE", ".DTA", i, 7);    // Lager filnavn
-		ifstream dtainn(kundedta);                  // Oppretter filen
-		if (dtainn)  {																//Hvis den finnes..
-			kunde = new Kunde(dtainn, i);            // Lager en ny kunde
-			kundeliste->add(kunde);                  // legger kunden til i listen.
-		}
-	}
 }
 
 // Sletter en kunda fra datastrukturen, samt DTA- filen
@@ -164,13 +132,13 @@ void Kunder::skrivEx(int kundenummer, int oppdrnr) {
 Kunde* kunde;
 int kundenr, antKunder;
 
-antKunder=kundeliste->no_of_elements();
-for (int i =1; i <= antKunder; i++) {
-	kunde = (Kunde*) kundeliste->remove_no(i);
-	kundenr = kunde->hentKundenummer();
-	if (kundenummer == kundenr)
-		kunde->skrivExx(oppdrnr);
-	kundeliste->add(kunde);
+antKunder=kundeliste->no_of_elements();		//finner antall
+for (int i =1; i <= antKunder; i++) {		//går igjennom alle
+	kunde = (Kunde*) kundeliste->remove_no(i);	//tar ut aktuelle
+	kundenr = kunde->hentKundenummer();			//henter kundenr
+	if (kundenummer == kundenr)			//sjekker om det erlikt medsent
+		kunde->skrivExx(oppdrnr);		//hvis ja, skriv den kunden til exx.dta
+	kundeliste->add(kunde);			//leg tilbake i lista
   }
 }
 
@@ -179,15 +147,15 @@ for (int i =1; i <= antKunder; i++) {
 void Kunder::sammenlign(Eiendom* eien) { 
 	Kunde* kunde;
 	int antkunder;
-	antkunder=kundeliste->no_of_elements();
-	for (int i = 1; i <= antkunder; i++)	{
-		kunde = (Kunde*) kundeliste->remove_no(i);		
-		if (eien == NULL)  {
-		 	kunde->finnMatch('U'); 
+	antkunder=kundeliste->no_of_elements();   //finner antall kunder
+	for (int i = 1; i <= antkunder; i++)	{	//går igjennom alle kunder
+		kunde = (Kunde*) kundeliste->remove_no(i);	//tar ut aktuelle
+		if (eien == NULL)  {						//hvis U kommando
+		 	kunde->finnMatch('U');				//ta intrsoner som er ukentlig
 		}
-		else
-			kunde->sjekkEnEien(eien);
-		kundeliste->add(kunde);
+		else						//hvis en eiendom skal == med alle kunder
+			kunde->sjekkEnEien(eien);	//sammenligner med alle intrsonene 
+		kundeliste->add(kunde);			//kunde tilbake i lista
 	}
 }
 
@@ -196,16 +164,48 @@ void Kunder::endreKunde(int knr)  {
   Kunde* kunde;                                       // Kunde peker
 	char* kundefil = new char[strlen("KUNDE0001000.DTA") + 1];
 	LagNavn(kundefil, "KUNDE", ".DTA", knr, 7);  // lager filnavn
-	ofstream ut(kundefil);
+	ofstream ut(kundefil);							//åpner fila
 
 	if(kundeliste->in_list(knr))  {
     kunde = (Kunde*)kundeliste->remove(knr);    // fjerner en kunde fra listen
-	  kunde->endreKundeData();
-	  kunde->skrivTilFil(ut);
-	  kundeliste->add(kunde);
+	  kunde->endreKundeData();				//endrer kundedata
+	  kunde->skrivTilFil(ut);				//skriver endringene til fil
+	  kundeliste->add(kunde);			//tilbake i lista
 	}
 	else
 		cout << "\n Kunne ikke finne kunden med kundenummer: '"<<knr<<"'"<<endl;
 
-	delete [] kundefil;
+	delete [] kundefil;			//sletter arrayen som hadde filnavnet
+}
+
+//fortsettelse av menyen fra main
+void Kunder::fortsettelseMeny()  { //Meny innad K
+	char valg;
+	char kundeinfo[STRLEN];
+	int kundenummer;
+
+	valg = les(); //Leser et upcaset tegn
+	switch (valg) {
+	case 'D':
+		cin.ignore();
+		cin.getline(kundeinfo, STRLEN);  //Leser inn kundeinfo
+		finnKunde(kundeinfo);	//Finner kunden og displayer
+		break;
+	case 'N': nyKunde(); break; //Lager ny kunde
+	case 'S':
+		cin >> kundenummer;		//Henter kundenummer
+		if (kundenummer < forsteKunde || kundenummer > sisteKunde) //Hvis kunden ikke finnes
+			cout << "\n OBS! Ingen kunde med kundenummer '" << kundenummer << "' er regisrtert!";
+		else
+			slettKunde(kundenummer); break; //Sletter kunden.
+	case 'E':
+		cin >> kundenummer;		//Henter kundenummer
+		if (kundenummer < forsteKunde || kundenummer > sisteKunde) //Hvis kunden ikke finnes
+			cout << "\n OBS! Ingen kunde med kundenummer '" << kundenummer << "' er regisrtert!";
+		else
+			endreKunde(kundenummer);
+		break;
+
+	default: break;
+	}
 }
