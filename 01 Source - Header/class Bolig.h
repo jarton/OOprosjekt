@@ -18,6 +18,7 @@ public:
 	void displayBolig();                  // Displayer informasjon om en bolig
 	void hentInt(int* i, const char s);   // Return en int til sammenlikning
 	const char * hentEnum(const char* s); // Return enum til sammenlikning
+	void endreBolig();                    // endrer informasjon om en bolig
 };
 
 #endif
