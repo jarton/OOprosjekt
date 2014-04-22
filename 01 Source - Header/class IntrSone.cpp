@@ -209,10 +209,6 @@ void IntrSone:: endreIntrSone()   {
 			statusonskeFunk(); //Switchfunksjon
 
 	}
-
-	/* TODO::::::FRA OPPGAVE::For de sonene kunden skifter til 
-	 * umiddelbar/snarest boliginfo om, vil det også være
-aktuelt å legge til info om kunden bakerst på filene ’Exxxxxxx.DTA’.*/
 }
 
 
