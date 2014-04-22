@@ -25,8 +25,8 @@ public:
 	Eiendom(ifstream & inn, int onr);     // Constructor. Leser data fra fil
 	virtual ~Eiendom();                   // Virtuell destructor
 	void skrivTilFil(ofstream & ut);      // Skriver data til fil
-	virtual void skrivBoligTilFil(ofstream & ut); // Skriv til fil (bolig)
-	virtual void displayBolig();                // Displayer en bolig
+	virtual void skrivBoligTilFil(ofstream & ut){} // Skriv til fil (bolig)
+	virtual void displayBolig(){}               // Displayer en bolig
 	virtual bool type();                        // Sjekker type (bolig\eiendom)
 	virtual void hentInt(int* i, const char s); //Return en int til sammenlikning
 	virtual const char* hentEnum(const char* s);//Return enum til sammenlikning
