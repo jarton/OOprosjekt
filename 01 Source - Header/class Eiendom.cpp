@@ -102,14 +102,14 @@ void Eiendom::skrivTilFil(ofstream & ut)	{
 		<< '\n' << kommunenavn
 		<< '\n' << beskrivelse
 		<< '\n';
-	if (eiendomstypen == tomt)						//Sjekker
-		ut << "tomt";												//type
+	if (eiendomstypen == tomt)					//Sjekker
+		ut << "tomt";							//type
 	else if (eiendomstypen == enebolig)		//eiendom
-		ut << "enebolig";										//og
+		ut << "enebolig";						//og
 	else if (eiendomstypen == rekkehus)		//skriver
-		ut << "rekkehus";										//den
+		ut << "rekkehus";					//den
 	else if (eiendomstypen == leilighet)	//til
-		ut << "leilighet";									//fil
+		ut << "leilighet";					//fil
 	else
 		ut << "hytte";
 }
@@ -175,29 +175,31 @@ void Eiendom::display()  {
 bool Eiendom::finnPostnummer(int postnr)  {
 	bool erlik;
 	char * postpek = postadresse; //Hjelpepeker
-	char postarr[5]; //Hjelpearray
-	int i = 0;
+	char postarr[5];			//Hjelpearray
+	int i = 0;				//antall som erlike
 
-	sprintf(postarr, "%d", postnr); //Gjør postnr om til tekst,	
-	do {														//og setter inn i postarr.
-		if (*postpek++ == postarr[i++])
-			erlik = true;
-		else erlik = false;
-	} while (erlik);
+	sprintf(postarr, "%d", postnr);			//Gjør postnr om til tekst,	
+	do {										
+		if (*postpek++ == postarr[i++])		//teller opp i sålenge
+			erlik = true;					//tallene er like
+		else erlik = false;					//i medsendt og 
+	} while (erlik);			        //postnummeret som finnes fra før
 		
-	if (i > 4)
-		return true;
+	if (i > 4)					//hvis i er større en 4 er postnummeret likt
+		return true;				//isåfall return true
 	else
-		return false;
+		return false;			//hvis ikke false
 }
 
+//Sjekker om oppdragsnummeret er likt.
 bool Eiendom::finnOppdragsnr(int oppdnr)  {
-	if(oppdnr==oppdragsnummer) //Sjekker om oppdragsnummeret er likt.
+	if(oppdnr==oppdragsnummer) 
 		return true;
 	else
 		return false;
 }
 
+//Endrer data i en eiendom
 void Eiendom::endreData()  {
 	char svar;
 	char buffer[STRLEN];
@@ -281,7 +283,7 @@ void Eiendom::endreData()  {
     if (svar == 'J')  {
 		cout << "\n\nEiendomstype ([T]omt, [E]nebolig," <<
 			"	[R]ekkehus, [L]eilighet, [H]ytte): ";
-	     enumSwitch(); //leser type eiendom
+	     enumSwitch();							//leser type eiendom
 		}
 }
 
@@ -292,13 +294,13 @@ void Eiendom::skrivINF(ofstream &ut) {
 	ut << "Eier: " << eiernavn << endl;
 	ut << "Type: ";
 	if (eiendomstypen == tomt)						//Sjekker
-		ut << "tomt";												//type
-	else if (eiendomstypen == enebolig)		//eiendom
-		ut << "enebolig";										//og
-	else if (eiendomstypen == rekkehus)		//skriver
-		ut << "rekkehus";										//den
-	else if (eiendomstypen == leilighet)	//til
-		ut << "leilighet";									//fil
+		ut << "tomt";									//type
+	else if (eiendomstypen == enebolig)				//eiendom
+		ut << "enebolig";							//og
+	else if (eiendomstypen == rekkehus)				//skriver
+		ut << "rekkehus";							//den
+	else if (eiendomstypen == leilighet)				//til
+		ut << "leilighet";							//fil
 	else
 		ut << "hytte";
 	ut << endl;
