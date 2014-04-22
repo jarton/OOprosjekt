@@ -22,3 +22,28 @@
 <EIENDOMSTYPE: HYTTE, REKKEHUS..>
 <STATUS: LEIE, SELGE>
 
+Eksempel:
+
+1001
+Brede Berntsen
+61178223
+Belgiagata 33
+2444 Bergen
+Brd@ere.ddd
+3
+
+1
+2500000
+1
+4
+0
+0
+1
+
+94
+250000
+23
+2
+0
+4
+1
