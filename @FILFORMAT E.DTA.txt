@@ -1,2 +1,7 @@
 <KUNDENS NAVN>
 <EPOST>
+
+Eksempel:
+
+Brede Berntsen
+Brd@ere.no

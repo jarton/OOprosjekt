@@ -18,3 +18,25 @@
 <EIER>
 <TYPE: TOMT, HYTTE etc>
 <BESKRIVELSE>
+
+Eksempel:
+
+1001
+Brede Berntsen
+2444 Bergen, Belgiagata 33
+61178223
+Brd@ere.ddd
+
+Bruksnummer: 111110
+Adresse: testgata 2, 2819 gjøvik
+Kommunde: gjøvik komune
+Eier: ola norman
+Type: tomt
+Beskrivelse: gressplen
+
+Bruksnummer: 1112
+Adresse: 3, 3
+Kommunde: 3
+Eier: 3
+Type: tomt
+Beskrivelse: 3
