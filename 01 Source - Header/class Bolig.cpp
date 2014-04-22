@@ -135,10 +135,6 @@ void Bolig::endreData()  {
 }
 
 
-
-	
-	Statusonske statusonsket;             // Enum (Salg,Leie)
-
 		
 	
 	
