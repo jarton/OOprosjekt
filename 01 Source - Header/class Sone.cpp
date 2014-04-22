@@ -163,7 +163,7 @@ bool Sone::slettEiendom(int oppdragnr)	{
 		if (eiendom->finnOppdragsnr(oppdragnr))	{		//sjekk oppdragsnr
 			funnet = true;													//hvis det er likt funnet er true
 			eiendommene->destroy(i);								//slett den akuelle
-			LagNavn(sonefil, "SONE", ".DT2", soneNummer, 3);	//får navn på sonen sin fil
+			LagNavn(sonefil, "SONE", ".DTA", soneNummer, 3);	//får navn på sonen sin fil
 			ofstream ut(sonefil);												//åpener sonen sin fil
 			skrivTilFil(ut);							//skriver oppdart eiendomliste til fil
 			cout << "eiendommen ble fjernet\n";		//bekreftelse på sletting
@@ -212,7 +212,7 @@ bool Sone::endreData(int nr)  {
 		if (eiendom->finnOppdragsnr(nr))	{		//sjekk oppdragsnr
 			funnet = true;													//hvis det er likt funnet er true
 			eiendom->endreData();
-			LagNavn(sonefil, "SONE", ".DT2", soneNummer, 3);	//får navn på sonen sin fil
+			LagNavn(sonefil, "SONE", ".DTA", soneNummer, 3);	//får navn på sonen sin fil
 			ofstream ut(sonefil);												//åpener sonen sin fil
 			skrivTilFil(ut);							//skriver oppdart eiendomliste til fil
 			eiendommene->add(eiendom);
