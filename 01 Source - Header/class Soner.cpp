@@ -1,17 +1,17 @@
-#include <iostream>
+#include <iostream>         // cin cout
 #include "globale funksjoner og variabler.h"
 #include "conster.h"
 #include "class Soner.h"
-#include <fstream>
-#include <cstdlib>
-#include <stdlib.h>  				
+#include <fstream>          // ifstream ofstream
+#include <cstdlib>          // atoi
+#include <stdlib.h>  				// remove file 
 #include <cstring> 					// strcat, strcpy
 #include <cctype>           // to upper
 using namespace std;
 
 
 
-//constructor
+//constructor som oppretter nye soner fra fil
 Soner::Soner()	{
 	ifstream inn("SISTE.DTA");				//leser inn siste brukte oppdrag
 	inn.ignore(1000000, '\n');
@@ -29,8 +29,9 @@ Soner::Soner()	{
 		if (inn)																						//hvis den finnes
 			sonene[i] = new Sone(inn, i);								//lag ny sone og les den inn
 	}																										//med les inn costructor
-	delete [] sonefil;
+	delete [] sonefil;                           // sletter peker til sonefil
 }
+
 
 //Leser inn en ny einendom i eksisterende sone eller lager ny sone
 void Soner::eiendomNy(int nr)	{									
@@ -49,6 +50,7 @@ void Soner::eiendomNy(int nr)	{
 	skrivTilFil();													//skriver nye eiendomen til fil
 }
 
+
 // Endrer informasjon om en eiendom
 void Soner::eiendomEndre(int nr)  {
 	int i = 1;													//int for do-while løkka
@@ -57,12 +59,13 @@ void Soner::eiendomEndre(int nr)  {
 	do {														//går igjennom hvær sone som 
 		if (sonene[i] != NULL)	{								//finnes
 			funnet = sonene[i]->endreData(nr);			//og ser etter eiendommen
-			if (funnet)
-				break;
+			if (funnet)                            // hvis funnet
+				break;                             // hopper ut av loopen
 		}
 	  i++;															//nestesone
 	} while (!funnet && i<=MAXSONER);								//går sålenge den ikke er funnet
 }
+
 
 //Sletter en eiendom
 void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
@@ -77,23 +80,27 @@ void Soner::eiendomSlett(int nr)	{			//int nr er oppdragsnr
 	} while (!funnet);								//går sålenge den ikke er funnet
 }
 
+
+//Sender informasjon fra IntrSone videre til soner for å sammenlikne
 void Soner::sammenlign(IntrSone* isone, int nr, int kundenr) {
-  if (sonene[nr] != NULL)
-	sonene[nr]->sammenlign(isone, kundenr);  // Tidligere : sonene[nr]->sammenlign(isone, kundenr, type)
+  if (sonene[nr] != NULL)       // hvis sonen finnes
+	sonene[nr]->sammenlign(isone, kundenr);   // sendes videre for å sammenlikne
 }
 
+
 //Skriver alle sonene til fil
-void Soner::skrivTilFil()	{																	//skriver alle sonene til filer
-	char * sonefil  = new char [strlen("SONE000.DTA")+1];								//peker for navn på fil
-	for (int i = 1; i <= MAXSONER; i++)	{														//peker for navn på fil
-		if (sonene[i] != NULL)	{																	//hvis en sone eksister
+void Soner::skrivTilFil()	{											//skriver alle sonene til filer
+	char * sonefil  = new char [strlen("SONE000.DTA")+1];	//peker for navn på fil
+	for (int i = 1; i <= MAXSONER; i++)	{							//peker for navn på fil
+		if (sonene[i] != NULL)	{												//hvis en sone eksister
 			LagNavn(sonefil, "SONE", ".DTA", i, 3);
-			ofstream ut(sonefil);   																//lag navn på fil
-			sonene[i]->skrivTilFil(ut);												        //sonen sin skriv fil
+			ofstream ut(sonefil);   													//lag navn på fil
+			sonene[i]->skrivTilFil(ut);										   //sonen sin skriv fil
 		}
 	}
-	delete [] sonefil;
+	delete [] sonefil;                                   // fjeter sonefil peker
 }
+
 
 //Finner sonenummer gitt i parameter og displayer
 void Soner::displaySone(int sonenr)  {
@@ -101,6 +108,8 @@ void Soner::displaySone(int sonenr)  {
 		sonene[sonenr]->display();     //kaller den aktuelle sonen sin display
 }
 
+
+// Displayer informasjon om en eiendom
 void Soner::displayEiendom(char* soneinfo)  {
 	int nr=atoi(soneinfo);										//gjør om til int i tilfelle postnr +sted
 	for (int i = 1; i <= MAXSONER; i++)	{			//går igjennom alle soner
@@ -109,6 +118,7 @@ void Soner::displayEiendom(char* soneinfo)  {
 		}
 	}
 }
+
 
 //switch for soner /eiendom  E/S
 void Soner::fortsettelseMeny(char valg) {
@@ -133,7 +143,7 @@ void Soner::fortsettelseMeny(char valg) {
 			eiendomNy(nr); break;
 		case 'S': cin >> nr;				//slett eiendom, les nr, slett eiendom i sone nr
 			eiendomSlett(nr);  break;
-		case 'E': cin >> nr;
+		case 'E': cin >> nr;        // endre eiendom, les nr, endre
 			eiendomEndre(nr); break;
 		}
 }
