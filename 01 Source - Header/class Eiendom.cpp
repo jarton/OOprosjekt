@@ -304,3 +304,7 @@ void Eiendom::skrivINF(ofstream &ut) {
 	ut << endl;
 	ut << "Beskrivelse: " << beskrivelse << endl;
 }
+
+ void Eiendom :: skrivBoligTilFil(ofstream & ut){}
+
+ void Eiendom :: displayBolig(){}
