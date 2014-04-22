@@ -49,7 +49,8 @@ int IntrSone::hentsonenum() {
   return sonenummer;
 }
 
-IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
+//Constructor.
+IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { 
 	
 	sonenummer=sonenr;
 	maxPris = lesTall("\nMaxpris", 1, 1000000000); 							//Leser max pris.
@@ -61,6 +62,7 @@ IntrSone :: IntrSone(int sonenr) : Num_element(sonenr)  { //Constructor.
 	statusonskeFunk();
 }
 
+//copy constructor som tar en intrsonepeker som parameter
 IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
 	maxPris = intrsonen->maxPris;							
 	minAreal = intrsonen->minAreal;
@@ -71,15 +73,18 @@ IntrSone :: IntrSone(IntrSone* intrsonen, int sonenr) : Num_element(sonenr) {
 
 }
 
+//Tom constructor
 IntrSone::IntrSone() {}
 
+//Tom destrucor
 IntrSone :: ~IntrSone(){
 	//Trenger ikke innmat
 
 }
 
+//Endrer sonenummer.
 void IntrSone :: endreSonenr(int nyttnr){
-	sonenummer = nyttnr; //Endrer sonenummer.
+	sonenummer = nyttnr; 
 }
 
 // Displayer informasjon om en interesse sone
@@ -97,6 +102,7 @@ void IntrSone::display()  {
   cout << "\n0nkes: " <<  statusonske[statusonsket];
 }
 
+//leser en intrsone fra fil.
 IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 	int bolFeed;
 	int eiendomsTyp;
@@ -123,6 +129,7 @@ IntrSone::IntrSone(ifstream & inn, int nr) : Num_element(nr)  {
 
 }
 
+//skriver en intrsone til fil
 void IntrSone::skrivTilFil(ofstream & ut, int nr)  {
 	ut << sonenummer << endl;				//Skriver
 	ut << maxPris << endl;					//informasjon
@@ -134,7 +141,7 @@ void IntrSone::skrivTilFil(ofstream & ut, int nr)  {
 	ut << endl;
 }
 
-
+//switch som tar en parameter og setter enumverdi
 void IntrSone::enumBoligfeedSwitch(int nr)  {
 	switch (nr)	{	//Tar imot int som parameter.
 	case 0: boligfeeden = ukentlig; break;	//Setter riktig verdi i enum.
@@ -142,6 +149,7 @@ void IntrSone::enumBoligfeedSwitch(int nr)  {
 	};
 }
 
+//switch som mottar en int og setter enumverdi
 void IntrSone::enumEiendomstypeSwitch(int nr)  {
 	switch (nr)	{ //Mottar int som parameter.
 	case 0: eiendomstypen = tomt; break;
@@ -152,6 +160,7 @@ void IntrSone::enumEiendomstypeSwitch(int nr)  {
 	};
 }
 
+//enda en switch som tar en int og settr enumveri
 void IntrSone::enumStatusSwitch(int nr)  {
 	switch (nr)	{	//Mottar int som parameter.
 	case 0: statusonsket = salg; break;
@@ -211,7 +220,7 @@ void IntrSone:: endreIntrSone()   {
 	}
 }
 
-
+//funksjon som får bruker til å skrive inn enum
 void IntrSone::boligfeedFunk()  {
 	char kommando; //Hjelpevariabel
 	cout << "\nBoligfeed ([U]kentlig / [S]narest): "; //Spør om ønsket boligfeed.
@@ -230,7 +239,7 @@ void IntrSone::boligfeedFunk()  {
 
 }
 
-
+//leser inn en enumverdi 
 void IntrSone::eiendomstypeFunk() {
 	char kommando; //Hjelpevariabel
 	cout << "\n\nEiendomstype ([T]omt, [E]nebolig," <<
@@ -249,7 +258,7 @@ void IntrSone::eiendomstypeFunk() {
 		kommando != 'L' && kommando != 'H'); //Senere: fix dette. Stygg metode.
 }
 
-
+//leser inn en enumsverdi
 void IntrSone::statusonskeFunk()  {
 	char kommando; //Hjelpevariabel
 	cout << "\n\nOnsket status ([S]alg / [L]eie): ";
