@@ -1,0 +1,33 @@
+<SONEBESKRIVELSE>
+
+<TYPE: eiendom> 
+<oppdragsnr>
+<dato>
+<bruksnummer>
+<ansattnr>
+<pris>
+<areal>
+<gateadresse>
+<postadresse>
+<eiernavn>
+<komunenavn>
+<beskrivelse>
+<eiendomstype>
+
+<TYPE: bolig>
+<oppdragsnr>
+<dato>
+<bruksnummer>
+<ansattnr>
+<pris>
+<areal>
+<gateadresse>
+<postadresse>
+<eiernavn>
+<komunenavn>
+<beskrivelse>
+<eiendomstype>
+<byggeaar>
+<bruttoareal>
+<boareal>
+<antall soverom>
