@@ -304,5 +304,5 @@ void Eiendom::skrivINF(ofstream &ut) {
 	else
 		ut << "hytte";
 	ut << endl;
-	ut << "Beskrivelse: " << beskrivelse << endl;
+	ut << "Beskrivelse: " << beskrivelse << endl << endl;
 }
