@@ -10,7 +10,8 @@ using namespace std;
 
 class Kunde : public Num_element  {
 private:
-	int kundenummer, tlf;   // data om en kunde
+	int kundenummer;		
+	int	tlf;				// data om en kunde
 	char* navn;
 	char* gateadresse;
 	char* postadresse;

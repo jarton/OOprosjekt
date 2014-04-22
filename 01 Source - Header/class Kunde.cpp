@@ -142,8 +142,8 @@ Kunde :: Kunde(int knr) : Num_element(knr) {
 }
 
 // Funksjon som returnerer true\false om kundenummer er rett
-bool Kunde::sjekkNr(int Knr)  {
-	if (Knr == kundenummer)
+bool Kunde::sjekkKNr(int knr) {
+	if (knr == kundenummer)
 		return true;
 	else
 		return false;
