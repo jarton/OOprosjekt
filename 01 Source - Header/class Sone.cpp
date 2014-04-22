@@ -103,10 +103,11 @@ void Sone::nyEiendom(int oppdragsnr)	{
 		if (kommando == 'B')									//hvis bolig
 			eiendom = new Bolig(oppdragsnr);						//bolig opprettes
 		else if (kommando == 'E')					//hvis eiendom
-			eiendom = new Eiendom(oppdragsnr);				//eiendom opprettes
+			eiendom = new Eiendom(oppdragsnr);	//eiendom opprettes
+		else eiendom;
 	} while (kommando != 'B' && kommando != 'E');
-	kunder.sammenlign(eiendom);
-	eiendommene->add(eiendom);				//legger til nyopprettet i lista
+		kunder.sammenlign(eiendom);
+		eiendommene->add(eiendom);				//legger til nyopprettet i lista
 }
 
 //skriver sonen til fil

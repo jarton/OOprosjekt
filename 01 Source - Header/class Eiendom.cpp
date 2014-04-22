@@ -41,15 +41,16 @@ Eiendom::Eiendom(int oppdragsnr) : Num_element(oppdragsnr)	{
 	beskrivelse = new char[strlen(buffer) + 1];	//Gir pekeren innhold 
 	strcpy(beskrivelse, buffer);	//Kopierer fra buffer til beskrivelse.
 
-	cout << "Type: Tomt, Enebolig, Rekkehus eller Hytte\n";
-	enumSwitch(buffer); //leser type eiendom.
+	cout << "\n\nEiendomstype ([T]omt, [E]nebolig," <<
+		"	[R]ekkehus, [L]eilighet, [H]ytte): ";
+	enumSwitch(); //leser type eiendom.
 }
 
 //Constructor som leser eiendomsdata fra fil
-Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
+Eiendom::Eiendom(ifstream & inn, int onr) : Num_element(onr)	{
 	oppdragsnummer = onr;
 	inn >> dato >> bruksnummer
-	 	>> ansattnummer	>> pris >> areal; //Leser diverse data.
+		>> ansattnummer >> pris >> areal; //Leser diverse data.
 
 	char buffer[STRLEN];								//buffer for innlesing
 	inn.ignore();
@@ -69,7 +70,14 @@ Eiendom::Eiendom(ifstream & inn, int onr): Num_element(onr)	{
 	beskrivelse = new char[strlen(buffer + 1)];
 	strcpy(beskrivelse, buffer); //Kopierer.
 	inn.getline(buffer, STRLEN); //Leser type.
-	enumSwitch(buffer);
+
+	switch (buffer[0]) {		//Sjekker første bokstav i array.
+	case 't': eiendomstypen = tomt; break;			//Setter
+	case 'e': eiendomstypen = enebolig; break;	//riktig
+	case 'r': eiendomstypen = rekkehus; break;	//verdi
+	case 'l': eiendomstypen = leilighet; break;	//i
+	case 'h': eiendomstypen = hytte; break;			//enum.
+	}
 }
 
 //Virtuell Deconstructor
@@ -132,7 +140,7 @@ void Eiendom::enumSwitch()	{
 	char kommando;				 //Hjelpevariabel
 	do {
 		kommando = les();			//Leser eiendomstype.
-		switch (kommando) {		//Sjekker første bokstav i array.
+		switch (kommando) {		//kommando er forste bokstav i type.
 		case 'T': eiendomstypen = tomt; break;			//Setter
 		case 'E': eiendomstypen = enebolig; break;	//riktig
 		case 'R': eiendomstypen = rekkehus; break;	//verdi
@@ -271,8 +279,9 @@ void Eiendom::endreData()  {
   cout << "\n Endre Eiendomstype? (Tast 'J/N')";
   svar=les();
     if (svar == 'J')  {
-		  lesTxt("Type: tomt, enebolig, rekkehus eller hytte", buffer, STRLEN); 
-	     enumSwitch(buffer); //leser type eiendom
+		cout << "\n\nEiendomstype ([T]omt, [E]nebolig," <<
+			"	[R]ekkehus, [L]eilighet, [H]ytte): ";
+	     enumSwitch(); //leser type eiendom
 		}
 }
 
