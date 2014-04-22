@@ -9,8 +9,8 @@ using namespace std;
 
 class Kunder  {
 private:
-	int forsteKunde, sisteKunde;
-	List* kundeliste;
+	int forsteKunde, sisteKunde;    // variabel for første og siste kunde
+	List* kundeliste;               // liste med kunder
 
 public:
 	Kunder();                        // Paramterløs constructor

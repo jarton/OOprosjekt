@@ -10,12 +10,12 @@ using namespace std;
 class Eiendom : public Num_element  {
 private:
 	int oppdragsnummer, dato, bruksnummer, ansattnummer;
-	char* gateadresse;
+	char* gateadresse;              // Data om en eiendom
 	char* postadresse;
 	char* eiernavn;
 	char* kommunenavn;
 	char* beskrivelse;
-	Eiendomstype eiendomstypen;
+	Eiendomstype eiendomstypen;     // Enum (Hytte,Rekkehus etc)
 
 protected:
 	int pris, areal;

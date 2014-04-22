@@ -6,8 +6,8 @@
 
 class Bolig : public Eiendom  {
 private:
-	int byggeaar, bruttoareal, boareal, antSoverom;
-	Statusonske statusonsket;
+	int byggeaar, bruttoareal, boareal, antSoverom; // data om en bolig
+	Statusonske statusonsket;             // Enum (Salg,Leie)
 
 public:
 	Bolig(int onr);                       // Constructor. Leser inn data om bolig

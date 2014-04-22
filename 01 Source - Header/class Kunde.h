@@ -10,12 +10,12 @@ using namespace std;
 
 class Kunde : public Num_element  {
 private:
-	int kundenummer, tlf;
+	int kundenummer, tlf;   // data om en kunde
 	char* navn;
 	char* gateadresse;
 	char* postadresse;
 	char* mail;
-	List* IntrSoneliste;
+	List* IntrSoneliste;    // Kundes liste av interesseoner
 
 public:
 	~Kunde();                        // Destructor
