@@ -9,7 +9,7 @@ using namespace std;
 
 class IntrSone : public Num_element {
 private:
-	int sonenummer, maxPris, minAreal, minAntSoverom;
+	int sonenummer, maxPris, minAreal, minAntSoverom;  //data om en intrsone
 	Boligfeed boligfeeden;                   // Ukentlig, Snarest
 	Eiendomstype eiendomstypen;              //Hytte, enebolig etc
 	Statusonske statusonsket;                // Salg, Leie

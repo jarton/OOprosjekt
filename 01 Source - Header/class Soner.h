@@ -7,19 +7,19 @@
 
 class Soner  {
 private:
-	int sisteOppdrag;
-	Sone* sonene[MAXSONER+1];
+	int sisteOppdrag;              // siste oppdrag
+	Sone* sonene[MAXSONER+1];      // Array med max 100 siner
 
 public:
 	Soner();																	//constructor
-	void eiendomNy(int nr);						//legger til ny eiendom
-	void eiendomSlett(int nr);			//sletter en eiendom
-	void skrivTilFil();							//skriver til fil
-	void fortsettelseMeny(char valg);		// Viser meny
-	void displaySone(int sonenr);          // displayer en hel sone 
-	void displayEiendom(char* soneinfo);  //displayer en/flere eiendom
-	void sammenlign(IntrSone* isone, int nr, int kundenr);
-	void eiendomEndre(int nr);
+	void eiendomNy(int nr);				       		//legger til ny eiendom
+	void eiendomSlett(int nr);		         	//sletter en eiendom
+	void skrivTilFil();						        	//skriver til fil
+	void fortsettelseMeny(char valg);	     	// Viser meny
+	void displaySone(int sonenr);            // displayer en hel sone 
+	void displayEiendom(char* soneinfo);      //displayer en/flere eiendom
+	void sammenlign(IntrSone* isone, int nr, int kundenr); //match:intrsone\sone
+	void eiendomEndre(int nr);                 // Endrer data om en eiendom
 };
 
 #endif
