@@ -93,7 +93,7 @@ void Sone::skrivINF(int kundenr, Eiendom* eien) {
 
 //oppretter en ny eiendom
 void Sone::nyEiendom(int oppdragsnr)	{
-	Eiendom* eiendom NULL;									//peker til bolig/eiendom
+	Eiendom* eiendom = NULL;									//peker til bolig/eiendom
 	char type[STRLEN];								//array for type eiendom/bolig
 	char kommando;
 
