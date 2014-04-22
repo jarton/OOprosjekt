@@ -39,7 +39,7 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	char eientype[STRLEN];															//type: bolig einendom 
 	inn >> eientype;																	//leser typen fra fil
 	while (!inn.eof())	{																//l�kke for heile filen
-		if (eientype[0] == 'e')	{										//sjekke om det st�r eiendom
+		if (eientype[0] == 'E' )	{										//sjekke om det st�r eiendom
 			inn >> onr;												//leser inn eiendomsnr
 			type = new Eiendom(inn, onr);									//lager en ny eiendom
 			eiendommene->add(type);                				//legges til i liste
