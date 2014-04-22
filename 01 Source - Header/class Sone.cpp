@@ -202,6 +202,8 @@ void Sone::displayEien(int nr)  {
 // endrer dato om en sone
 bool Sone::endreData(int nr)  {
 	Eiendom* eiendom;									//peker til bolig/eiendom
+	Bolig* bolig;
+	char ch;
 	int antEiendommer;							//antall eiendommer i liste
 	int i = 1;										//int for whileloop
 	bool funnet = false;						//bool om eiendommen er funnet
@@ -213,6 +215,10 @@ bool Sone::endreData(int nr)  {
 		if (eiendom->finnOppdragsnr(nr))	{		//sjekk oppdragsnr
 			funnet = true;													//hvis det er likt funnet er true
 			eiendom->endreData();
+			cout << "Endre informasjon om bolig? (J\N?)";
+			ch=les();
+      if (ch == 'J')  
+		  	bolig->endreBolig();
 			LagNavn(sonefil, "SONE", ".DT2", soneNummer, 3);	//får navn på sonen sin fil
 			ofstream ut(sonefil);												//åpener sonen sin fil
 			skrivTilFil(ut);							//skriver oppdart eiendomliste til fil

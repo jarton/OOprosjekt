@@ -66,6 +66,7 @@ const char* Bolig::hentEnum(const char* s) {
   }
 }
 
+
 //returner intene for sammenligning
 void Bolig::hentInt(int* i, const char s) {
   switch(s) {			//referanseoverforing vha peker	
@@ -75,9 +76,11 @@ void Bolig::hentInt(int* i, const char s) {
   }
 }
 
+
 bool Bolig::type()	{ //Funksjon for å sjekke objektets type.
 	return 0; // (0 tilsvarer bolig, 1 tilsvarer eiendom.)
 }
+
 
 void Bolig::displayBolig()  { //Skriver info til display
 	cout << "\n--BOLIG--\n";
@@ -87,3 +90,54 @@ void Bolig::displayBolig()  { //Skriver info til display
 	cout << "\nBoareal: " << boareal;
 	cout << "\nAntall Soverom: " << antSoverom;
 }
+
+// endrer informasjonen om en bolig
+void Bolig::endreBolig()  {
+	char svar;
+	char kommando;
+
+	cout << "\n Byggeaar: " << byggeaar;
+  cout << "\n Endre byggeaar? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  
+			byggeaar = lesTall("Byggeaar", 1800, 2014);			//Leser byggeår
+
+	cout << "\n Bruttoareal: " << bruttoareal;
+  cout << "\n Endre bruttoareal? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  
+			bruttoareal = lesTall("Bruttoareal", 2, 1000);	//Leser bruttoareal
+
+	cout << "\n Boareal: " << boareal;
+  cout << "\n Endre boareal? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  
+			boareal = lesTall("Boareal", 2, 1000);					//Leser boareal
+
+	cout << "\n Antall soverom: " << boareal;
+  cout << "\n Endre antall? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  
+			antSoverom = lesTall("Antall soverom", 0, 250);	//Leser antall soverom
+
+	cout << "\n Endre Status? (Tast 'J/N')";
+  svar=les();
+    if (svar == 'J')  {
+		  cout << "\nTil leie eller salgs (L/S): ";		//Leser om den er til leie eller salgs
+	    kommando = les();
+	    if (kommando == 'L')
+		    statusonsket = leie;
+	    else if (kommando == 'S')
+		    statusonsket = salg;
+		}
+}
+
+
+
+	
+	Statusonske statusonsket;             // Enum (Salg,Leie)
+
+		
+	
+	
+	
