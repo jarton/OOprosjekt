@@ -110,7 +110,7 @@ void Kunder::slettKunde(int knr)  {
 
 for (int i = 1; i <= antkunder; i++)  {  // loop gjennom alle kunder
   kunde = (Kunde*)kundeliste->remove_no(i);  // fjerner en kunden fra listen
-  if (kunde->sjekkNr(knr) == true)  {   // hvis kundenummeret er lik innskrevet
+  if (kunde->sjekkKNr(knr) == true)  {   // hvis kundenummeret er lik innskrevet
     kundeliste->destroy(i);             // destroyer kunden
 		break;
 	}
