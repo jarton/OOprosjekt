@@ -165,48 +165,48 @@ void IntrSone:: endreIntrSone()   {
 	char svar;
 	cout << "\n0nsker du aa endre data i sone nummer "<<sonenummer<<"? (J/N)";
 	svar=les();
-	if (svar=='J')  {
-	  char* eiendomstype[] = {"Tomt", "Enebolig",
+	if (svar=='J')  { // Hvis ja..
+	  char* eiendomstype[] = {"Tomt", "Enebolig",  //enum-verdier..
 					 									"Rekkehus", "Leilighet", "Hytte"};
 	  char* statusonske[] = {"Salg", "Leie", "Salg og leie"};
     char* boligfeed[]=  {"Ukentlig", "Snarest"};
 
-    cout << "\nMaksimums pris: " <<  maxPris;
+    cout << "\nMaksimums pris: " <<  maxPris; //Skriver nåværende maxpris til disp.
     cout << "\n Endre maksimums pris? (Tast 'J/N')";
 	  svar=les();
-	  if (svar == 'J')  
+	  if (svar == 'J')  //Hvis de vil endre:
 	    maxPris = lesTall("\nMaxpris", 1, 1000000000); //Leser max pris.
 
-    cout << "\nMinimums areal: " <<  minAreal;
+    cout << "\nMinimums areal: " <<  minAreal; //Skriver nåværende min. areal.
     cout << "\n Endre minimums areal? (Tast 'J/N')";
 	  svar=les();
-	  if (svar == 'J')  
+	  if (svar == 'J')  //Hvis de vi endre:
 	    minAreal = lesTall("\nMinimum areal", 1, 10000); //Leser minimum areal.
 
-		cout << "\nMinimum antall soverom: " <<  minAntSoverom;
+		cout << "\nMinimum antall soverom: " <<  minAntSoverom; //Skriver nåværende soverom.
     cout << "\n Endre minimum antall soverom? (Tast 'J/N')";
 	  svar=les();
-	  if (svar == 'J')  
+	  if (svar == 'J')  //Hvis de vil endre:
 	    minAntSoverom = lesTall("\nMinimum antall soverom", 0, 100); //Leser soverom. 
   
   
-    cout << "\nBoligfeed: " << boligfeed[boligfeeden];
+    cout << "\nBoligfeed: " << boligfeed[boligfeeden]; //Skriver nåværende feed.
     cout << "\n Endre boligfeed? (Tast 'J/N')";
 	  svar=les();
-	  if (svar == 'J')  
-			boligfeedFunk();
+	  if (svar == 'J')  //Hvis de vil endre:
+			boligfeedFunk(); //Switchfunksjon.
 
-    cout << "\nEiendomstype: " <<  eiendomstype[eiendomstypen];
+    cout << "\nEiendomstype: " <<  eiendomstype[eiendomstypen]; //Skriver eiendomstype.
     cout << "\n Endre eiendomstype? (Tast 'J/N')";
-	  svar=les();
-	  if (svar == 'J')  
-			eiendomstypeFunk();
+	  svar=les(); 
+	  if (svar == 'J')  //Hvis de vil endre:
+			eiendomstypeFunk(); //Switchfunksjon
 
-    cout << "\n0nkes: " <<  statusonske[statusonsket];
+    cout << "\n0nkes: " <<  statusonske[statusonsket]; //Skriver statusønske.
     cout << "\n Endre? (Tast 'J/N')";
 	  svar=les();
-	  if (svar == 'J')  
-			statusonskeFunk();
+	  if (svar == 'J')  //Hvis de vil endre:
+			statusonskeFunk(); //Switchfunksjon
 
 	}
 
