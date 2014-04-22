@@ -4,17 +4,16 @@
 #include "class Eiendom.h"
 #include "class Bolig.h"
 #include "conster.h"
-#include <iostream>
-#include <cstring>
-#include <fstream>
+#include <iostream>               // cin, cout
+#include <cstring>                // strcpy
+#include <fstream>                // ifstream, ofstream
 
 using namespace std;
 
 //Constructor som leser inn EN eiendom
 Sone::Sone(int nr, int oppdragsnr)	{
 	char buffer[STRLEN];									//buffer for innlesing
-	soneNummer = nr;								//setter sonens nr til medsent nr
-	
+	soneNummer = nr;								//setter sonens nr til medsent nr	
 
 	lesTxt("Sonebeskrivelse", buffer, STRLEN);		//leser inn sonebeskrivelse
 	beskrivelse = new char[strlen(buffer) + 1];		//lager array som er akkurat passe
@@ -23,6 +22,7 @@ Sone::Sone(int nr, int oppdragsnr)	{
 	eiendommene = new List(Sorted);					//lager en liste for eiendommene
 	nyEiendom(oppdragsnr);						//kaller på nyeiendom funksjonen
 }
+
 
 // Constructor som leser fra fil
 Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
@@ -53,6 +53,7 @@ Sone::Sone(ifstream & inn, int nr)	{											//int er sonenr
 	}
 }
 
+
 //sammenligner en intrsone med alle eiendommene i sonen
 void Sone::sammenlign(IntrSone* isone, int kundnr) {
   Eiendom* eiendom;												//eiendomspeker for aktuell eiendom
@@ -79,17 +80,13 @@ void Sone::sammenlign(IntrSone* isone, int kundnr) {
 
 //Skriver eiendommer oppdrag til .INF fil
 void Sone::skrivINF(int kundenr, Eiendom* eien) {
-	char * kundeINF  = new char [strlen("KUNDE0001001.INF")+1];
-	LagNavn(kundeINF, "KUNDE", ".INF", kundenr, 7);
-	ofstream ut(kundeINF, ios::app);
-	eien->skrivINF(ut);
-	
-
-	delete [] kundeINF;
-//lager navn vha kundenr.
-//skriver det som skal med fra eiendommen. apphend hvis det står noe der ifr
-//før
+	char * kundeINF  = new char [strlen("KUNDE0001001.INF")+1]; //char til filnavn
+	LagNavn(kundeINF, "KUNDE", ".INF", kundenr, 7);  // Lager filnavn
+	ofstream ut(kundeINF, ios::app);              // oppretter utfil
+	eien->skrivINF(ut);                           // skriver eiendomsinfo til fil
+	delete [] kundeINF;                          //sletter peker til fil
 }
+
 
 //oppretter en ny eiendom
 void Sone::nyEiendom(int oppdragsnr)	{
@@ -105,9 +102,10 @@ void Sone::nyEiendom(int oppdragsnr)	{
 		else if (kommando == 'E')					//hvis eiendom
 			eiendom = new Eiendom(oppdragsnr);	//eiendom opprettes
 	} while (kommando != 'B' && kommando != 'E');
-	kunder.sammenlign(eiendom);
-	eiendommene->add(eiendom);
+	kunder.sammenlign(eiendom);    // sammenlikner
+	eiendommene->add(eiendom);    // legger eiendom tilbake i listen
 }
+
 
 //skriver sonen til fil
 void Sone::skrivTilFil(ofstream & ut)	{
@@ -130,6 +128,7 @@ void Sone::skrivTilFil(ofstream & ut)	{
 	}																				//i lista
 }
 
+
 // Displayer all informasjon om en sone
 void Sone::display()  {
 	Eiendom* eiendom;                                            // Eiendom-peker
@@ -149,8 +148,6 @@ void Sone::display()  {
 		eiendommene->add(eiendom);               // Legger eiendom tilbake i listen
 	}
 }
-
-// Endrer info om en eiendom
 
 
 //Sletter en eiendom med et gitt oppdragsnr
@@ -175,8 +172,9 @@ bool Sone::slettEiendom(int oppdragnr)	{
 		else { eiendommene->add(eiendom); i++;} //hvis ikke erlik legg tilbake og tell opp
 	}
 	return funnet;	    //return om eiendommen ble funnet i aktuelle sonen
-	delete [] sonefil;
+	delete [] sonefil;    // sletter peker til sonefil
 }
+
 
 //displayer en/flere eiendommer
 void Sone::displayEien(int nr)  {
@@ -200,6 +198,8 @@ void Sone::displayEien(int nr)  {
 	}
 }
 
+
+// endrer dato om en sone
 bool Sone::endreData(int nr)  {
 	Eiendom* eiendom;									//peker til bolig/eiendom
 	int antEiendommer;							//antall eiendommer i liste
@@ -224,5 +224,5 @@ bool Sone::endreData(int nr)  {
 		}            //hvis ikke erlik legg tilbake og tell opp
 	}
 	return funnet;	    //return om eiendommen ble funnet i aktuelle sonen
-	delete [] sonefil;
+	delete [] sonefil;    // sletter peker til sonefil
 }
