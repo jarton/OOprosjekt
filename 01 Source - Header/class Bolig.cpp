@@ -92,9 +92,11 @@ void Bolig::displayBolig()  { //Skriver info til display
 }
 
 // endrer informasjonen om en bolig
-void Bolig::endreBolig()  {
+void Bolig::endreData()  {
 	char svar;
 	char kommando;
+
+	Eiendom::endreData();			//kaller baseklassens endredata først
 
 	cout << "\n Byggeaar: " << byggeaar;
   cout << "\n Endre byggeaar? (Tast 'J/N')";

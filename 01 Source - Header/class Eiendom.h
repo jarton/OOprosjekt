@@ -34,7 +34,7 @@ public:
 	virtual void display();                // Display informasjon om en eiendom
 	bool finnPostnummer(int postnr);       // Sjekker om postnummer er rett
 	bool finnOppdragsnr(int oppdnr);       // Sjekker om oppdragsnr er rett
-	void endreData();                      // Endrer datra om en eiendom
+	virtual void endreData();                      // Endrer datra om en eiendom
 	void skrivINF(ofstream &ut);           // Skriver data til INF-filen
 };
 
