@@ -93,10 +93,10 @@ void Sone::skrivINF(int kundenr, Eiendom* eien) {
 
 //oppretter en ny eiendom
 void Sone::nyEiendom(int oppdragsnr)	{
-	Eiendom* eiendom;									//peker til bolig/eiendom
+	Eiendom* eiendom NULL;									//peker til bolig/eiendom
 	char type[STRLEN];								//array for type eiendom/bolig
 	char kommando;
-	
+
 	cout << "velg type [B]olig  /   [E]iendom\n";
 	do {
 		kommando = les();
@@ -104,10 +104,9 @@ void Sone::nyEiendom(int oppdragsnr)	{
 			eiendom = new Bolig(oppdragsnr);						//bolig opprettes
 		else if (kommando == 'E')					//hvis eiendom
 			eiendom = new Eiendom(oppdragsnr);	//eiendom opprettes
-		else eiendom;
 	} while (kommando != 'B' && kommando != 'E');
-		kunder.sammenlign(eiendom);
-		eiendommene->add(eiendom);				//legger til nyopprettet i lista
+	kunder.sammenlign(eiendom);
+	eiendommene->add(eiendom);
 }
 
 //skriver sonen til fil
